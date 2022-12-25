@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kitteh</title>
+        <link rel="Stylesheet" href="stylebase.css" />
+        <script type="text/javascript" src="htmlwriter.js"></script>
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+<body>
+<script type="text/javascript">
+    //file title
+    let stuffedAnimalMediaObject = {
+            "backgroundimage":"gamemedia/birds.jpg",
+            "animals":[
+                {'file':'gamemedia/whale.png','title':'Orca'},
+                {'file':'gamemedia/pinkelephant.png','title':'Pink Elephant'},
+                {'file':'gamemedia/ferry.png','title':'Ferry'},
+                {'file':'gamemedia/spaceneedle.png','title':'Space Needle'},
+                {'file':'gamemedia/whale.png','title':'Orca Whale'},
+                {'file':'gamemedia/rainier.png','title':'Mt Rainier'},
+                {'file':'gamemedia/STARBUCK.png','title':'Starbucks'},
+                {'file':'gamemedia/birds.png','title':'Birds'},
+                {'file':'gamemedia/cats.png','title':'Cats'},
+                {'file':'gamemedia/chickens.png','title':'Chickens'},
+                {'file':'gamemedia/crocodiles.png','title':'Crocodiles'},
+                {'file':'gamemedia/darthvader.png','title':'Darth Vader'},
+                {'file':'gamemedia/deck.png','title':'Deck'},
+                {'file':'gamemedia/dogs.png','title':'Dog'},
+                {'file':'gamemedia/lamblambs.png','title':'Lamb'},
+                {'file':'gamemedia/lions.png','title':'Lion'},
+                {'file':'gamemedia/queen.png','title':'Queen'},
+                {'file':'gamemedia/r2d2.png','title':'R2D2'},
+                {'file':'gamemedia/stormtrooper.png','title':'Storm Trooper'},
+                {'file':'gamemedia/truck.png','title':'Truck'},
+                {'file':'gamemedia/wheel.png','title':'Wheel'},
+                {'file':'gamemedia/boobies.gif','title':'Boobies'},
+                {'file':'gamemedia/racon.png','title':'Racon'}
+
+
+    ]
+        };
+
+    let mediaObject = {
+        "songspath": "https://analogarchive.com/analog/",
+        "videospath": "",
+        "photospath": "",
+        "videos": [],
+        "photos": [],
+        "songs": [{
+            "file": "Fugazi-Argument Side A.mp3",
+            "title": "Fugazi-Argument Side A.mp3"
+        },
+            {
+                "file": "Fugazi-Argument Side B.mp3",
+                "title": "Fugazi-Argument Side B.mp3"
+            },
+            {
+                "file": "Ian Brown Sunshine.mp3",
+                "title": "Ian Brown Sunshine.mp3"
+            },
+            {
+                "file": "Madonnabeautifulstranger.mp3",
+                "title": "Madonnabeautifulstranger.mp3"
+            },
+            {
+                "file": "Melvins Sweet Young Thing Aint Sweet No More.mp3",
+                "title": "Melvins Sweet Young Thing Aint Sweet No More.mp3"
+            },
+            {
+                "file": "Melvins8songsCzRecordsSideA.mp3",
+                "title": "Melvins8songsCzRecordsSideA.mp3"
+            },
+            {
+                "file": "Melvins8songsCzRecordsSideB.mp3",
+                "title": "Melvins8songsCzRecordsSideB.mp3"
+            },
+            {
+                "file": "Side A.mp3",
+                "title": "Side A.mp3"
+            },
+            {
+                "file": "Side B.mp3",
+                "title": "Side B.mp3"
+            },
+            {
+                "file": "Youth of Today Disengage.mp3",
+                "title": "Youth of Today Disengage.mp3"
+            },
+            {
+                "file": "Youth of Today Envy Modern Love Story.mp3",
+                "title": "Youth of Today Envy Modern Love Story.mp3"
+            },
+            {
+                "file": "aliceinchains-dirt-sidea.mp3",
+                "title": "aliceinchains-dirt-sidea.mp3"
+            },
+            {
+                "file": "aliceinchains-dirt-sideb.mp3",
+                "title": "aliceinchains-dirt-sideb.mp3"
+            },
+            {
+                "file": "aliceinchains-jarofflies-sidea.mp3",
+                "title": "aliceinchains-jarofflies-sidea.mp3"
+            },
+            {
+                "file": "aliceinchains-jarofflies-sideb.mp3",
+                "title": "aliceinchains-jarofflies-sideb.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-bonustrack.mp3",
+                "title": "aliceinchains-sap-bonustrack.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-brother.mp3",
+                "title": "aliceinchains-sap-brother.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-gotmewrong.mp3",
+                "title": "aliceinchains-sap-gotmewrong.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-iaminside.mp3",
+                "title": "aliceinchains-sap-iaminside.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-rightturn.mp3",
+                "title": "aliceinchains-sap-rightturn.mp3"
+            },
+            {
+                "file": "aliceinchains-sap-sidea.mp3",
+                "title": "aliceinchains-sap-sidea.mp3"
+            },
+            {
+                "file": "aliceinchains-sidea.mp3",
+                "title": "aliceinchains-sidea.mp3"
+            },
+            {
+                "file": "aliceinchains-sideb.mp3",
+                "title": "aliceinchains-sideb.mp3"
+            },
+            {
+                "file": "aliceinchains-sidec.mp3",
+                "title": "aliceinchains-sidec.mp3"
+            },
+            {
+                "file": "aliceinchains-sided.mp3",
+                "title": "aliceinchains-sided.mp3"
+            },
+            {
+                "file": "artofnoise-whosafraid-sidea.mp3",
+                "title": "artofnoise-whosafraid-sidea.mp3"
+            },
+            {
+                "file": "artofnoise-whosafraid-sideb.mp3",
+                "title": "artofnoise-whosafraid-sideb.mp3"
+            },
+            {
+                "file": "bauhaus-1979to1983-sidea.mp3",
+                "title": "bauhaus-1979to1983-sidea.mp3"
+            },
+            {
+                "file": "bauhaus-1979to1983-sideb.mp3",
+                "title": "bauhaus-1979to1983-sideb.mp3"
+            },
+            {
+                "file": "bauhaus-4ad-sidea.mp3",
+                "title": "bauhaus-4ad-sidea.mp3"
+            },
+            {
+                "file": "bauhaus-4ad-sideb.mp3",
+                "title": "bauhaus-4ad-sideb.mp3"
+            },
+            {
+                "file": "bauhaus-boys Dark Entries studio.mp3",
+                "title": "bauhaus-boys Dark Entries studio.mp3"
+            },
+            {
+                "file": "bauhaus-mask-sidea.mp3",
+                "title": "bauhaus-mask-sidea.mp3"
+            },
+            {
+                "file": "bauhaus-mask-sideb.mp3",
+                "title": "bauhaus-mask-sideb.mp3"
+            },
+            {
+                "file": "bauhaus-theskysgoneout-sidea.mp3",
+                "title": "bauhaus-theskysgoneout-sidea.mp3"
+            },
+            {
+                "file": "bauhaus-theskysgoneout-sideb.mp3",
+                "title": "bauhaus-theskysgoneout-sideb.mp3"
+            },
+            {
+                "file": "beastieboys-illcommunication-sidea.mp3",
+                "title": "beastieboys-illcommunication-sidea.mp3"
+            },
+            {
+                "file": "beastieboys-illcommunication-sideb.mp3",
+                "title": "beastieboys-illcommunication-sideb.mp3"
+            },
+            {
+                "file": "beastieboys-illcommunication-sidec.mp3",
+                "title": "beastieboys-illcommunication-sidec.mp3"
+            },
+            {
+                "file": "beastieboys-illcommunication-sided.mp3",
+                "title": "beastieboys-illcommunication-sided.mp3"
+            },
+            {
+                "file": "beastieboys-intergalacticBWpeanutbutterandjelly.mp3",
+                "title": "beastieboys-intergalacticBWpeanutbutterandjelly.mp3"
+            },
+            {
+                "file": "beastieboys-licensetoill-sidea.mp3",
+                "title": "beastieboys-licensetoill-sidea.mp3"
+            },
+            {
+                "file": "beastieboys-licensetoill-sideb.mp3",
+                "title": "beastieboys-licensetoill-sideb.mp3"
+            },
+            {
+                "file": "beastieboys-skillstopaythebills-passthemicsowhatchawant.mp3",
+                "title": "beastieboys-skillstopaythebills-passthemicsowhatchawant.mp3"
+            },
+            {
+                "file": "beathappening-angelgone-7inch.mp3",
+                "title": "beathappening-angelgone-7inch.mp3"
+            },
+            {
+                "file": "beathappening-blackcandy-sidea.mp3",
+                "title": "beathappening-blackcandy-sidea.mp3"
+            },
+            {
+                "file": "beathappening-blackcandy-sideb.mp3",
+                "title": "beathappening-blackcandy-sideb.mp3"
+            },
+            {
+                "file": "beathappeningscreamingtreesep.mp3",
+                "title": "beathappeningscreamingtreesep.mp3"
+            },
+            {
+                "file": "beck-itsallinyourmindBWfeatherinyourcapwhiskeycancan.mp3",
+                "title": "beck-itsallinyourmindBWfeatherinyourcapwhiskeycancan.mp3"
+            },
+            {
+                "file": "beck-odelay-sidea.mp3",
+                "title": "beck-odelay-sidea.mp3"
+            },
+            {
+                "file": "beck-odelay-sideb.mp3",
+                "title": "beck-odelay-sideb.mp3"
+            },
+            {
+                "file": "beck-onefootinthegrave-sidea.mp3",
+                "title": "beck-onefootinthegrave-sidea.mp3"
+            },
+            {
+                "file": "beck-onefootinthegrave-sideb.mp3",
+                "title": "beck-onefootinthegrave-sideb.mp3"
+            },
+            {
+                "file": "beck-onefootinthegrave-sidec.mp3",
+                "title": "beck-onefootinthegrave-sidec.mp3"
+            },
+            {
+                "file": "beck-onefootinthegrave-sided.mp3",
+                "title": "beck-onefootinthegrave-sided.mp3"
+            },
+            {
+                "file": "beckguerolitosidea.mp3",
+                "title": "beckguerolitosidea.mp3"
+            },
+            {
+                "file": "beckguerolitosideb.mp3",
+                "title": "beckguerolitosideb.mp3"
+            },
+            {
+                "file": "beckguerolitosidec.mp3",
+                "title": "beckguerolitosidec.mp3"
+            },
+            {
+                "file": "beckguerolitosided.mp3",
+                "title": "beckguerolitosided.mp3"
+            },
+            {
+                "file": "belleandsebastian-abitofprevious-sidea.mp3",
+                "title": "belleandsebastian-abitofprevious-sidea.mp3"
+            },
+            {
+                "file": "belleandsebastian-abitofprevious-sideb.mp3",
+                "title": "belleandsebastian-abitofprevious-sideb.mp3"
+            },
+            {
+                "file": "chrisconnelly-whiplashboychild-sidea.mp3",
+                "title": "chrisconnelly-whiplashboychild-sidea.mp3"
+            },
+            {
+                "file": "chrisconnelly-whiplashboychild-sideb.mp3",
+                "title": "chrisconnelly-whiplashboychild-sideb.mp3"
+            },
+            {
+                "file": "dwarves-mustdie-sidea.mp3",
+                "title": "dwarves-mustdie-sidea.mp3"
+            },
+            {
+                "file": "dwarves-mustdie-sideb.mp3",
+                "title": "dwarves-mustdie-sideb.mp3"
+            },
+            {
+                "file": "frankblack-teenageroftheyear-sidea.mp3",
+                "title": "frankblack-teenageroftheyear-sidea.mp3"
+            },
+            {
+                "file": "frankblack-teenageroftheyear-sideb.mp3",
+                "title": "frankblack-teenageroftheyear-sideb.mp3"
+            },
+            {
+                "file": "frankblack-teenageroftheyear-sidec.mp3",
+                "title": "frankblack-teenageroftheyear-sidec.mp3"
+            },
+            {
+                "file": "frankblack-teenageroftheyear-sided.mp3",
+                "title": "frankblack-teenageroftheyear-sided.mp3"
+            },
+            {
+                "file": "fugazi-endhits-sidea.mp3",
+                "title": "fugazi-endhits-sidea.mp3"
+            },
+            {
+                "file": "fugazi-endhits-sideb.mp3",
+                "title": "fugazi-endhits-sideb.mp3"
+            },
+            {
+                "file": "fugazi-firstdemo-sidea.mp3",
+                "title": "fugazi-firstdemo-sidea.mp3"
+            },
+            {
+                "file": "fugazi-firstdemo-sideb.mp3",
+                "title": "fugazi-firstdemo-sideb.mp3"
+            },
+            {
+                "file": "fugazi-furnitureBWnumber5Hellomorning.mp3",
+                "title": "fugazi-furnitureBWnumber5Hellomorning.mp3"
+            },
+            {
+                "file": "fugazi-gunsdrugsandmoney-ep.mp3",
+                "title": "fugazi-gunsdrugsandmoney-ep.mp3"
+            },
+            {
+                "file": "fugazi-inonthekilltaker-sidea.mp3",
+                "title": "fugazi-inonthekilltaker-sidea.mp3"
+            },
+            {
+                "file": "fugazi-inonthekilltaker-sideb.mp3",
+                "title": "fugazi-inonthekilltaker-sideb.mp3"
+            },
+            {
+                "file": "fugazi-marginwalker-sidea.mp3",
+                "title": "fugazi-marginwalker-sidea.mp3"
+            },
+            {
+                "file": "fugazi-marginwalker-sideb.mp3",
+                "title": "fugazi-marginwalker-sideb.mp3"
+            },
+            {
+                "file": "fugazi-redmedicine-sidea.mp3",
+                "title": "fugazi-redmedicine-sidea.mp3"
+            },
+            {
+                "file": "fugazi-redmedicine-sideb.mp3",
+                "title": "fugazi-redmedicine-sideb.mp3"
+            },
+            {
+                "file": "fugazi-selftitled-sidea.mp3",
+                "title": "fugazi-selftitled-sidea.mp3"
+            },
+            {
+                "file": "fugazi-selftitled-sideb.mp3",
+                "title": "fugazi-selftitled-sideb.mp3"
+            },
+            {
+                "file": "fugazi-songnumberone-7.mp3",
+                "title": "fugazi-songnumberone-7.mp3"
+            },
+            {
+                "file": "fugazi-steadydietofnothing-sidea.mp3",
+                "title": "fugazi-steadydietofnothing-sidea.mp3"
+            },
+            {
+                "file": "fugazi-steadydietofnothing-sideb.mp3",
+                "title": "fugazi-steadydietofnothing-sideb.mp3"
+            },
+            {
+                "file": "germs-GI-sidea.mp3",
+                "title": "germs-GI-sidea.mp3"
+            },
+            {
+                "file": "germs-GI-sideb.mp3",
+                "title": "germs-GI-sideb.mp3"
+            },
+            {
+                "file": "germs-forming-7.mp3",
+                "title": "germs-forming-7.mp3"
+            },
+            {
+                "file": "germs-germicide-sidea.mp3",
+                "title": "germs-germicide-sidea.mp3"
+            },
+            {
+                "file": "germs-germicide-sideb.mp3",
+                "title": "germs-germicide-sideb.mp3"
+            },
+            {
+                "file": "gits-frenchingthebully-sidea.mp3",
+                "title": "gits-frenchingthebully-sidea.mp3"
+            },
+            {
+                "file": "gits-frenchingthebully-sideb.mp3",
+                "title": "gits-frenchingthebully-sideb.mp3"
+            },
+            {
+                "file": "godhelpthegirl-sidea.mp3",
+                "title": "godhelpthegirl-sidea.mp3"
+            },
+            {
+                "file": "godhelpthegirl-sideb.mp3",
+                "title": "godhelpthegirl-sideb.mp3"
+            },
+            {
+                "file": "godhelpthegirl-stills-sidea.mp3",
+                "title": "godhelpthegirl-stills-sidea.mp3"
+            },
+            {
+                "file": "godhelpthegirl-stills-sideb.mp3",
+                "title": "godhelpthegirl-stills-sideb.mp3"
+            },
+            {
+                "file": "governmentissue-leglessbullEP.mp3",
+                "title": "governmentissue-leglessbullEP.mp3"
+            },
+            {
+                "file": "greenriver-dryasabone-sidea.mp3",
+                "title": "greenriver-dryasabone-sidea.mp3"
+            },
+            {
+                "file": "greenriver-dryasabone-sideb.mp3",
+                "title": "greenriver-dryasabone-sideb.mp3"
+            },
+            {
+                "file": "greenriver-dryasabone-sidec.mp3",
+                "title": "greenriver-dryasabone-sidec.mp3"
+            },
+            {
+                "file": "greenriver-dryasabone-sided.mp3",
+                "title": "greenriver-dryasabone-sided.mp3"
+            },
+            {
+                "file": "halobenders-goddontmakenojunk-sidea.mp3",
+                "title": "halobenders-goddontmakenojunk-sidea.mp3"
+            },
+            {
+                "file": "halobenders-goddontmakenojunk-sideb.mp3",
+                "title": "halobenders-goddontmakenojunk-sideb.mp3"
+            },
+            {
+                "file": "hankwilliams-thegreathitsof-sidea.mp3",
+                "title": "hankwilliams-thegreathitsof-sidea.mp3"
+            },
+            {
+                "file": "hankwilliams-thegreathitsof-sideb.mp3",
+                "title": "hankwilliams-thegreathitsof-sideb.mp3"
+            },
+            {
+                "file": "hankwilliams-thegreathitsof-sidec.mp3",
+                "title": "hankwilliams-thegreathitsof-sidec.mp3"
+            },
+            {
+                "file": "hankwilliams-thegreathitsof-sided.mp3",
+                "title": "hankwilliams-thegreathitsof-sided.mp3"
+            },
+            {
+                "file": "heart-crazyonyou-7.mp3",
+                "title": "heart-crazyonyou-7.mp3"
+            },
+            {
+                "file": "heart-magicman-7.mp3",
+                "title": "heart-magicman-7.mp3"
+            },
+            {
+                "file": "ianbrown-myway-sidea.mp3",
+                "title": "ianbrown-myway-sidea.mp3"
+            },
+            {
+                "file": "ianbrown-myway-sideb.mp3",
+                "title": "ianbrown-myway-sideb.mp3"
+            },
+            {
+                "file": "icu-chottomatteamoment-sidea.mp3",
+                "title": "icu-chottomatteamoment-sidea.mp3"
+            },
+            {
+                "file": "icu-chottomatteamoment-sideb.mp3",
+                "title": "icu-chottomatteamoment-sideb.mp3"
+            },
+            {
+                "file": "icu-chottomatteamoment-sidec.mp3",
+                "title": "icu-chottomatteamoment-sidec.mp3"
+            },
+            {
+                "file": "icu-chottomatteamoment-sided.mp3",
+                "title": "icu-chottomatteamoment-sided.mp3"
+            },
+            {
+                "file": "icu-dothetwistBWrussianrhapsody.mp3",
+                "title": "icu-dothetwistBWrussianrhapsody.mp3"
+            },
+            {
+                "file": "index.htm",
+                "title": "index.htm"
+            },
+            {
+                "file": "index.htm.old",
+                "title": "index.htm.old"
+            },
+            {
+                "file": "index.html",
+                "title": "index.html"
+            },
+            {
+                "file": "integrity-sarin.mp3",
+                "title": "integrity-sarin.mp3"
+            },
+            {
+                "file": "iqu-cantyouevenremeberthat.mp3",
+                "title": "iqu-cantyouevenremeberthat.mp3"
+            },
+            {
+                "file": "iqu-teenagedream-sidea.mp3",
+                "title": "iqu-teenagedream-sidea.mp3"
+            },
+            {
+                "file": "iqu-teenagedream-sideb.mp3",
+                "title": "iqu-teenagedream-sideb.mp3"
+            },
+            {
+                "file": "jackwhite-aloneinmyhomedemoBWentitlement-7.mp3",
+                "title": "jackwhite-aloneinmyhomedemoBWentitlement-7.mp3"
+            },
+            {
+                "file": "jackwhite-flyfarmblues-7inch.mp3",
+                "title": "jackwhite-flyfarmblues-7inch.mp3"
+            },
+            {
+                "file": "jackwhite-imshakin-7inch.mp3",
+                "title": "jackwhite-imshakin-7inch.mp3"
+            },
+            {
+                "file": "jackwhite-lazaretto-7inch.mp3",
+                "title": "jackwhite-lazaretto-7inch.mp3"
+            },
+            {
+                "file": "jackwhite-lazaretto-sidea.mp3",
+                "title": "jackwhite-lazaretto-sidea.mp3"
+            },
+            {
+                "file": "jackwhite-lazaretto-sideb.mp3",
+                "title": "jackwhite-lazaretto-sideb.mp3"
+            },
+            {
+                "file": "jackwhite-loveinterruption-7inch.mp3",
+                "title": "jackwhite-loveinterruption-7inch.mp3"
+            },
+            {
+                "file": "jackwhite-machinegunsilhouette.mp3",
+                "title": "jackwhite-machinegunsilhouette.mp3"
+            },
+            {
+                "file": "jackwhite-sixteensaltines-7inch.mp3",
+                "title": "jackwhite-sixteensaltines-7inch.mp3"
+            },
+            {
+                "file": "jackwhite-thatblackbatlicoriceBWbluelightredlightsomeonesthere.mp3",
+                "title": "jackwhite-thatblackbatlicoriceBWbluelightredlightsomeonesthere.mp3"
+            },
+            {
+                "file": "jackwhite-wouldyoufightformyloveBWparallel.mp3",
+                "title": "jackwhite-wouldyoufightformyloveBWparallel.mp3"
+            },
+            {
+                "file": "james-laid-sidea.mp3",
+                "title": "james-laid-sidea.mp3"
+            },
+            {
+                "file": "james-laid-sideb.mp3",
+                "title": "james-laid-sideb.mp3"
+            },
+            {
+                "file": "james-seven-sidea.mp3",
+                "title": "james-seven-sidea.mp3"
+            },
+            {
+                "file": "james-seven-sideb.mp3",
+                "title": "james-seven-sideb.mp3"
+            },
+            {
+                "file": "james-wahwah-sidea.mp3",
+                "title": "james-wahwah-sidea.mp3"
+            },
+            {
+                "file": "james-wahwah-sideb.mp3",
+                "title": "james-wahwah-sideb.mp3"
+            },
+            {
+                "file": "james-wahwah-sidec.mp3",
+                "title": "james-wahwah-sidec.mp3"
+            },
+            {
+                "file": "james-wahwah-sided.mp3",
+                "title": "james-wahwah-sided.mp3"
+            },
+            {
+                "file": "jamessevensidea.mp3",
+                "title": "jamessevensidea.mp3"
+            },
+            {
+                "file": "jamessevensideb.mp3",
+                "title": "jamessevensideb.mp3"
+            },
+            {
+                "file": "jesusandmarychain-honeysdead-sidea.mp3",
+                "title": "jesusandmarychain-honeysdead-sidea.mp3"
+            },
+            {
+                "file": "jesusandmarychain-honeysdead-sideb.mp3",
+                "title": "jesusandmarychain-honeysdead-sideb.mp3"
+            },
+            {
+                "file": "jesuslizard-down-sidea.mp3",
+                "title": "jesuslizard-down-sidea.mp3"
+            },
+            {
+                "file": "jesuslizard-down-sideb.mp3",
+                "title": "jesuslizard-down-sideb.mp3"
+            },
+            {
+                "file": "joewalsh-lifesbeengood.mp3",
+                "title": "joewalsh-lifesbeengood.mp3"
+            },
+            {
+                "file": "joewalshrockymountainway.mp3",
+                "title": "joewalshrockymountainway.mp3"
+            },
+            {
+                "file": "joydivision-heartandsoul-sidea.mp3",
+                "title": "joydivision-heartandsoul-sidea.mp3"
+            },
+            {
+                "file": "joydivision-heartandsoul-sideb.mp3",
+                "title": "joydivision-heartandsoul-sideb.mp3"
+            },
+            {
+                "file": "joydivision-still-sidea.mp3",
+                "title": "joydivision-still-sidea.mp3"
+            },
+            {
+                "file": "joydivision-still-sideb.mp3",
+                "title": "joydivision-still-sideb.mp3"
+            },
+            {
+                "file": "joydivision-unknownpleasures-sidea.mp3",
+                "title": "joydivision-unknownpleasures-sidea.mp3"
+            },
+            {
+                "file": "joydivision-unknownpleasures-sideb.mp3",
+                "title": "joydivision-unknownpleasures-sideb.mp3"
+            },
+            {
+                "file": "losthighwaysoundtrack-sidea.mp3",
+                "title": "losthighwaysoundtrack-sidea.mp3"
+            },
+            {
+                "file": "losthighwaysoundtrack-sideb.mp3",
+                "title": "losthighwaysoundtrack-sideb.mp3"
+            },
+            {
+                "file": "losthighwaysoundtrack-sidec.mp3",
+                "title": "losthighwaysoundtrack-sidec.mp3"
+            },
+            {
+                "file": "losthighwaysoundtrack-sided.mp3",
+                "title": "losthighwaysoundtrack-sided.mp3"
+            },
+            {
+                "file": "loveandrockets-ballofconfusion-.mp3",
+                "title": "loveandrockets-ballofconfusion-.mp3"
+            },
+            {
+                "file": "loveandrockets-earthsunmoon-sidea.mp3",
+                "title": "loveandrockets-earthsunmoon-sidea.mp3"
+            },
+            {
+                "file": "loveandrockets-earthsunmoon-sideb.mp3",
+                "title": "loveandrockets-earthsunmoon-sideb.mp3"
+            },
+            {
+                "file": "loveandrockets-express-sidea.mp3",
+                "title": "loveandrockets-express-sidea.mp3"
+            },
+            {
+                "file": "loveandrockets-express-sideb.mp3",
+                "title": "loveandrockets-express-sideb.mp3"
+            },
+            {
+                "file": "loveandrockets-lazy-12inch.mp3",
+                "title": "loveandrockets-lazy-12inch.mp3"
+            },
+            {
+                "file": "loveandrockets-nonewtaletotell-7.mp3",
+                "title": "loveandrockets-nonewtaletotell-7.mp3"
+            },
+            {
+                "file": "loveandrockets-selftitled-sidea.mp3",
+                "title": "loveandrockets-selftitled-sidea.mp3"
+            },
+            {
+                "file": "loveandrockets-selftitled-sideb.mp3",
+                "title": "loveandrockets-selftitled-sideb.mp3"
+            },
+            {
+                "file": "loveandrockets-seventhdreamofteenageheaven-sidea.mp3",
+                "title": "loveandrockets-seventhdreamofteenageheaven-sidea.mp3"
+            },
+            {
+                "file": "loveandrockets-seventhdreamofteenageheaven-sideb.mp3",
+                "title": "loveandrockets-seventhdreamofteenageheaven-sideb.mp3"
+            },
+            {
+                "file": "loveandrockets-soalive-7.mp3",
+                "title": "loveandrockets-soalive-7.mp3"
+            },
+            {
+                "file": "lungfish necklace of heads sidea.mp3",
+                "title": "lungfish necklace of heads sidea.mp3"
+            },
+            {
+                "file": "lungfish necklace of heads sideb.mp3",
+                "title": "lungfish necklace of heads sideb.mp3"
+            },
+            {
+                "file": "lungfish rainbows from atoms.mp3",
+                "title": "lungfish rainbows from atoms.mp3"
+            },
+            {
+                "file": "lungfish rainbows from atomsSide A.mp3",
+                "title": "lungfish rainbows from atomsSide A.mp3"
+            },
+            {
+                "file": "lungfish-theunanimoushour-sidea.mp3",
+                "title": "lungfish-theunanimoushour-sidea.mp3"
+            },
+            {
+                "file": "lungfish-theunanimoushour-sideb.mp3",
+                "title": "lungfish-theunanimoushour-sideb.mp3"
+            },
+            {
+                "file": "madonna-likeavirgin-extendedmix.mp3",
+                "title": "madonna-likeavirgin-extendedmix.mp3"
+            },
+            {
+                "file": "madseason-above-sidea.mp3",
+                "title": "madseason-above-sidea.mp3"
+            },
+            {
+                "file": "madseason-above-sideb.mp3",
+                "title": "madseason-above-sideb.mp3"
+            },
+            {
+                "file": "madseason-above-sidec.mp3",
+                "title": "madseason-above-sidec.mp3"
+            },
+            {
+                "file": "madseason-above-sided.mp3",
+                "title": "madseason-above-sided.mp3"
+            },
+            {
+                "file": "madseasonliveatthemooresidea.mp3",
+                "title": "madseasonliveatthemooresidea.mp3"
+            },
+            {
+                "file": "madseasonliveatthemooresideb.mp3",
+                "title": "madseasonliveatthemooresideb.mp3"
+            },
+            {
+                "file": "madseasonliveatthemooresidec.mp3",
+                "title": "madseasonliveatthemooresidec.mp3"
+            },
+            {
+                "file": "madseasonliveatthemooresided.mp3",
+                "title": "madseasonliveatthemooresided.mp3"
+            },
+            {
+                "file": "marklanegan-bluesfuneral-sidea.mp3",
+                "title": "marklanegan-bluesfuneral-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-bluesfuneral-sideb.mp3",
+                "title": "marklanegan-bluesfuneral-sideb.mp3"
+            },
+            {
+                "file": "marklanegan-bluesfuneral-sidec.mp3",
+                "title": "marklanegan-bluesfuneral-sidec.mp3"
+            },
+            {
+                "file": "marklanegan-bluesfuneral-sided.mp3",
+                "title": "marklanegan-bluesfuneral-sided.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sidea.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sideb.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sideb.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sidec.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sidec.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sided.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sided.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sidee.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sidee.mp3"
+            },
+            {
+                "file": "marklanegan-hasgodseenmyshadow-sidef.mp3",
+                "title": "marklanegan-hasgodseenmyshadow-sidef.mp3"
+            },
+            {
+                "file": "marklanegan-herecomesthatwirdchill-sidea.mp3",
+                "title": "marklanegan-herecomesthatwirdchill-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-herecomesthatwirdchill-sideb.mp3",
+                "title": "marklanegan-herecomesthatwirdchill-sideb.mp3"
+            },
+            {
+                "file": "marklanegan-phantomradio-album.mp3",
+                "title": "marklanegan-phantomradio-album.mp3"
+            },
+            {
+                "file": "marklanegan-somebodysknocking-sidea.mp3",
+                "title": "marklanegan-somebodysknocking-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-somebodysknocking-sideb.mp3",
+                "title": "marklanegan-somebodysknocking-sideb.mp3"
+            },
+            {
+                "file": "marklanegan-somebodysknocking-sidec.mp3",
+                "title": "marklanegan-somebodysknocking-sidec.mp3"
+            },
+            {
+                "file": "marklanegan-somebodysknocking-sided.mp3",
+                "title": "marklanegan-somebodysknocking-sided.mp3"
+            },
+            {
+                "file": "marklanegan-straightsongsofsorrow-sidea.mp3",
+                "title": "marklanegan-straightsongsofsorrow-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-straightsongsofsorrow-sideb.mp3",
+                "title": "marklanegan-straightsongsofsorrow-sideb.mp3"
+            },
+            {
+                "file": "marklanegan-straightsongsofsorrow-sidec.mp3",
+                "title": "marklanegan-straightsongsofsorrow-sidec.mp3"
+            },
+            {
+                "file": "marklanegan-straightsongsofsorrow-sided.mp3",
+                "title": "marklanegan-straightsongsofsorrow-sided.mp3"
+            },
+            {
+                "file": "marklanegan-thewindingsheet-sidea.mp3",
+                "title": "marklanegan-thewindingsheet-sidea.mp3"
+            },
+            {
+                "file": "marklanegan-thewindingsheet-sideb.mp3",
+                "title": "marklanegan-thewindingsheet-sideb.mp3"
+            },
+            {
+                "file": "marklanegan_bubblegum_sidea.mp3",
+                "title": "marklanegan_bubblegum_sidea.mp3"
+            },
+            {
+                "file": "marklanegan_bubblegum_sideb.mp3",
+                "title": "marklanegan_bubblegum_sideb.mp3"
+            },
+            {
+                "file": "marklaneganhoustonpublishingdemos2002sidea.mp3",
+                "title": "marklaneganhoustonpublishingdemos2002sidea.mp3"
+            },
+            {
+                "file": "marklaneganhoustonpublishingdemos2002sideb.mp3",
+                "title": "marklaneganhoustonpublishingdemos2002sideb.mp3"
+            },
+            {
+                "file": "melvins-bootlicker-sidea.mp3",
+                "title": "melvins-bootlicker-sidea.mp3"
+            },
+            {
+                "file": "melvins-bootlicker-sideb.mp3",
+                "title": "melvins-bootlicker-sideb.mp3"
+            },
+            {
+                "file": "melvins-electroretard-sidea.mp3",
+                "title": "melvins-electroretard-sidea.mp3"
+            },
+            {
+                "file": "melvins-electroretard-sideb.mp3",
+                "title": "melvins-electroretard-sideb.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sidea.mp3",
+                "title": "melvins-fiveleggeddog-sidea.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sideb.mp3",
+                "title": "melvins-fiveleggeddog-sideb.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sidec.mp3",
+                "title": "melvins-fiveleggeddog-sidec.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sided.mp3",
+                "title": "melvins-fiveleggeddog-sided.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sidee.mp3",
+                "title": "melvins-fiveleggeddog-sidee.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sidef.mp3",
+                "title": "melvins-fiveleggeddog-sidef.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sideg.mp3",
+                "title": "melvins-fiveleggeddog-sideg.mp3"
+            },
+            {
+                "file": "melvins-fiveleggeddog-sideh.mp3",
+                "title": "melvins-fiveleggeddog-sideh.mp3"
+            },
+            {
+                "file": "melvins-glueyporchtreatments-sidea.mp3",
+                "title": "melvins-glueyporchtreatments-sidea.mp3"
+            },
+            {
+                "file": "melvins-glueyporchtreatments-sideb.mp3",
+                "title": "melvins-glueyporchtreatments-sideb.mp3"
+            },
+            {
+                "file": "melvins-hostileambienttakeover-sidea.mp3",
+                "title": "melvins-hostileambienttakeover-sidea.mp3"
+            },
+            {
+                "file": "melvins-hostileambienttakeover-sideb.mp3",
+                "title": "melvins-hostileambienttakeover-sideb.mp3"
+            },
+            {
+                "file": "melvins-mangleddemos-sidea.mp3",
+                "title": "melvins-mangleddemos-sidea.mp3"
+            },
+            {
+                "file": "melvins-mangleddemos-sideb.mp3",
+                "title": "melvins-mangleddemos-sideb.mp3"
+            },
+            {
+                "file": "melvins-mangleddemos-sidec.mp3",
+                "title": "melvins-mangleddemos-sidec.mp3"
+            },
+            {
+                "file": "melvins-mangleddemos-sided.mp3",
+                "title": "melvins-mangleddemos-sided.mp3"
+            },
+            {
+                "file": "melvins-nightgoatBWadolescentwetdream.mp3",
+                "title": "melvins-nightgoatBWadolescentwetdream.mp3"
+            },
+            {
+                "file": "melvins-nudewithboots-sidea.mp3",
+                "title": "melvins-nudewithboots-sidea.mp3"
+            },
+            {
+                "file": "melvins-nudewithboots-sideb.mp3",
+                "title": "melvins-nudewithboots-sideb.mp3"
+            },
+            {
+                "file": "melvins-ozma-sidea.mp3",
+                "title": "melvins-ozma-sidea.mp3"
+            },
+            {
+                "file": "melvins-ozma-sideb.mp3",
+                "title": "melvins-ozma-sideb.mp3"
+            },
+            {
+                "file": "melvins-poisonBWdoubletroubled-7.mp3",
+                "title": "melvins-poisonBWdoubletroubled-7.mp3"
+            },
+            {
+                "file": "melvins-stonerwitch-sidea.mp3",
+                "title": "melvins-stonerwitch-sidea.mp3"
+            },
+            {
+                "file": "melvins-stonerwitch-sideb.mp3",
+                "title": "melvins-stonerwitch-sideb.mp3"
+            },
+            {
+                "file": "melvins-sweetyoungthingaintsweetnomore.mp3",
+                "title": "melvins-sweetyoungthingaintsweetnomore.mp3"
+            },
+            {
+                "file": "melvins-themakinglovedemos-sidea.mp3",
+                "title": "melvins-themakinglovedemos-sidea.mp3"
+            },
+            {
+                "file": "melvins-themakinglovedemos-sideb.mp3",
+                "title": "melvins-themakinglovedemos-sideb.mp3"
+            },
+            {
+                "file": "melvins-thevulgarjokeBWhistoryofbadmen.mp3",
+                "title": "melvins-thevulgarjokeBWhistoryofbadmen.mp3"
+            },
+            {
+                "file": "melvins-withyoheartnotyohands-bw-fourletterwoman-anasatan.mp3",
+                "title": "melvins-withyoheartnotyohands-bw-fourletterwoman-anasatan.mp3"
+            },
+            {
+                "file": "melvinskingbuzzosidea.mp3",
+                "title": "melvinskingbuzzosidea.mp3"
+            },
+            {
+                "file": "melvinskingbuzzosideb.mp3",
+                "title": "melvinskingbuzzosideb.mp3"
+            },
+            {
+                "file": "metallica-andjusticeforall-sidea.mp3",
+                "title": "metallica-andjusticeforall-sidea.mp3"
+            },
+            {
+                "file": "metallica-andjusticeforall-sideb.mp3",
+                "title": "metallica-andjusticeforall-sideb.mp3"
+            },
+            {
+                "file": "metallica-andjusticeforall-sidec.mp3",
+                "title": "metallica-andjusticeforall-sidec.mp3"
+            },
+            {
+                "file": "metallica-andjusticeforall-sided.mp3",
+                "title": "metallica-andjusticeforall-sided.mp3"
+            },
+            {
+                "file": "metallica-killemall-sidea.mp3",
+                "title": "metallica-killemall-sidea.mp3"
+            },
+            {
+                "file": "metallica-killemall-sideb.mp3",
+                "title": "metallica-killemall-sideb.mp3"
+            },
+            {
+                "file": "metallica-masterofpuppets-sidea.mp3",
+                "title": "metallica-masterofpuppets-sidea.mp3"
+            },
+            {
+                "file": "metallica-masterofpuppets-sideb.mp3",
+                "title": "metallica-masterofpuppets-sideb.mp3"
+            },
+            {
+                "file": "metallica-the598epgaragedaysrevisited-sidea.mp3",
+                "title": "metallica-the598epgaragedaysrevisited-sidea.mp3"
+            },
+            {
+                "file": "metallica-the598epgaragedaysrevisited-sideb.mp3",
+                "title": "metallica-the598epgaragedaysrevisited-sideb.mp3"
+            },
+            {
+                "file": "ministry-filthpig-sidea.mp3",
+                "title": "ministry-filthpig-sidea.mp3"
+            },
+            {
+                "file": "ministry-filthpig-sideb.mp3",
+                "title": "ministry-filthpig-sideb.mp3"
+            },
+            {
+                "file": "ministry-twitch-sidea.mp3",
+                "title": "ministry-twitch-sidea.mp3"
+            },
+            {
+                "file": "minorthreat-EP.mp3",
+                "title": "minorthreat-EP.mp3"
+            },
+            {
+                "file": "minorthreat-firstdemotape-7inch.mp3",
+                "title": "minorthreat-firstdemotape-7inch.mp3"
+            },
+            {
+                "file": "minorthreat-inmyeyesEP.mp3",
+                "title": "minorthreat-inmyeyesEP.mp3"
+            },
+            {
+                "file": "minorthreat-outofstep-sidea.mp3",
+                "title": "minorthreat-outofstep-sidea.mp3"
+            },
+            {
+                "file": "minorthreat-outofstep-sideb.mp3",
+                "title": "minorthreat-outofstep-sideb.mp3"
+            },
+            {
+                "file": "minorthreat-saladdays-7inch.mp3",
+                "title": "minorthreat-saladdays-7inch.mp3"
+            },
+            {
+                "file": "minorthreat-sidea.mp3",
+                "title": "minorthreat-sidea.mp3"
+            },
+            {
+                "file": "minorthreat-sideb.mp3",
+                "title": "minorthreat-sideb.mp3"
+            },
+            {
+                "file": "morrissey-bonadrag-sidea.mp3",
+                "title": "morrissey-bonadrag-sidea.mp3"
+            },
+            {
+                "file": "morrissey-bonadrag-sideb.mp3",
+                "title": "morrissey-bonadrag-sideb.mp3"
+            },
+            {
+                "file": "morrissey-bonadrag-sidec.mp3",
+                "title": "morrissey-bonadrag-sidec.mp3"
+            },
+            {
+                "file": "morrissey-bonadrag-sided.mp3",
+                "title": "morrissey-bonadrag-sided.mp3"
+            },
+            {
+                "file": "morrissey-everydayislikesunday-ep.mp3",
+                "title": "morrissey-everydayislikesunday-ep.mp3"
+            },
+            {
+                "file": "morrissey-greatesthits-sidea.mp3",
+                "title": "morrissey-greatesthits-sidea.mp3"
+            },
+            {
+                "file": "morrissey-greatesthits-sideb.mp3",
+                "title": "morrissey-greatesthits-sideb.mp3"
+            },
+            {
+                "file": "morrissey-greatesthits-sidec.mp3",
+                "title": "morrissey-greatesthits-sidec.mp3"
+            },
+            {
+                "file": "morrissey-greatesthits-sided.mp3",
+                "title": "morrissey-greatesthits-sided.mp3"
+            },
+            {
+                "file": "morrissey-interestingdrug-ep.mp3",
+                "title": "morrissey-interestingdrug-ep.mp3"
+            },
+            {
+                "file": "morrissey-killuncle-sidea.mp3",
+                "title": "morrissey-killuncle-sidea.mp3"
+            },
+            {
+                "file": "morrissey-killuncle-sideb.mp3",
+                "title": "morrissey-killuncle-sideb.mp3"
+            },
+            {
+                "file": "morrissey-lastofthefamousinternationalplayboys.mp3",
+                "title": "morrissey-lastofthefamousinternationalplayboys.mp3"
+            },
+            {
+                "file": "morrissey-ouijaboard-ep.mp3",
+                "title": "morrissey-ouijaboard-ep.mp3"
+            },
+            {
+                "file": "morrissey-suedehead-sidea.mp3",
+                "title": "morrissey-suedehead-sidea.mp3"
+            },
+            {
+                "file": "morrissey-suedehead-sideb.mp3",
+                "title": "morrissey-suedehead-sideb.mp3"
+            },
+            {
+                "file": "morrissey-suedehead-sidec.mp3",
+                "title": "morrissey-suedehead-sidec.mp3"
+            },
+            {
+                "file": "morrissey-suedehead-sided.mp3",
+                "title": "morrissey-suedehead-sided.mp3"
+            },
+            {
+                "file": "morrissey-vauxhallandi-sidea.mp3",
+                "title": "morrissey-vauxhallandi-sidea.mp3"
+            },
+            {
+                "file": "morrissey-vauxhallandi-sideb.mp3",
+                "title": "morrissey-vauxhallandi-sideb.mp3"
+            },
+            {
+                "file": "morrissey-worldpeaceisnoneofyourbusiness-sidea.mp3",
+                "title": "morrissey-worldpeaceisnoneofyourbusiness-sidea.mp3"
+            },
+            {
+                "file": "morrissey-worldpeaceisnoneofyourbusiness-sideb.mp3",
+                "title": "morrissey-worldpeaceisnoneofyourbusiness-sideb.mp3"
+            },
+            {
+                "file": "morrissey-worldpeaceisnoneofyourbusiness-sidec.mp3",
+                "title": "morrissey-worldpeaceisnoneofyourbusiness-sidec.mp3"
+            },
+            {
+                "file": "morrissey-worldpeaceisnoneofyourbusiness-sided.mp3",
+                "title": "morrissey-worldpeaceisnoneofyourbusiness-sided.mp3"
+            },
+            {
+                "file": "morrissey-yourarsenal-sidea.mp3",
+                "title": "morrissey-yourarsenal-sidea.mp3"
+            },
+            {
+                "file": "morrissey-yourarsenal-sideb.mp3",
+                "title": "morrissey-yourarsenal-sideb.mp3"
+            },
+            {
+                "file": "nakedeyes-alwayssomethingtheretoremindme.mp3",
+                "title": "nakedeyes-alwayssomethingtheretoremindme.mp3"
+            },
+            {
+                "file": "nakedeyes-promisespromises.mp3",
+                "title": "nakedeyes-promisespromises.mp3"
+            },
+            {
+                "file": "nationofulysses-13pointprogramtodestroyamerica-sidea.mp3",
+                "title": "nationofulysses-13pointprogramtodestroyamerica-sidea.mp3"
+            },
+            {
+                "file": "neworder-bizarrelovetriangle-ep.mp3",
+                "title": "neworder-bizarrelovetriangle-ep.mp3"
+            },
+            {
+                "file": "neworder-bluemonday-7.mp3",
+                "title": "neworder-bluemonday-7.mp3"
+            },
+            {
+                "file": "neworder-regret-ep.mp3",
+                "title": "neworder-regret-ep.mp3"
+            },
+            {
+                "file": "neworder-roundandround-ep.mp3",
+                "title": "neworder-roundandround-ep.mp3"
+            },
+            {
+                "file": "neworder-technique-sidea.mp3",
+                "title": "neworder-technique-sidea.mp3"
+            },
+            {
+                "file": "neworder-technique-sideb.mp3",
+                "title": "neworder-technique-sideb.mp3"
+            },
+            {
+                "file": "neworder-theperfectkiss-7.mp3",
+                "title": "neworder-theperfectkiss-7.mp3"
+            },
+            {
+                "file": "neworder-yourearealupperson.mp3",
+                "title": "neworder-yourearealupperson.mp3"
+            },
+            {
+                "file": "nirvana-bleach-sidea.mp3",
+                "title": "nirvana-bleach-sidea.mp3"
+            },
+            {
+                "file": "nirvana-bleach-sideb.mp3",
+                "title": "nirvana-bleach-sideb.mp3"
+            },
+            {
+                "file": "nirvana-comeasyouare-ep.mp3",
+                "title": "nirvana-comeasyouare-ep.mp3"
+            },
+            {
+                "file": "nirvana-inbloom-ep.mp3",
+                "title": "nirvana-inbloom-ep.mp3"
+            },
+            {
+                "file": "nirvana-incesticide-sidea.mp3",
+                "title": "nirvana-incesticide-sidea.mp3"
+            },
+            {
+                "file": "nirvana-incesticide-sideb.mp3",
+                "title": "nirvana-incesticide-sideb.mp3"
+            },
+            {
+                "file": "nirvana-inutero-sidea.mp3",
+                "title": "nirvana-inutero-sidea.mp3"
+            },
+            {
+                "file": "nirvana-inutero-sideb.mp3",
+                "title": "nirvana-inutero-sideb.mp3"
+            },
+            {
+                "file": "nirvana-lithium-ep.mp3",
+                "title": "nirvana-lithium-ep.mp3"
+            },
+            {
+                "file": "nirvana-nevermind-sidea.mp3",
+                "title": "nirvana-nevermind-sidea.mp3"
+            },
+            {
+                "file": "nirvana-nevermind-sideb.mp3",
+                "title": "nirvana-nevermind-sideb.mp3"
+            },
+            {
+                "file": "nirvana-nirvana-sidea.mp3",
+                "title": "nirvana-nirvana-sidea.mp3"
+            },
+            {
+                "file": "nirvana-nirvana-sideb.mp3",
+                "title": "nirvana-nirvana-sideb.mp3"
+            },
+            {
+                "file": "nirvana-smellsliketeenspirit-ep.mp3",
+                "title": "nirvana-smellsliketeenspirit-ep.mp3"
+            },
+            {
+                "file": "nirvana-wipeout-sidea.mp3",
+                "title": "nirvana-wipeout-sidea.mp3"
+            },
+            {
+                "file": "nirvana-wipeout-sideb.mp3",
+                "title": "nirvana-wipeout-sideb.mp3"
+            },
+            {
+                "file": "omd-architectureandmorality-sidea.mp3",
+                "title": "omd-architectureandmorality-sidea.mp3"
+            },
+            {
+                "file": "omd-architectureandmorality-sideb.mp3",
+                "title": "omd-architectureandmorality-sideb.mp3"
+            },
+            {
+                "file": "omd-dazzleships-sidea.mp3",
+                "title": "omd-dazzleships-sidea.mp3"
+            },
+            {
+                "file": "omd-dazzleships-sideb.mp3",
+                "title": "omd-dazzleships-sideb.mp3"
+            },
+            {
+                "file": "omd-junkculture-sidea.mp3",
+                "title": "omd-junkculture-sidea.mp3"
+            },
+            {
+                "file": "omd-junkculture-sideb.mp3",
+                "title": "omd-junkculture-sideb.mp3"
+            },
+            {
+                "file": "omd-messages-ep.mp3",
+                "title": "omd-messages-ep.mp3"
+            },
+            {
+                "file": "omd-organization-sidea.mp3",
+                "title": "omd-organization-sidea.mp3"
+            },
+            {
+                "file": "omd-organization-sideb.mp3",
+                "title": "omd-organization-sideb.mp3"
+            },
+            {
+                "file": "omd-oved96-sidea.mp3",
+                "title": "omd-oved96-sidea.mp3"
+            },
+            {
+                "file": "omd-oved96-sideb.mp3",
+                "title": "omd-oved96-sideb.mp3"
+            },
+            {
+                "file": "omd-redframewhitelightBWibetraymyfriends.mp3",
+                "title": "omd-redframewhitelightBWibetraymyfriends.mp3"
+            },
+            {
+                "file": "omd-secretBWfiregun.mp3",
+                "title": "omd-secretBWfiregun.mp3"
+            },
+            {
+                "file": "omd-souvenier-7.mp3",
+                "title": "omd-souvenier-7.mp3"
+            },
+            {
+                "file": "permissions.sh",
+                "title": "permissions.sh"
+            },
+            {
+                "file": "pinkfloyd-meddle-sidea.mp3",
+                "title": "pinkfloyd-meddle-sidea.mp3"
+            },
+            {
+                "file": "pinkfloyd-meddle-sideb.mp3",
+                "title": "pinkfloyd-meddle-sideb.mp3"
+            },
+            {
+                "file": "pixies-digforfire-EU-ep.mp3",
+                "title": "pixies-digforfire-EU-ep.mp3"
+            },
+            {
+                "file": "stateofalert-nopolicyEP.mp3",
+                "title": "stateofalert-nopolicyEP.mp3"
+            },
+            {
+                "file": "stoneroses-elephantstone-12inch.mp3",
+                "title": "stoneroses-elephantstone-12inch.mp3"
+            },
+            {
+                "file": "stoneroses-iamtheresurrection-12inch.mp3",
+                "title": "stoneroses-iamtheresurrection-12inch.mp3"
+            },
+            {
+                "file": "stoneroses-iwannabeadored-12inch-sidea.mp3",
+                "title": "stoneroses-iwannabeadored-12inch-sidea.mp3"
+            },
+            {
+                "file": "stoneroses-iwannabeadored-12inch-sideb.mp3",
+                "title": "stoneroses-iwannabeadored-12inch-sideb.mp3"
+            },
+            {
+                "file": "stoneroses-madeofstone-12inch.mp3",
+                "title": "stoneroses-madeofstone-12inch.mp3"
+            },
+            {
+                "file": "stoneroses-shebangsthedrums-12inch-sidea.mp3",
+                "title": "stoneroses-shebangsthedrums-12inch-sidea.mp3"
+            },
+            {
+                "file": "stoneroses-shebangsthedrums-12inch-sideb.mp3",
+                "title": "stoneroses-shebangsthedrums-12inch-sideb.mp3"
+            },
+            {
+                "file": "stoneroses-waterfall-12inch-sidea.mp3",
+                "title": "stoneroses-waterfall-12inch-sidea.mp3"
+            },
+            {
+                "file": "stoneroses-waterfall-12inch-sideb.mp3",
+                "title": "stoneroses-waterfall-12inch-sideb.mp3"
+            },
+            {
+                "file": "stoneroses-whattheworldiswaitingfor-12inch.mp3",
+                "title": "stoneroses-whattheworldiswaitingfor-12inch.mp3"
+            },
+            {
+                "file": "teenidles-minordisturbanceEP.mp3",
+                "title": "teenidles-minordisturbanceEP.mp3"
+            },
+            {
+                "file": "treepeople-bonustracks-sidea.mp3",
+                "title": "treepeople-bonustracks-sidea.mp3"
+            },
+            {
+                "file": "treepeople-bonustracks-sideb.mp3",
+                "title": "treepeople-bonustracks-sideb.mp3"
+            },
+            {
+                "file": "treepeople-nomouthpippeting-sidea.mp3",
+                "title": "treepeople-nomouthpippeting-sidea.mp3"
+            },
+            {
+                "file": "treepeople-nomouthpippeting-sideb.mp3",
+                "title": "treepeople-nomouthpippeting-sideb.mp3"
+            },
+            {
+                "file": "treepeopleCatScratchStevens.mp3",
+                "title": "treepeopleCatScratchStevens.mp3"
+            },
+            {
+                "file": "yello-blazingsaddles-ep.mp3",
+                "title": "yello-blazingsaddles-ep.mp3"
+            },
+            {
+                "file": "yello-callitlove-ep.mp3",
+                "title": "yello-callitlove-ep.mp3"
+            },
+            {
+                "file": "yello-claroquesi-sidea.mp3",
+                "title": "yello-claroquesi-sidea.mp3"
+            },
+            {
+                "file": "yello-claroquesi-sideb.mp3",
+                "title": "yello-claroquesi-sideb.mp3"
+            },
+            {
+                "file": "yello-desire-sidea.mp3",
+                "title": "yello-desire-sidea.mp3"
+            },
+            {
+                "file": "yello-desire-sideb.mp3",
+                "title": "yello-desire-sideb.mp3"
+            },
+            {
+                "file": "yello-flag-sidea.mp3",
+                "title": "yello-flag-sidea.mp3"
+            },
+            {
+                "file": "yello-flag-sideb.mp3",
+                "title": "yello-flag-sideb.mp3"
+            },
+            {
+                "file": "yello-iloveyou-sidea.mp3",
+                "title": "yello-iloveyou-sidea.mp3"
+            },
+            {
+                "file": "yello-iloveyou-sideb.mp3",
+                "title": "yello-iloveyou-sideb.mp3"
+            },
+            {
+                "file": "yello-ofcourseimlying-sidea.mp3",
+                "title": "yello-ofcourseimlying-sidea.mp3"
+            },
+            {
+                "file": "yello-ofcourseimlying-sideb.mp3",
+                "title": "yello-ofcourseimlying-sideb.mp3"
+            },
+            {
+                "file": "yello-ofcourseimlying-sidec.mp3",
+                "title": "yello-ofcourseimlying-sidec.mp3"
+            },
+            {
+                "file": "yello-ofcourseimlying-sided.mp3",
+                "title": "yello-ofcourseimlying-sided.mp3"
+            },
+            {
+                "file": "yello-pumpingvelvet-12inch-sidea.mp3",
+                "title": "yello-pumpingvelvet-12inch-sidea.mp3"
+            },
+            {
+                "file": "yello-pumpingvelvet-12inch-sideb.mp3",
+                "title": "yello-pumpingvelvet-12inch-sideb.mp3"
+            },
+            {
+                "file": "yello-stella-sidea.mp3",
+                "title": "yello-stella-sidea.mp3"
+            },
+            {
+                "file": "yello-stella-sideb.mp3",
+                "title": "yello-stella-sideb.mp3"
+            },
+            {
+                "file": "yello-therace-ep.mp3",
+                "title": "yello-therace-ep.mp3"
+            },
+            {
+                "file": "yello-tiedup-ep.mp3",
+                "title": "yello-tiedup-ep.mp3"
+            },
+            {
+                "file": "yello-unbelieveable-xratedmix.mp3",
+                "title": "yello-unbelieveable-xratedmix.mp3"
+            },
+            {
+                "file": "yello-yougottasayyestoanotherexcess-12-sidea.mp3",
+                "title": "yello-yougottasayyestoanotherexcess-12-sidea.mp3"
+            },
+            {
+                "file": "yello-yougottasayyestoanotherexcess-12-sideb.mp3",
+                "title": "yello-yougottasayyestoanotherexcess-12-sideb.mp3"
+            },
+            {
+                "file": "yello-yougottasayyestoanotherexcess-sidea.mp3",
+                "title": "yello-yougottasayyestoanotherexcess-sidea.mp3"
+            },
+            {
+                "file": "yello-yougottasayyestoanotherexcess-sideb.mp3",
+                "title": "yello-yougottasayyestoanotherexcess-sideb.mp3"
+            },
+            {
+                "file": "yellow-goldrush-ep.mp3",
+                "title": "yellow-goldrush-ep.mp3"
+            },
+            {
+                "file": "yellow-onesecond-sidea.mp3",
+                "title": "yellow-onesecond-sidea.mp3"
+            },
+            {
+                "file": "yellow-onesecond-sideb.mp3",
+                "title": "yellow-onesecond-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-electropura-sidea.mp3",
+                "title": "yolatengo-electropura-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-electropura-sideb.mp3",
+                "title": "yolatengo-electropura-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-electropura-sidec.mp3",
+                "title": "yolatengo-electropura-sidec.mp3"
+            },
+            {
+                "file": "yolatengo-electropura-sided.mp3",
+                "title": "yolatengo-electropura-sided.mp3"
+            },
+            {
+                "file": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sidea.mp3",
+                "title": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sideb.mp3",
+                "title": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sidec.mp3",
+                "title": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sidec.mp3"
+            },
+            {
+                "file": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sided.mp3",
+                "title": "yolatengo-iamnotafraidofyouandiwillbeatyourass-sided.mp3"
+            },
+            {
+                "file": "yolatengo-icanheartheheartbeatingasone-sidea.mp3",
+                "title": "yolatengo-icanheartheheartbeatingasone-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-icanheartheheartbeatingasone-sideb.mp3",
+                "title": "yolatengo-icanheartheheartbeatingasone-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-icanheartheheartbeatingasone-sidec.mp3",
+                "title": "yolatengo-icanheartheheartbeatingasone-sidec.mp3"
+            },
+            {
+                "file": "yolatengo-icanheartheheartbeatingasone-sided.mp3",
+                "title": "yolatengo-icanheartheheartbeatingasone-sided.mp3"
+            },
+            {
+                "file": "yolatengo-popularsongs-sidea.mp3",
+                "title": "yolatengo-popularsongs-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-popularsongs-sideb.mp3",
+                "title": "yolatengo-popularsongs-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-popularsongs-sidec.mp3",
+                "title": "yolatengo-popularsongs-sidec.mp3"
+            },
+            {
+                "file": "yolatengo-popularsongs-sided.mp3",
+                "title": "yolatengo-popularsongs-sided.mp3"
+            },
+            {
+                "file": "yolatengo-stufflikethatthere-sidea.mp3",
+                "title": "yolatengo-stufflikethatthere-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-stufflikethatthere-sideb.mp3",
+                "title": "yolatengo-stufflikethatthere-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-theresariotgoingon-sidea.mp3",
+                "title": "yolatengo-theresariotgoingon-sidea.mp3"
+            },
+            {
+                "file": "yolatengo-theresariotgoingon-sideb.mp3",
+                "title": "yolatengo-theresariotgoingon-sideb.mp3"
+            },
+            {
+                "file": "yolatengo-theresariotgoingon-sidec.mp3",
+                "title": "yolatengo-theresariotgoingon-sidec.mp3"
+            },
+            {
+                "file": "yolatengo-theresariotgoingon-sided.mp3",
+                "title": "yolatengo-theresariotgoingon-sided.mp3"
+            },
+            {
+                "file": "youthbrigade-possibleEP.mp3",
+                "title": "youthbrigade-possibleEP.mp3"
+            },
+            {
+                "file": "youthoftoday-breakdownthewalls-sidea.mp3",
+                "title": "youthoftoday-breakdownthewalls-sidea.mp3"
+            },
+            {
+                "file": "youthoftoday-breakdownthewalls-sideb.mp3",
+                "title": "youthoftoday-breakdownthewalls-sideb.mp3"
+            },
+            {
+                "file": "zeke-dilaudid-7inch.mp3",
+                "title": "zeke-dilaudid-7inch.mp3"
+            },
+            {
+                "file": "zeke-flattracker-sidea.mp3",
+                "title": "zeke-flattracker-sidea.mp3"
+            },
+            {
+                "file": "zeke-flattracker-sideb.mp3",
+                "title": "zeke-flattracker-sideb.mp3"
+            },
+            {
+                "file": "zeke-kickedintheteeth-sidea.mp3",
+                "title": "zeke-kickedintheteeth-sidea.mp3"
+            },
+            {
+                "file": "zeke-kickedintheteeth-sideb.mp3",
+                "title": "zeke-kickedintheteeth-sideb.mp3"
+            },
+            {
+                "file": "zeke-supersoundracing-sidea.mp3",
+                "title": "zeke-supersoundracing-sidea.mp3"
+            },
+            {
+                "file": "zeke-supersoundracing-sideb.mp3",
+                "title": "zeke-supersoundracing-sideb.mp3"
+            }
+        ]
+    };
+    writeStuffedAnimalWar(stuffedAnimalMediaObject);
+    writeChat();
+    writeMediaFromJson(mediaObject);
+</script>
+<script type="text/javascript" src="stuffedanimalwarmechanics.js"></script>
+<script type="text/javascript" src="utilities.js"></script>
+<script type="text/javascript" src="sockethandler.js"></script>
+<script type="text/javascript">
+    console.log('SET FROMKITTEHWITHLOVESOCKETHANDLER VARS');
+    endpoint = "fromkittehwithlove";
+    let masterAlias = "KITTEH";
+    let unspecifiedAlias="MOUSE";
+    chatSocketEvent = endpoint+'chatmessage';
+    tapSocketEvent = endpoint+'tapmessage';
+    const socket = io();
+    initializeCommonVars(socket,masterAlias,unspecifiedAlias);
+    initializeChatSocketHandler(socket,chatSocketEvent);
+    initializeTapSocketHandler(socket,tapSocketEvent);
+</script>
+</body>
+</html> 
