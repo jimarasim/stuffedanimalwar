@@ -1,0 +1,28 @@
+Install Node Version Manager on OSX
+https://github.com/nvm-sh/nvm#installing-and-updating
+
+
+Create ~/.zshrc or equivalent (e.g. .bash_profile) in ~ directory.
+touch ~/.zshrc
+chmod 755 ~/.zshrc 
+
+2. Install nvm (node version manager - allows switching node versions). 
+The version is the latest version of nvm from 
+Ref: https://github.com/nvm-sh/nvm: v0.39.3
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+3. Verify nvm installed:
+nvm -v
+
+4. Install node using nvm:
+Ref: https://gist.github.com/d2s/372b5943bce17b964a79
+The version is the https://nodejs.org/en/ - shows the latest node version: 19.3.0
+nvm install v19.3.0
+
+5. Install Stuffedanimalwar using the Node Package Manager, from the workspace directory.
+npm i
+
+6. Run stuffedanimalwar from then workspace directory on port 55556
+./start55556.sh
+
