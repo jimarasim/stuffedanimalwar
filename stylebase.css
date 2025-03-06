@@ -1,0 +1,186 @@
+/*STUFFED ANIMAL WAR - jaemzware.org - 20150611 */
+ /* STYLES GO HERE FOR IPHONE 6 PORTRAIT AND LANDSCAPE*/
+body {
+   background-color:black;
+   color:white;
+   font-weight:normal;
+   font-family:sans-serif;
+   margin: 0px;
+   background-repeat:no-repeat;
+   background-position:top left;
+   text-align: left;
+}
+select {
+  width: 100%; max-width: 100%; /*font-size:150px;*/
+}
+#messagesdiv
+{
+   width:100%;
+   height:auto;
+   background-color:white;
+   background-position:left;
+   border-width:thin;
+   border-style: ridge;
+   overflow-x: scroll;
+   overflow-y: scroll;
+   margin: 0%;
+   padding: 0%;
+   text-align: left;
+   vertical-align: top;
+   text-align: left;
+   font-weight:bold;
+   font-family:sans-serif;
+   color:white;
+}
+#chatclientusertd{
+   width:20%;
+}
+#chatclientmessagetd{
+    width:80%;
+}
+#chatClientMessage{
+    width:100%;
+}
+#jaemzwaredynamicaudioplayer{
+    width:100%;
+    /*height:200px;*/
+}
+span.remoteChatClientUser{
+    color:lightblue;
+   /*font-size:xx-large;*/
+}
+span.chatclientmessage{
+    color:white;
+   /*font-size:xx-large;*/
+}
+/*CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT*/
+div.skatecreteordiephoto{
+    text-align: left;
+    vertical-align:top;
+    position: relative;
+    width: 100%;
+    float:left;
+}
+span.skatecreteordiephototitle{
+    position: absolute;
+    /*top: 200px;*/
+    left: 0;
+    width: 100%;
+}
+chatformdiv{
+    width:100%;
+}
+#chattable{
+    background-color:black;
+    width:100%;
+}
+#chattable td{
+    text-align: left;
+    vertical-align:top;
+}
+/*CHAT MESSAGES FONTS*/
+span.serverdate{
+    color:black;
+    font-size:small;
+}
+span.remoteChatClientUser{
+    color:black;
+    font-size:small;
+}
+span.chatclientmessage{
+    color:black;
+    font-size:large;
+}
+/*LINKS ON INDEX.HTM FOR CONCERT BAND LINKS*/
+div.seattlenativelinks{
+    margin-left:10px;
+}
+/*STUFFEDANIMALWAR//////////////////////////////////////////////STUFFEDANIMALWAR//////////////////////////////////////////////////STUFFEDANIMALWAR*/
+#stuffedanimalwardiv{
+    margin:0;
+    padding:0;
+    width:100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+#stuffedanimalwarsvg{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:auto;
+    background-size:contain;
+    background-position:left;
+}
+#stuffedanimalwarformtable{
+    background-color:black;
+    width:95%;
+}
+#stuffedanimalwarformtable td{
+    text-align: left;
+    vertical-align:top;
+    width:100%;
+}
+#stuffedanimalwarformtable input{
+    width:100%;
+}
+/*AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS*/
+#audiotable{
+    background-color:orangered;
+    width:100%;
+}
+#audiotable td{
+    text-align: left;
+    vertical-align:top;
+    width:100%;
+}
+#audiotable audio{
+    width:100%;
+}
+#videotable{
+    background-color:lightblue;
+    width:100%;
+}
+#videotable td{
+    text-align: left;
+    vertical-align:top;
+    width:100%;
+}
+#videotable video{
+    width:100%;
+}
+#phototable{
+    background-color:darkgrey;
+    width:100%;
+}
+#phototable td{
+    text-align: left;
+    vertical-align:top;
+    width:100%;
+}
+/*TABSTRIPVIDEO//////////////////////////////////////////////TABSTRIPVIDEO//////////////////////////////////////////////////TABSTRIPVIDEO*/
+img.videolink{
+    height:auto;
+}
+/*JAEMZWARELOGO//////////////////////////////////////////////JAEMZWARELOGO//////////////////////////////////////////////////JAEMZWARELOGO*/
+p.jaemzwarelogo{
+    color: white;
+    width:50%;
+}
+a.jaemzwarelogo:link, .skateparkdetail a:link {
+    color: white;
+    text-decoration:underline;
+}
+a.jaemzwarelogo:visited, .skateparkdetail a:visited {
+    color: white;
+    text-decoration:underline;
+}
+a.jaemzwarelogo:hover, .skateparkdetail a:hover {
+    color: lightblue;
+    text-decoration: underline;
+}
+a.jaemzwarelogo:active, .skateparkdetail a:active {
+    color: white;
+    text-decoration: underline;
+}
+
