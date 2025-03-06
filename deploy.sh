@@ -1,0 +1,1 @@
+rsync -avz --exclude='node_modules' --exclude='.git' . ubuntu@stuffedanimalwar.com:/home/jimara0/stuffedanimalwar
