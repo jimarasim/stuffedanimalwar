@@ -10,7 +10,7 @@ let animalPositionIncrement = 10; //distance animal moves each reposition
 let shapePositionIncrement = 10; //distance shape moves each reposition
 let animalInterval = 75; //milliseconds between animal repositions
 let shapeInterval = 95;
-let radius = 5; //RADIUS of the dot shape to draw
+let radius = 10; //RADIUS of the dot shape to draw
 let lineWidth = 5; //width of the line shape to draw
 let imageHeightPixels = 100; //height of the stuffed animals
 let imageWidthPixels = 100; //width of the stuffed animals
@@ -302,29 +302,34 @@ function onBaseTapSocketEventLines(tapMsgObject){
     let lineId='line'+$.now();
 
     newLine.setAttribute('id',lineId);
+    newLine.setAttribute('x1',oldPointX);
+    newLine.setAttribute('y1',oldPointY);
+
+    newLine.setAttribute('x2',newPointX); //
+    newLine.setAttribute('y2',newPointY); //
     //XYxy
-    if(tapMsgObject.animal==='line01'){
-        newLine.setAttribute('x1',newPointX);
-        newLine.setAttribute('y1',newPointY);
-    
-        newLine.setAttribute('x2',newPointX); //
-        newLine.setAttribute('y2',newPointY); //
+    if(tapMsgObject.animal==='whiteline'){
+
+        //WHITE LINE
+        newLine.setAttribute('style','stroke:rgb(255,255,255);stroke-width:'+lineWidth+';');
+    }
+    else if(tapMsgObject.animal==='blackline'){
+
+        //BLACK LINE
+        newLine.setAttribute('style','stroke:rgb(0,0,0);stroke-width:'+lineWidth+';');
     }
     //xyXY
-    else if(tapMsgObject.animal==='line02'){ 
-        newLine.setAttribute('x1',oldPointX);
-        newLine.setAttribute('y1',oldPointY);
-    
-        newLine.setAttribute('x2',newPointX); //
-        newLine.setAttribute('y2',newPointY); //
+    else if(tapMsgObject.animal==='randomline'){
+
+        //RANDOM COLOR LINE
+        newLine.setAttribute('style','stroke:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');stroke-width:'+lineWidth+';');
     }
     else{
         console.log('UNKNOWN LINE ANIMAL:'+tapMsgObject.animal);
     }
 
     
-    //RANDOM COLOR LINE
-    newLine.setAttribute('style','stroke:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');stroke-width:'+lineWidth+';'); 
+
 
     //ADD LINE TO THE SVG
     $("#stuffedanimalwarsvg").append(newLine);

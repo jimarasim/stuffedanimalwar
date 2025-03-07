@@ -44,10 +44,13 @@ function initializeTapSocketHandler(socket){
             case "dots":
                 onBaseTapSocketEventDots(tapMsgObject);
                 break;
-            case "line01":
+            case "whiteline":
                 onBaseTapSocketEventLines(tapMsgObject);
                 break;
-            case "line02":
+            case "blackline":
+                onBaseTapSocketEventLines(tapMsgObject);
+                break;
+            case "randomline":
                 onBaseTapSocketEventLines(tapMsgObject);
                 break;
             case "custom":
