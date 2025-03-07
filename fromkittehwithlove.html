@@ -250,12 +250,10 @@
 <script type="text/javascript" src="utilities.js"></script>
 <script type="text/javascript" src="sockethandler.js"></script>
 <script type="text/javascript">
-    console.log('SET FROMKITTEHWITHLOVESOCKETHANDLER VARS');
-    endpoint = "fromkittehwithlove";
     let masterAlias = "KITTEH";
     let unspecifiedAlias="anonymous";
-    chatSocketEvent = endpoint+'chatmessage';
-    tapSocketEvent = endpoint+'tapmessage';
+    chatSocketEvent = 'fromkittehwithlovechatmessage';
+    tapSocketEvent = 'fromkittehwithlovetapmessage';
     const socket = io();
     initializeCommonVars(socket,masterAlias,unspecifiedAlias);
     initializeChatSocketHandler(socket,chatSocketEvent);

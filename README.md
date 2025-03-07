@@ -6,10 +6,13 @@ fromkittehwithlove.html is a sample of how to create your own custom stuffedanim
 
 fromkittehwithlove.html includes javascript for:
 -stuffedanimalwarmechanics.js - for actions in the interactive game pad, or what to do when a tap message object is received from the socket.
--utilities.js - basic functionality for audio and video players. unfortunately fromkittehwithlove.html does not have a video player example, just audio player
--sockethandler.js - sets up javascript event handlers for fromkittehwithlove.html page elements that handle socket communication with the socket handler in index.js
+-utilities.js - special functions for audio and video players. 
+-sockethandler.js - sets up javascript event handlers for fromkittehwithlove.html that respond and send message object data to the socket connection. 
 
+fromkittehwithlove creates the socket itself, and passes it to the following functions that setup the socket
 
+initializeCommonVars sets up the overall masterAlias and unspecifiedAlias.  master alias is the alias, when used, can dj music for everyone; i.e. when they change
+a song in the audio player, or paste an mp3 url in the chat, all clients will play the song too (if they're currently playing audio).
 
 initializeChatSocketHandler in fromkittehwithlove.html handles client
 ui updates when a chatMsgObject (json) is received from the socket on a
@@ -22,8 +25,9 @@ tapSocketEvent. the tapMsgObject is broadcasted across all sockets on the
 server everytime someone taps the interactive game pad (stuffed animal war).
 
 fromkittehwithlove.html sets the name of the chatSocketEvent and 
-the tapSocketEvent it listens for, while calling these initialization functions.
-let masterAlias = "KITTEH";
-let unspecifiedAlias="anonymous";
-chatSocketEvent = endpoint+'chatmessage';
-tapSocketEvent = endpoint+'tapmessage';
+the tapSocketEvent it listens for. they are:
+    chatSocketEvent = 'fromkittehwithlovechatmessage';
+    tapSocketEvent = 'fromkittehwithlovetapmessage';
+
+these exact event names are also wired into index.js for the server-side socket connection. if you add your own fromkittehwithlove.html page, you must
+define and listen for its uniquely named chatSocketEvent and tapSocketEvent in both the client html and the server index.js.
