@@ -159,8 +159,8 @@ function writeVideoFromJson(mediaObject){
             if(mediaObject.videos[i].file){
 
                 //IF THE FULL URL WAS SPECIFIED IN THE FILENAME (DETECTED BY CONTAINING HTTPS OR HTTP IN THE URL, DONT USE THE VIDEOS PREPENDING PATH SPECIFIED
-                if(mediaObject.videos[i].file.indexOf("http")!==-1 &&
-                          mediaObject.videos[i].file.indexOf("https")!==-1){
+                if(mediaObject.videos[i].file.indexOf("http://")!==-1 ||
+                          mediaObject.videos[i].file.indexOf("https://")!==-1){
 
                     console.log("PROVIDED PARTIAL PATH FOR VIDEO OPTION");
 
@@ -190,11 +190,12 @@ function writeVideoFromJson(mediaObject){
         //if a poster image was provided in the media object for the video
         if(mediaObject.videos[0].poster){
             //IF THE FULL URL WAS SPECIFIED, DONT USE THE VIDEOS PREPENDING PATH SPECIFIED
-            if(mediaObject.videos[0].file.indexOf("http:\/\/")!==-1 && mediaObject.videos[0].file.indexOf("https:\/\/")!==-1){
-                document.write("<video id=\"jaemzwaredynamicvideoplayer\" poster=\""+mediaObject.videospath+mediaObject.videos[0].poster+"\" width=\"640\" height=\"480\" controls=\"controls\" preload=\"metadata\" title=\"skatecreteordie tv\">");
+            if(mediaObject.videos[0].poster.indexOf("http://")!==-1 ||
+                mediaObject.videos[0].poster.indexOf("https://")!==-1){
+                document.write("<video id=\"jaemzwaredynamicvideoplayer\" poster=\""+mediaObject.videos[0].poster+"\" width=\"640\" height=\"480\" controls=\"controls\" preload=\"metadata\" title=\"skatecreteordie tv\">");
             }
             else{
-                document.write("<video id=\"jaemzwaredynamicvideoplayer\" poster=\""+mediaObject.videos[0].poster+"\" width=\"640\" height=\"480\" controls=\"controls\" preload=\"metadata\" title=\"skatecreteordie tv\">");
+                document.write("<video id=\"jaemzwaredynamicvideoplayer\" poster=\""+mediaObject.videospath+mediaObject.videos[0].poster+"\" width=\"640\" height=\"480\" controls=\"controls\" preload=\"metadata\" title=\"skatecreteordie tv\">");
             }
         }
         else{
@@ -203,7 +204,12 @@ function writeVideoFromJson(mediaObject){
         }
 
         document.write("mp4 not supported in this browser");
-        document.write("<source src=\""+mediaObject.videospath+mediaObject.videos[0].file+"\" type=\"video/mp4\" id=\"jaemzwaredynamicvideosource\">");
+        if(mediaObject.videos[0].file.indexOf("http://")!==-1 ||
+            mediaObject.videos[0].file.indexOf("https://")!==-1) {
+            document.write("<source src=\"" + mediaObject.videos[0].file + "\" type=\"video/mp4\" id=\"jaemzwaredynamicvideosource\">");
+        } else {
+            document.write("<source src=\"" + mediaObject.videospath + mediaObject.videos[0].file + "\" type=\"video/mp4\" id=\"jaemzwaredynamicvideosource\">");
+        }
         document.write("</video>");
         document.write("</td>");
         document.write("</tr>");
