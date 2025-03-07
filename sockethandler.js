@@ -101,8 +101,8 @@ function onBaseChatSocketEvent(chatMsgObject){
 
                 $("<img/>").prependTo("#messagesdiv").attr({
                     src: chatClientMessage,
-                    alt: "chat image"
-//                    alt: remoteChatClientUser+" "+chatServerUser+" "+chatClientMessage+" "+chatServerDate
+                    alt: "chat image",
+                    class: "chatclientmessage"
                  });
             }
           else if(chatClientMessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
