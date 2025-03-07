@@ -242,7 +242,6 @@ function writePhotosFromJson(mediaObject){
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 function writeChatForm(responsesObject){
     document.write("<h1>CHAT</h1>");
-    document.write("<span>[supports URLs ending with .jpg .gif .png .mp3]</span>");
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
     document.write("<table id='chattable'>");
@@ -251,7 +250,7 @@ function writeChatForm(responsesObject){
             document.write("<input id=\"chatClientUser\" placeholder=\"alias\"/>");
             document.write("</td>");
             document.write("<td id=\"chatclientmessagetd\">");
-            document.write("<input id=\"chatClientMessage\" placeholder=\"message\" />");
+            document.write("<input id=\"chatClientMessage\" placeholder=\"message text or URL ending with .jpg .gif .png .mp3\" />");
             document.write("</td>");
         document.write("</tr>");
         document.write("<tr>");
