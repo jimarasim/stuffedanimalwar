@@ -241,7 +241,8 @@ function writePhotosFromJson(mediaObject){
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 function writeChatForm(responsesObject){
-    document.write("<h1>CHAT [image and mp3 audio links supported]</h1>");
+    document.write("<h1>CHAT</h1>");
+    document.write("<h4>[supports URLs ending with .jpg .gif .png .mp3]</h4>");
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
     document.write("<table id='chattable'>");
