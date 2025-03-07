@@ -31,3 +31,6 @@ the tapSocketEvent it listens for. they are:
 
 these exact event names are also wired into index.js for the server-side socket connection. if you add your own fromkittehwithlove.html page, you must
 define and listen for its uniquely named chatSocketEvent and tapSocketEvent in both the client html and the server index.js.
+
+your own fromkittehwithlove.html page must also include /socket.io/socket.io.js, which makes the "io" object available in fromkittehwithlove.html, and 
+coordinates the socket communication through chatSocketEvent and tapSocketEvent with the index.js socket server.
