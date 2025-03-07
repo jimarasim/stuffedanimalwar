@@ -1,10 +1,23 @@
 //STUFFPEDANIMALWAR HTTP JAEMZWARE
 //EXAMPLE STARTED FROM: http://socket.io/get-started/chat/
-//setup an express application and bind it to an http server
+//setup an express application and bind it to an https server
+let fs = require('fs');
 const express = require('express');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
+const https = require('https');
+//THESE NEED TO BE CREATED LOCALLY IF YOU WANT TO RUN LOCALLY
+//openssl genrsa -out key.pem 2048
+//openssl req -new -sha256 -key key.pem -out csr.csr
+//openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
+// const options = {
+//     key: fs.readFileSync('./sslcert/key.pem'),
+//     cert: fs.readFileSync('./sslcert/certificate.pem')
+// };
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+};
+const server = https.createServer(options, app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 let listenPort =55556;
