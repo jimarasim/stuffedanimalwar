@@ -14,6 +14,9 @@ select {
   width: 100%; max-width: 100%; /*font-size:150px;*/
 }
 #messagesdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     height: 400px; /* Set a fixed height for the messages div */
     width: 100%;
     background-color: white;
@@ -76,17 +79,27 @@ chatformdiv{
     vertical-align:top;
 }
 /*CHAT MESSAGES FONTS*/
-span.serverdate{
-    color:black;
-    font-size:small;
+.right-aligned-container {
+    align-self: flex-end; /* Align the container to the right */
+    display: flex;
+    gap: 8px; /* Add spacing between user and server date */
+    margin-left: auto; /* Push the container to the right */
 }
-span.remoteChatClientUser{
-    color:black;
-    font-size:small;
+
+span.serverdate {
+    color: black;
+    font-size: x-small;
 }
-span.chatclientmessage{
-    color:black;
-    font-size:large;
+
+span.remoteChatClientUser {
+    color: black;
+    font-size: x-small;
+}
+
+span.chatclientmessage {
+    align-self: flex-start; /* Ensure the message is aligned to the left */
+    color: black;
+    font-size: large;
 }
 /*LINKS ON INDEX.HTM FOR CONCERT BAND LINKS*/
 div.seattlenativelinks{
