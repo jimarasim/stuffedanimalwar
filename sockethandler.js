@@ -79,26 +79,33 @@ function onBaseChatSocketEvent(chatMsgObject){
     
     //smart link - recognize chat links (only at the very beginning of the message), and display them appropriately.
     if (
-        chatClientMessage.indexOf("http://")===0||
-        chatClientMessage.indexOf("https://")===0
+        chatClientMessage.toLowerCase().indexOf("http://")===0||
+        chatClientMessage.toLowerCase().indexOf("https://")===0
        ){ 
-            if( chatClientMessage.indexOf(".jpg")   >   0 ||
-                chatClientMessage.indexOf(".JPG")  >   0 ||
-                chatClientMessage.indexOf(".JPEG")  >   0 ||
-                chatClientMessage.indexOf(".jpeg")  >   0 ||
-                chatClientMessage.indexOf(".gif")   >   0 ||
-                chatClientMessage.indexOf(".png")   >   0)
+            if( chatClientMessage.toLowerCase().indexOf(".jpg")   >   0 ||
+                chatClientMessage.toLowerCase().indexOf(".jpeg")  >   0 ||
+                chatClientMessage.toLowerCase().indexOf(".gif")   >   0 ||
+                chatClientMessage.toLowerCase().indexOf(".png")   >   0)
             {
 
                 //show the image if it's just an image tag
-                $('#messagesdiv').prepend($('<br />'));
+//                ip and time stamp
+                $("<span>").prependTo("#messagesdiv").attr({
+                    class: "serverdate"
+                }).text(serverStamp);
+
+//                user alias
+                $("<span>").prependTo("#messagesdiv").attr({
+                    class: "remoteChatClientUser"
+                }).text(remoteChatClientUser);
+
                 $("<img/>").prependTo("#messagesdiv").attr({
                     src: chatClientMessage,
                     alt: "chat image"
 //                    alt: remoteChatClientUser+" "+chatServerUser+" "+chatClientMessage+" "+chatServerDate
                  });
             }
-          else if(chatClientMessage.indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
+          else if(chatClientMessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
             {
                 //change the source of the AUDIO player
                 changeMp3(chatClientMessage);
@@ -125,21 +132,17 @@ function onBaseChatSocketEvent(chatMsgObject){
             }
         }
         else{
-            $('#messagesdiv').prepend($('<br />'));
+            //server date and user
+            $("<div>").prependTo("#messagesdiv").attr({
+                class: "right-aligned-container"
+            }).append(
+                $("<span>").attr({ class: "remoteChatClientUser" }).text(remoteChatClientUser),
+                $("<span>").attr({ class: "serverdate" }).text(" " + serverStamp) // Add a space for separation
+            );
 
-            //ip and time stamp
-           $("<span>").prependTo("#messagesdiv").attr({
-              class: "serverdate"
-           }).text(serverStamp);
-
-            //user alias
+            //chat message
             $("<span>").prependTo("#messagesdiv").attr({
-                                class: "remoteChatClientUser"
-                             }).text(remoteChatClientUser);
-
-             //chat message
-            $("<span>").prependTo("#messagesdiv").attr({
-               class: "chatclientmessage"
+                class: "chatclientmessage"
             }).text(chatClientMessage);
         }
 }
