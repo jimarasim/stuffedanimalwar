@@ -241,7 +241,7 @@ function writePhotosFromJson(mediaObject){
 }
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
-function writeChatForm(){
+function writeChatForm(responsesObject){
     document.write("<h1>CHAT [image and mp3 audio links supported]</h1>");
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
@@ -257,7 +257,7 @@ function writeChatForm(){
         document.write("<tr>");
             document.write("<td colspan='2'>");
             document.write("<select id=\"chatClientAutoResponder\" size=1 >");
-            writeDefaultAutoResponderOptions();
+            writeDefaultAutoResponderOptions(responsesObject);
             document.write("</select>");
             document.write("</td>");
         document.write("</tr>");
@@ -265,61 +265,14 @@ function writeChatForm(){
     document.write("</div>");
     document.write("</form>");
 }
-function writeDefaultAutoResponderOptions(){
+function writeDefaultAutoResponderOptions(responsesObject){
     document.write("<option value=\"blank\" selected>--I don't know what to say--</option>");
-    document.write("<option value=\"checkoutthisspot\">check out this spot</option>");
-        document.write("<option value=\"claimer\">claimer</option>");
-
-    document.write("<option value=\"didyougoogle\">did you google that comeback?</option>");
-    document.write("<option value=\"doitswitch\">do it switch</option>");
-    document.write("<option value=\"doitfrontside\">do it frontside</option>");
-    document.write("<option value=\"getsome\">get some</option>");
-    document.write("<option value=\"holdmybeerwatchthis\">hold my beer, watch this</option>");
-    document.write("<option value=\"idk\">i dont know</option>");
-    document.write("<option value=\"ikr\">i know right</option>");
-    document.write("<option value=\"ilikeyou\">i like you</option>");
-    document.write("<option value=\"iloveyou\">i love you</option>");
-    document.write("<option value=\"ithinkyoure\">i think youre attractive</option>");
-    document.write("<option value=\"idratherplaywithmycat\">id rather play with my cat</option>");
-    document.write("<option value=\"ilikeyou\">i like you</option>");
-    document.write("<option value=\"itsabust\">it's a bust</option>");
-    document.write("<option value=\"linkisbusted\">that link is busted</option>");
-    document.write("<option value=\"look it up\">look it up</option>");
-    document.write("<option value=\"lol\">LOL</option>");
-    document.write("<option value=\"nice\">nice</option>");
-    document.write("<option value=\"nuhuh\">Nuh UH!</option>");
-    document.write("<option value=\"ok\">ok</option>");
-    document.write("<option value=\"picsoritdidnthappen\">pics or it didnt happen</option>");
-    document.write("<option value=\"sarcastic\">sarcastic clap</option>");
-    document.write("<option value=\"silence\">silence for effect</option>");
-    document.write("<option value=\"vague\">vague hipster comment</option>");
-    document.write("<option value=\"witty\">witty comeback</option>");
-    document.write("<option value=\"omg\">OMG</option>");
-    document.write("<option value=\"picsoritdidnthappen\">pics or it didnt happen</option>");
-    document.write("<option value=\"skateordie\">skate or die</option>");
-    document.write("<option value=\"stfu\">STFU</option>");
-    document.write("<option value=\"thatlinkisrad\">that link is rad</option>");
-    document.write("<option value=\"thatscool\">thats cool</option>");
-    document.write("<option value=\"thatsiteistooslow\">that site is too slow</option>");
-    document.write("<option value=\"thatsucks\">that sucks</option>");
-    document.write("<option value=\"thatscool\">thats cool</option>");
-    document.write("<option value=\"thatswhatshesaid\">thats what she said</option>");
-    document.write("<option value=\"thisisnotapoliticalforum\">this is not a political forum</option>");
-    document.write("<option value=\"thisisnotareligious>this is not a religious forum</option>");
-    document.write("<option value=\"threetoclaimit>three to claim it</option>");
-    document.write("<option value=\"whatever\">whatever</option>");
-    document.write("<option value=\"youinspireme\">you inspire me</option>");
-    document.write("<option value=\"youlookverynicetoday\">you look very nice today</option>");
-    document.write("<option value=\"yourock\">you rock</option>");
-    document.write("<option value=\"youropinioniswrong\">your opinion is wrong</option>");
-    document.write("<option value=\"yousuck\">you suck</option>");
-    document.write("<option value=\"youknowyourearealupperson\">youre a real UP person</option>");
-    document.write("<option value=\"youremybestfriend\">youre my best friend</option>");
-    document.write("<option value=\"youreworkingthatoutfitgirl\">youre working that outfit girl</option>");
-    document.write("<option value=\"yourewrong\">youre wrong</option>");
-    document.write("<option value=\"wink\">;)</option>");
-    document.write("<option value=\"smiley\">:)</option>");
-    document.write("<option value=\"bigsmiley\">:D</option>");
+    responsesObject.responses.forEach(item => {
+        let responseText = item.response;
+        // Remove spaces, quotes, and single quotes
+        let value = responseText.replace(/[\s"']/g, '');
+        document.write(`<option value="${value}">${responseText}</option>`);
+    });
 }
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 
