@@ -6,7 +6,7 @@ function writeStuffedAnimalWar(stuffedAnimalMediaObject){
     document.write("<hr />");  
 }  
 function writeStuffedAnimalWarDiv(stuffedAnimalMediaObject) {
-    document.write("<div id=\"stuffedanimalwardiv\" style=\"width: 60 %;\">");
+    document.write("<div id=\"stuffedanimalwardiv\">");
     //IF THE BACKGROUND IMAGE WAS SPECIFIED
     if(stuffedAnimalMediaObject && stuffedAnimalMediaObject.backgroundimage){
         //MAKE SURE IT'S AN IMAGE WE EXPECT; I.E. A URL WITH AN IMAGE EXTENSION AT THE END OF IT, OR gamemedia FOR LOCAL FILE REFERENCES
@@ -19,7 +19,7 @@ function writeStuffedAnimalWarDiv(stuffedAnimalMediaObject) {
                 stuffedAnimalMediaObject.backgroundimage.indexOf(".gif")   >   0 ||
                 stuffedAnimalMediaObject.backgroundimage.indexOf(".png")   >   0){
                 //USE IT
-                document.write("<svg id=\"stuffedanimalwarsvg\" style=\"height:500px;background-image:url('"+stuffedAnimalMediaObject.backgroundimage+"');background-size: 100% auto;\">");
+                document.write("<svg id=\"stuffedanimalwarsvg\" style=\"height:500px;background-image:url('" + stuffedAnimalMediaObject.backgroundimage + "');background-size: 100% auto;\">");
             }
             else{
                 //JUST WRITE THE DEFAULT IMAGE
@@ -46,8 +46,15 @@ function writeStuffedAnimalWarDiv(stuffedAnimalMediaObject) {
     document.write("</div>");
 }
 function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
-    document.write("<form id='stuffedanimalwarform' style=\"width: 40 %;\">");
+    document.write("<form id='stuffedanimalwarform'>");
     document.write("<table id='stuffedanimalwarformtable'>");
+    //MESSAGES FROM CHAT FORM
+    document.write("<tr>");
+    document.write("<td>");
+        document.write("<div id=\"messagesdiv\"></div>");
+    document.write("</td>");
+    document.write("</tr>");
+
     //ANIMAL CHOICES
     document.write("<tr>");
     document.write("<td>");
@@ -253,11 +260,6 @@ function writeChatForm(){
             document.write("<select id=\"chatClientAutoResponder\" size=1 >");
             writeDefaultAutoResponderOptions();
             document.write("</select>");
-            document.write("</td>");
-        document.write("</tr>");
-        document.write("<tr>");
-            document.write("<td colspan='2'>");
-            document.write("<div id=\"messagesdiv\"></div>");
             document.write("</td>");
         document.write("</tr>");
     document.write("</table>");

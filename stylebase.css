@@ -13,24 +13,21 @@ body {
 select {
   width: 100%; max-width: 100%; /*font-size:150px;*/
 }
-#messagesdiv
-{
-   width:100%;
-   height:auto;
-   background-color:white;
-   background-position:left;
-   border-width:thin;
-   border-style: ridge;
-   overflow-x: scroll;
-   overflow-y: scroll;
-   margin: 0%;
-   padding: 0%;
-   text-align: left;
-   vertical-align: top;
-   text-align: left;
-   font-weight:bold;
-   font-family:sans-serif;
-   color:white;
+#messagesdiv {
+    height: 400px; /* Set a fixed height for the messages div */
+    width: 100%;
+    background-color: white;
+    border-width: thin;
+    border-style: ridge;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    margin: 0%;
+    padding: 0%;
+    text-align: left;
+    vertical-align: top;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: black; /* Changed to black for better visibility */
 }
 #chatclientusertd{
    width:20%;
@@ -99,7 +96,7 @@ div.seattlenativelinks{
 #stuffedanimalwardiv{
     margin:0;
     padding:0;
-    width:100%;
+    width:60%;
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -112,9 +109,13 @@ div.seattlenativelinks{
     background-size:contain;
     background-position:left;
 }
+#stuffedanimalwarform{
+    background-color:black;
+    width:40%;
+}
 #stuffedanimalwarformtable{
     background-color:black;
-    width:95%;
+    width:100%;
 }
 #stuffedanimalwarformtable td{
     text-align: left;
