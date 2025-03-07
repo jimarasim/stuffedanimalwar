@@ -242,7 +242,7 @@ function writePhotosFromJson(mediaObject){
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 function writeChatForm(responsesObject){
     document.write("<h1>CHAT</h1>");
-    document.write("<h4>[supports URLs ending with .jpg .gif .png .mp3]</h4>");
+    document.write("<span>[supports URLs ending with .jpg .gif .png .mp3]</span>");
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
     document.write("<table id='chattable'>");
