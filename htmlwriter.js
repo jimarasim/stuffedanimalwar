@@ -10,14 +10,13 @@ function writeStuffedAnimalWarDiv(stuffedAnimalMediaObject) {
     //IF THE BACKGROUND IMAGE WAS SPECIFIED
     if(stuffedAnimalMediaObject && stuffedAnimalMediaObject.backgroundimage){
         //MAKE SURE IT'S AN IMAGE WE EXPECT; I.E. A URL WITH AN IMAGE EXTENSION AT THE END OF IT, OR gamemedia FOR LOCAL FILE REFERENCES
-        if (    stuffedAnimalMediaObject.backgroundimage.indexOf("http://")===0||
-                stuffedAnimalMediaObject.backgroundimage.indexOf("https://")===0||
-                stuffedAnimalMediaObject.backgroundimage.indexOf("gamemedia/")===0){ 
-            if( stuffedAnimalMediaObject.backgroundimage.indexOf(".jpg")   >   0 ||
-                stuffedAnimalMediaObject.backgroundimage.indexOf(".jpeg")  >   0 ||
-                stuffedAnimalMediaObject.backgroundimage.indexOf(".JPG")  >   0 ||
-                stuffedAnimalMediaObject.backgroundimage.indexOf(".gif")   >   0 ||
-                stuffedAnimalMediaObject.backgroundimage.indexOf(".png")   >   0){
+        if (    stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf("http://")===0||
+                stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf("https://")===0||
+                stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf("gamemedia/")===0){
+            if( stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".jpg")   >   0 ||
+                stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".jpeg")  >   0 ||
+                stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".gif")   >   0 ||
+                stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".png")   >   0){
                 //USE IT
                 document.write("<svg id=\"stuffedanimalwarsvg\" style=\"height:500px;background-image:url('" + stuffedAnimalMediaObject.backgroundimage + "');background-size: 100% auto;\">");
             }
