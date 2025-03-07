@@ -241,7 +241,6 @@ function writePhotosFromJson(mediaObject){
 }
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
-function writeChat(){writeChatForm();}
 function writeChatForm(){
     document.write("<h1>CHAT [image and mp3 audio links supported]</h1>");
     document.write("<form id='chatform'>");
