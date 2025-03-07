@@ -37,15 +37,15 @@
                 {'file':'gamemedia/boobies.gif','title':'Boobies'},
                 {'file':'gamemedia/racon.png','title':'Racon'}
 
-
     ]
         };
 
     let mediaObject = {
         "songspath": "https://analogarchive.com/live/",
-        "videospath": "",
+        "videospath": "https://seattlerules.com/media/trump/videos/",
         "photospath": "",
-        "videos": [],
+        "videos": [{"file":"https://seattlerules.com/media/trump/videos/aoc/aocdogemedical.mp4", "title":"aoc", "poster":"https://seattlerules.com/media/beathappeningdreamy/beatIMG_E8481.JPG"},
+            {"file":"flower.mp4","title":"Insurrection","poster":"https://seattlerules.com/media/buttholesurferselectriclarryland/IMG_8608.JPG"}],
         "photos": [],
         "songs": [
             {"file":"01 Going Against Your Mind.mp3","title":"01 Going Against Your Mind.mp3"},
@@ -241,8 +241,10 @@
         ]
     };
     writeStuffedAnimalWar(stuffedAnimalMediaObject);
-    writeMediaFromJson(mediaObject);
+    writeAudioFromJson(mediaObject);
     writeChat();
+    writeVideoFromJson(mediaObject);
+    writePhotosFromJson(mediaObject);
 </script>
 <script type="text/javascript" src="stuffedanimalwarmechanics.js"></script>
 <script type="text/javascript" src="utilities.js"></script>

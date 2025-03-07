@@ -1,11 +1,12 @@
-stuffedanimalwar is a nodejs application that uses socket communication to exchange chat messages and interactive game pad data and dj music.
+stuffedanimalwar is a nodejs application that uses open socket communication to exchange chat message and tap message objects between clients with no data storage.
 
-it is unsecure http and will run on any port
+it is currently unsecure http and will run on any port.
 
-fromkittehwithlove.html is a sample of how to create your own custom stuffedanimalwar page, but you can just edit and use this one too
+fromkittehwithlove.html is a sample of how to create your own custom stuffedanimalwar page, but you can just edit and use this one too if you don't mind the name.
+
 fromkittehwithlove.html includes javascript for:
--stuffedanimalwarmechanics.js - for actions in the interactive game pad
--utilities.js - basic functionality for audio and video players
+-stuffedanimalwarmechanics.js - for actions in the interactive game pad, or what to do when a tap message object is received from the socket.
+-utilities.js - basic functionality for audio and video players. unfortunately fromkittehwithlove.html does not have a video player example, just audio player
 -sockethandler.js - sets up javascript event handlers for fromkittehwithlove.html page elements that handle socket communication with the socket handler in index.js
 
 
