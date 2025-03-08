@@ -256,6 +256,7 @@ function onBaseTapSocketEventDots(tapMsgObject){
     newCircle.setAttribute('cx',pointX);
     newCircle.setAttribute('cy',pointY);
     newCircle.setAttribute('r',radius);
+    newCircle.setAttribute('data-user',tapMsgObject.CHATCLIENTUSER);
     
     //RANDOM COLOR
     newCircle.setAttribute('style','transform=translate(75,25);stroke:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');fill:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');'); //WHITE FILL / WHITE STROKE (OUTER CIRCLE) 

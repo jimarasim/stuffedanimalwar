@@ -150,16 +150,21 @@ function onBaseChatSocketEvent(chatMsgObject){
 
 //HTML EVENTS///////////////////////////////////////////////////////////////////////////HTML EVENTS////////////////////////HTML EVENTS//
 $('#stuffedanimalwarsvg').click(function(event){
-    console.log(`stuffedanimalwarsvg click definition`);
+    //get the user alias
+    let chatClientUser = $('#chatClientUser').val();
+    if(chatClientUser===""){
+        chatClientUser = baseUnspecifiedAlias;
+    }
+
     let tapMsgObject = {
           x:event.pageX,
           y:event.pageY,
           animal:$('#animals option:selected').val(),
           customimage:$('#imagepathtextbox').val(),
           movement:$('#movement option:selected').val(),
-          CHATCLIENTUSER: baseUnspecifiedAlias,
-          CHATSERVERUSER:'',
-          CHATSERVERDATE:''
+          CHATCLIENTUSER: chatClientUser,
+          CHATSERVERUSER:'defaultserveruserresponse',
+          CHATSERVERDATE:'defaultserverdateresponse'
       }; 
     
     baseSocket.emit(tapSocketEvent,tapMsgObject);
