@@ -49,10 +49,6 @@ span.remoteChatClientUser{
     color:lightblue;
    /*font-size:xx-large;*/
 }
-span.chatclientmessage{
-    color:white;
-   /*font-size:xx-large;*/
-}
 /*CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT*/
 div.skatecreteordiephoto{
     text-align: left;
@@ -100,6 +96,12 @@ span.chatclientmessage {
     align-self: flex-start; /* Ensure the message is aligned to the left */
     color: black;
     font-size: large;
+}
+span.hitclientmessage {
+    align-self: flex-start; /* Ensure the message is aligned to the left */
+    color: black;
+    font-size: x-small;
+    font-style: italic;
 }
 /*LINKS ON INDEX.HTM FOR CONCERT BAND LINKS*/
 div.seattlenativelinks{
