@@ -1,4 +1,4 @@
-stuffedanimalwar is a nodejs application that uses open socket communication to exchange chat message and tap message objects between clients with no data storage.
+stuffedanimalwar is a NodeJS application that uses the Express standalone web server to host interactive web pages utilizing socket.io communication to exchange chat message and tap message data between clients, without the need of data storage.
 
 setup:
 1. install node
