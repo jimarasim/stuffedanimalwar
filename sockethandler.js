@@ -22,6 +22,7 @@
  */
 let endpoint = null;
 let chatSocketEvent = null;
+let chatImageSocketEvent = null;
 let tapSocketEvent = null;
 let connectSocketEvent = null;
 let disconnectSocketEvent = null;
@@ -66,6 +67,13 @@ function initializeTapSocketHandler(socket){
 function initializeChatSocketHandler(socket){
     socket.on(chatSocketEvent, function(chatMsgObject){
         onBaseChatSocketEvent(chatMsgObject);
+    });
+    socket.on(chatImageSocketEvent, function(chatImageMessageObject){
+        console.log("IMAGE UPLOADED BROADCASTED");
+        $("<img/>").prependTo("#messagesdiv").attr({
+            src: chatImageMessageObject.CHATCLIENTIMAGE,
+            alt: "uploaded chat image",
+        });
     });
     
     baseSocket=socket;
@@ -192,6 +200,28 @@ $('#selectsongs').change(function(){
         console.log("DJ DID NOT CHANGE THE SONG:");
 
     }
+});
+// Handle form submission
+$('#uploadForm').on('submit', function (e) {
+    e.preventDefault();
+
+    // Create a FormData object from the form
+    const formData = new FormData(this);
+
+    // Send the image to the server using jQuery AJAX
+    $.ajax({
+        url: '/fromkittehwithloveuploadchatimage',
+        type: 'POST',
+        data: formData,
+        processData: false, // Don't process the data
+        contentType: false, // Don't set content type
+        success: function (response) {
+            console.log('Image uploaded successfully');
+        },
+        error: function (xhr, status, error) {
+            console.error('Upload failed:', error);
+        },
+    });
 });
 //VIDEO PLAYER HTML EVENTS
 $('#jaemzwaredynamicvideoplayer').bind("ended", function(){

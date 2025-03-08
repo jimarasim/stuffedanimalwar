@@ -294,6 +294,7 @@
     };
     writeStuffedAnimalWar(stuffedAnimalMediaObject);
     writeChatForm(responsesObject);
+    writeChatUploadImageForm();
     writeAudioFromJson(mediaObject);
     writeVideoFromJson(mediaObject);
     writePhotosFromJson(mediaObject);
@@ -305,6 +306,7 @@
     let masterAlias = "KITTEH";
     let unspecifiedAlias="anonymous";
     chatSocketEvent = 'fromkittehwithlovechatmessage';
+    chatImageSocketEvent = 'fromkittehwithlovechatmessageimage';
     tapSocketEvent = 'fromkittehwithlovetapmessage';
     const socket = io();
     initializeCommonVars(socket,masterAlias,unspecifiedAlias);

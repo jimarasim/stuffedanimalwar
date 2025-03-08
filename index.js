@@ -5,6 +5,9 @@ let fs = require('fs');
 const express = require('express');
 const app = express();
 const https = require('https');
+const multer = require('multer');
+const path = require('path');
+const upload = multer({ storage: multer.memoryStorage() });
 //THESE NEED TO BE CREATED LOCALLY IF YOU WANT TO RUN LOCALLY
 //openssl genrsa -out key.pem 2048
 //openssl req -new -sha256 -key key.pem -out csr.csr
@@ -52,6 +55,29 @@ app.get('/fromkittehwithlove', function(req, res){
         //send a file back as the response
         res.sendFile(__dirname + '/fromkittehwithlove.html');
         });
+
+app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    // Convert the image buffer to a base64 string
+    const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+
+    let chatImageMessageObject = {
+        CHATCLIENTUSER: 'anonymous',
+        CHATSERVERUSER: '',
+        CHATCLIENTIMAGE: imageData,
+        CHATSERVERDATE: ''
+    };
+
+    console.log(JSON.stringify(chatImageMessageObject));
+
+    // Broadcast the image data to all connected Socket.IO clients
+    io.emit('fromkittehwithlovechatmessageimage', chatImageMessageObject);
+
+    res.send('Image uploaded and broadcasted.');
+});
 
 
 //ON PERSISTENT CONNECTION
@@ -103,6 +129,21 @@ io.on('connection', function(socket){
     socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
         //emit to everyone else
         sendTapMessage('fromkittehwithlovetapmessage',tapMsgObject);
+    });
+
+    /*
+     * 4 - define what happens when a connection sends a chat image message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
+     */
+    socket.on('fromkittehwithlovechatmessageimage', function(chatImageMessageObject){
+        let chatClientAddress = socket.handshake.address;
+        let chatServerDate = new Date();
+        chatImageMessageObject.CHATSERVERUSER = chatClientAddress;
+        chatImageMessageObject.CHATSERVERDATE = chatServerDate;
+
+        console.log(JSON.stringify(chatMsgObject));
+
+        //emit to everyone else
+        io.emit('fromkittehwithlovechatmessageimage',chatImageMessageObject);
     });
 
     //GENERIC CHATMESSAGE SENDER, FOR MULTIPLE, INDEPENDENT CHAT CHANNELS   
