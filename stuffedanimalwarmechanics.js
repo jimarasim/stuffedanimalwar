@@ -291,7 +291,7 @@ function onBaseTapSocketEventDots(tapMsgObject){
     newCircle.setAttribute('data-user',tapMsgObject.CHATCLIENTUSER);
     
     //RANDOM COLOR
-    newCircle.setAttribute('style','transform=translate(75,25);stroke:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');fill:rgb('+GetRandomColorValue()+','+GetRandomColorValue()+','+GetRandomColorValue()+');'); //WHITE FILL / WHITE STROKE (OUTER CIRCLE) 
+    newCircle.setAttribute('style','transform=translate(75,25);stroke:rgb(255,255,255);fill:rgb(255,255,255);'); //WHITE FILL / WHITE STROKE (OUTER CIRCLE)
     
     $("#stuffedanimalwarsvg").append(newCircle);
 
