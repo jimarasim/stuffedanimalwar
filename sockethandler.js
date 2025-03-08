@@ -160,11 +160,12 @@ $('#stuffedanimalwarsvg').click(function(event){
           x:event.pageX,
           y:event.pageY,
           animal:$('#animals option:selected').val(),
+          animalName:$('#animals option:selected').text(),
           customimage:$('#imagepathtextbox').val(),
           movement:$('#movement option:selected').val(),
           CHATCLIENTUSER: chatClientUser,
           CHATSERVERUSER:'defaultserveruserresponse',
-          CHATSERVERDATE:'defaultserverdateresponse'
+          CHATSERVERDATE:'defaultserverdateresponse',
       }; 
     
     baseSocket.emit(tapSocketEvent,tapMsgObject);
