@@ -146,7 +146,7 @@ div.seattlenativelinks{
     width:100%;
 }
 .thumbnail {
-    max-width: 100px; /* Set the maximum width of the thumbnail */
+    max-width: 150px; /* Set the maximum width of the thumbnail */
     height: auto; /* Maintain aspect ratio */
     border: 1px solid #ccc; /* Optional: Add a border */
     cursor: pointer; /* Change cursor to indicate it's clickable */

@@ -243,6 +243,8 @@ $('#uploadForm').on('submit', function (e) {
             console.error('Upload failed:', error);
         },
     });
+    var $input = $('input[type="file"][name="image"]');
+    $input.replaceWith($input.val('').clone(true));
 });
 //VIDEO PLAYER HTML EVENTS
 $('#jaemzwaredynamicvideoplayer').bind("ended", function(){
