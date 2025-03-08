@@ -1,8 +1,13 @@
 stuffedanimalwar is a nodejs application that uses open socket communication to exchange chat message and tap message objects between clients with no data storage.
 
-it is currently unsecure http and will run on any port.
+setup:
+1. install node
+2. clone this repository
+3. run "npm install" from root of repository
+4. run "node ." to run stuffedanimalwar. by default it listens on port 55556, to change it just specify the port "node . {port}" e.g. for port 9000 "node . 9000"
 
-fromkittehwithlove.html is a sample of how to create your own custom stuffedanimalwar page, but you can just edit and use this one too if you don't mind the name.
+fromkittehwithlove.html is a sample of how to create your a custom stuffedanimalwar page.  if you create your own custom stufffedanimalwarpage, you will also have to update index.js and index.html.
+
 
 fromkittehwithlove.html includes javascript for:
 -stuffedanimalwarmechanics.js - for actions in the interactive game pad, or what to do when a tap message object is received from the socket.

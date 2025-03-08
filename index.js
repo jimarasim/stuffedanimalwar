@@ -45,7 +45,9 @@ app.get('/', function(req, res){
         //send a file back as the response
         res.sendFile(__dirname + '/index.html');
 });
-
+/**
+ * 1 - define endpoint to serve your custom stuffedanimalwar page
+ */
 app.get('/fromkittehwithlove', function(req, res){
         //send a file back as the response
         res.sendFile(__dirname + '/fromkittehwithlove.html');
@@ -86,15 +88,17 @@ io.on('connection', function(socket){
     socket.on('error', function(errorMsgObject){
               console.log('ERROR: ' + errorMsgObject  );
     });
+
     /**
-     * 2 - define what happens when a connection sends a chat message to the server
+     * 2 - define what happens when a connection sends a chat message to the server. the name must match chatSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
      */
     socket.on('fromkittehwithlovechatmessage', function(chatMsgObject){
         //emit to everyone else
         sendChatMessage('fromkittehwithlovechatmessage',chatMsgObject);
     });
+
     /*
-     * 2 - define what happens when a connection sends a stuffedanimalwar tap message to the server
+     * 3 - define what happens when a connection sends a tap message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
      */
     socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
         //emit to everyone else
