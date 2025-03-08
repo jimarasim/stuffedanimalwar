@@ -162,7 +162,7 @@ $('#stuffedanimalwarsvg').click(function(event){
           animal:$('#animals option:selected').val(),
           animalName:$('#animals option:selected').text(),
           customimage:$('#imagepathtextbox').val(),
-          movement:$('#movement option:selected').val(),
+          movement:$("input[name='sawmove']:checked").val(),
           CHATCLIENTUSER: chatClientUser,
           CHATSERVERUSER:'defaultserveruserresponse',
           CHATSERVERDATE:'defaultserverdateresponse',

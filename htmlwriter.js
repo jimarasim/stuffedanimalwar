@@ -75,12 +75,12 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("<tr>");
     document.write("<td>");
         //MOVEMENT DIRECTION
-        document.write("<select style=\"vertical-align:bottom;text-align:left;\" id=\"movement\" name=\"sawmove\" size=1 >");
-        document.write("<option value=\"UP\" selected>UP</option>");
-        document.write("<option value=\"DOWN\">DOWN</option>");
-        document.write("<option value=\"LEFT\">LEFT</option>");
-        document.write("<option value=\"RIGHT\">RIGHT</option>");
-        document.write("</select>");
+    document.write("<div style=\"vertical-align:bottom;text-align:left;\">");
+    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
+    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-down\" name=\"sawmove\" value=\"DOWN\">DOWN</label>");
+    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-left\" name=\"sawmove\" value=\"LEFT\">LEFT</label>");
+    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-right\" name=\"sawmove\" value=\"RIGHT\">RIGHT</label>");
+    document.write("</div>");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
