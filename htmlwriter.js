@@ -98,7 +98,6 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
 function writeAudioFromJson(mediaObject){
     //AUDIO
     if(mediaObject.songspath && mediaObject.songs && mediaObject.songs[0]){
-        document.write("<h1>MUSIC</h1>");
         document.write("<form id='audioform'>");
         document.write("<div id='audioformdiv'>");
         document.write("<table id='audiotable'>");
@@ -141,8 +140,6 @@ function writeVideoFromJson(mediaObject){
 
     //IF THERES A VIDEO PATH IN THE MEDIAOBJECT, AND THERE IS AT LEAST ONE VIDEO
     if(mediaObject.videos && mediaObject.videos[0]){
-        document.write("<h1>VIDEOS</h1>");
-
         //WRITE A WEB PAGE FORM FOR THE VIDEOS EMBEDDED IN A DIV
         document.write("<form id='videoform'>")
         document.write("<div id='videoformdiv'>");
@@ -241,7 +238,6 @@ function writePhotosFromJson(mediaObject){
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 function writeChatForm(responsesObject){
-    document.write("<h1>CHAT</h1>");
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
     document.write("<table id='chattable'>");
