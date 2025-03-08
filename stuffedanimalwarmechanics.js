@@ -106,11 +106,15 @@ function moveShapeObjectUp(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
+            let animalObjectName = $('#'+animalObjects[i].objectId).attr('data-animalName');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
 
-            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING UP");
+            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING UP";
+            $("<span>").prependTo("#messagesdiv").attr({
+                class: "hitclientmessage"
+            }).text(chatClientMessage);
         }
     }
 }
@@ -139,11 +143,15 @@ function moveShapeObjectLeft(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
+            let animalObjectName = $('#'+animalObjects[i].objectId).attr('data-animalName');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
 
-            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING LEFT");
+            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING LEFT";
+            $("<span>").prependTo("#messagesdiv").attr({
+                class: "hitclientmessage"
+            }).text(chatClientMessage);
         }
     }
 }
@@ -172,11 +180,15 @@ function moveShapeObjectDown(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
+            let animalObjectName = $('#'+animalObjects[i].objectId).attr('data-animalName');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
 
-            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING DOWN");
+            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING DOWN";
+            $("<span>").prependTo("#messagesdiv").attr({
+                class: "hitclientmessage"
+            }).text(chatClientMessage);
         }
     }
 }
@@ -207,11 +219,15 @@ function moveShapeObjectRight(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
+            let animalObjectName = $('#'+animalObjects[i].objectId).attr('data-animalName');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
 
-            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING RIGHT");
+            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING RIGHT";
+            $("<span>").prependTo("#messagesdiv").attr({
+                class: "hitclientmessage"
+            }).text(chatClientMessage);
         }
     }
 }
