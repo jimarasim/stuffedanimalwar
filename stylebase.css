@@ -108,13 +108,22 @@ div.seattlenativelinks{
     margin-left:10px;
 }
 /*STUFFEDANIMALWAR//////////////////////////////////////////////STUFFEDANIMALWAR//////////////////////////////////////////////////STUFFEDANIMALWAR*/
-#stuffedanimalwardiv{
-    margin:0;
-    padding:0;
-    width:50%;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
+#stuffedanimalwardiv {
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    min-width: 100px; /* Minimum width to prevent shrinking too much */
+    max-width: 80%; /* Maximum width to prevent expanding too much */
+    resize: horizontal; /* Makes the div resizable horizontally */
+    overflow: auto; /* Ensures content doesn't overflow */
+    background-color: lightblue; /* Optional: for visual clarity */
+}
+
+#stuffedanimalwarform {
+    flex: 1; /* Takes up remaining space */
+    overflow: auto; /* Ensures content doesn't overflow */
+    background-color: black; /* Optional: for visual clarity */
+    color: white; /* Optional: for better contrast */
 }
 #stuffedanimalwarsvg{
     margin:0;
@@ -123,10 +132,6 @@ div.seattlenativelinks{
     height:auto;
     background-size:contain;
     background-position:left;
-}
-#stuffedanimalwarform{
-    background-color:black;
-    width:50%;
 }
 #stuffedanimalwarformtable{
     background-color:black;
