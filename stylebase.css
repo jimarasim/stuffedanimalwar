@@ -111,20 +111,17 @@ div.seattlenativelinks{
 #stuffedanimalwardiv {
     margin: 0;
     padding: 0;
-    width: 50%;
-    min-width: 100px; /* Minimum width to prevent shrinking too much */
-    max-width: 80%; /* Maximum width to prevent expanding too much */
-    resize: horizontal; /* Makes the div resizable horizontally */
-    overflow: auto; /* Ensures content doesn't overflow */
-    background-color: lightblue; /* Optional: for visual clarity */
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 67%;
 }
 
-#stuffedanimalwarform {
-    flex: 1; /* Takes up remaining space */
-    overflow: auto; /* Ensures content doesn't overflow */
-    background-color: black; /* Optional: for visual clarity */
-    color: white; /* Optional: for better contrast */
+#stuffedanimalwarform{
+     background-color:black;
+     width:33%;
 }
+
 #stuffedanimalwarsvg{
     margin:0;
     padding:0;
