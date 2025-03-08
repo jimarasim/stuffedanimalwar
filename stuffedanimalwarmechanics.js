@@ -102,6 +102,7 @@ function moveShapeObjectUp(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
+            console.log($('#'+shapeObjectId).attr('data-user'));
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
@@ -131,6 +132,7 @@ function moveShapeObjectLeft(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
+            console.log($('#'+shapeObjectId).attr('data-user'));
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
@@ -160,6 +162,7 @@ function moveShapeObjectDown(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
+            console.log($('#'+shapeObjectId).attr('data-user'));
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
@@ -191,6 +194,7 @@ function moveShapeObjectRight(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
+            console.log($('#'+shapeObjectId).attr('data-user'));
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
@@ -340,27 +344,6 @@ function onBaseTapSocketEventLines(tapMsgObject){
     $("#stuffedanimalwarsvgrect").attr("x",newPointX);
     $("#stuffedanimalwarsvgrect").attr("y",newPointY); 
 
-    //commented out to draw lines
-//    //start a timer for the line, depending on the direction
-//    let direction = tapMsgObject.movement;
-//    let objectTimerId;
-//    switch(direction){
-//        case 'UP':
-//            objectTimerId = startShapeObjectTimerUp(lineId,"x1","y1",shapeInterval);
-//            break;
-//        case 'DOWN':
-//            objectTimerId = startShapeObjectTimerDown(lineId,"x1","y1",shapeInterval);
-//            break;
-//        case 'LEFT':
-//            objectTimerId = startShapeObjectTimerLeft(lineId,"x1","y1",shapeInterval);
-//            break;
-//        case 'RIGHT':
-//            objectTimerId = startShapeObjectTimerRight(lineId,"x1","y1",shapeInterval);
-//            break;
-//        default:
-//            console.log("UNKNOWN DIRECTION FOR LINE:"+direction);
-//            break;
-//    }
 }
 function onBaseTapSocketEventCustom(tapMsgObject){
     if (
@@ -397,6 +380,7 @@ function onBaseTapSocketEventImages(tapMsgObject,imagePath){
     svgimg.setAttributeNS(null,'x',pointX);
     svgimg.setAttributeNS(null,'y',pointY);
     svgimg.setAttributeNS(null, 'visibility', 'visible');
+    svgimg.setAttributeNS(null,'data-user',tapMsgObject.CHATCLIENTUSER);
     $('#stuffedanimalwarsvg').append(svgimg);
 
     $("#stuffedanimalwarsvgrect").attr("x",tapMsgObject.x);
