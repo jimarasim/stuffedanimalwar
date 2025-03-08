@@ -102,12 +102,15 @@ function moveShapeObjectUp(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
-            console.log($('#'+shapeObjectId).attr('data-user'));
+            let shapeObjectUser = $('#'+shapeObjectId).attr('data-user');
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
+            let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
+
+            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING UP");
         }
     }
 }
@@ -132,12 +135,15 @@ function moveShapeObjectLeft(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
-            console.log($('#'+shapeObjectId).attr('data-user'));
+            let shapeObjectUser = $('#'+shapeObjectId).attr('data-user');
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
+            let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
+
+            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING LEFT");
         }
     }
 }
@@ -162,12 +168,15 @@ function moveShapeObjectDown(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
-            console.log($('#'+shapeObjectId).attr('data-user'));
+            let shapeObjectUser = $('#'+shapeObjectId).attr('data-user');
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
+            let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
+
+            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING DOWN");
         }
     }
 }
@@ -194,12 +203,15 @@ function moveShapeObjectRight(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
             shapeObjectThatHitAnimal = jQuery.grep(shapeObjects, function(shapeObject) {  //REMOVE THE SHAPE
                 return shapeObject.objectId === shapeObjectId;});
             clearInterval(shapeObjectThatHitAnimal.timerId);             //stop the shapeObjectThatHitAnimal timer
-            console.log($('#'+shapeObjectId).attr('data-user'));
+            let shapeObjectUser = $('#'+shapeObjectId).attr('data-user');
             $('#'+shapeObjectId).remove();            //remove the shapeObjectThatHitAnimal 
             clearInterval(animalObjects[i].timerId);            //stop the animal timer
+            let animalObjectUser = $('#'+animalObjects[i].objectId).attr('data-user');
             $('#'+animalObjects[i].objectId).fadeToggle('slow', function() {            //fade out the animal
                 this.remove();                //remove the animal from the svg
             });
+
+            console.log(shapeObjectUser + " HIT " + animalObjectUser + " GOING RIGHT");
         }
     }
 }
@@ -381,6 +393,7 @@ function onBaseTapSocketEventImages(tapMsgObject,imagePath){
     svgimg.setAttributeNS(null,'y',pointY);
     svgimg.setAttributeNS(null, 'visibility', 'visible');
     svgimg.setAttributeNS(null,'data-user',tapMsgObject.CHATCLIENTUSER);
+    svgimg.setAttributeNS(null,'data-animalName',tapMsgObject.animalName);
     $('#stuffedanimalwarsvg').append(svgimg);
 
     $("#stuffedanimalwarsvgrect").attr("x",tapMsgObject.x);
