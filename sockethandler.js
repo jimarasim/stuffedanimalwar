@@ -225,7 +225,29 @@ $('#selectsongs').change(function(){
 // Handle form submission
 $('#uploadForm').on('submit', function (e) {
     e.preventDefault();
+    const fileInput = e.target.elements.image;
+    const file = fileInput.files[0];
 
+    if (!file) {
+        alert('Please select a file.');
+        e.preventDefault();
+        return;
+    }
+
+    // Check if the file is an image
+    if (!file.type.startsWith('image/')) {
+        alert('Please upload a valid image file.');
+        e.preventDefault();
+        return;
+    }
+
+    // Optionally, check file size (e.g., 5MB limit)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+        alert('File size must be less than 5MB.');
+        e.preventDefault();
+        return;
+    }
     // Create a FormData object from the form
     const formData = new FormData(this);
 
