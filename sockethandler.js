@@ -70,10 +70,24 @@ function initializeChatSocketHandler(socket){
     });
     socket.on(chatImageSocketEvent, function(chatImageMessageObject){
         console.log("IMAGE UPLOADED BROADCASTED");
-        $("<img/>").prependTo("#messagesdiv").attr({
+
+        // Create the image element
+        var img = $("<img/>").attr({
             src: chatImageMessageObject.CHATCLIENTIMAGE,
-            alt: "uploaded chat image",
+            alt: chatImageMessageObject.CHATSERVERUSER + " " + chatImageMessageObject.CHATSERVERDATE,
+            class: "thumbnail" // Optional: Add a class for styling the thumbnail
         });
+
+        // If it's a data URL, handle it differently
+        img.on("click", function () {
+            // Open a new window and write the image into it
+            var newWindow = window.open();
+            newWindow.document.write("<img src='" + chatImageMessageObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
+            newWindow.document.close();
+        });
+
+        // Prepend the image (or linked image) to the #messagesdiv
+        img.prependTo("#messagesdiv");
     });
     
     baseSocket=socket;
@@ -107,11 +121,18 @@ function onBaseChatSocketEvent(chatMsgObject){
                     class: "remoteChatClientUser"
                 }).text(remoteChatClientUser);
 
-                $("<img/>").prependTo("#messagesdiv").attr({
+                var img = $("<img/>").attr({
                     src: chatClientMessage,
                     alt: "chat image",
-                    class: "chatclientmessage"
+                    class: "thumbnail"
                  });
+
+                var link = $("<a/>").attr({
+                    href: chatClientMessage,
+                    target: "_blank"
+                }).append(img);
+
+                link.prependTo("#messagesdiv");
             }
           else if(chatClientMessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
             {
