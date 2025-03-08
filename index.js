@@ -140,7 +140,7 @@ io.on('connection', function(socket){
         chatImageMessageObject.CHATSERVERUSER = chatClientAddress;
         chatImageMessageObject.CHATSERVERDATE = chatServerDate;
 
-        console.log(JSON.stringify(chatMsgObject));
+        console.log(JSON.stringify("IP:" + chatImageMessageObject.CHATSERVERUSER + " DATE:" + chatImageMessageObject.CHATSERVERDATE ) + "RAW IMAGE UPLOAD");
 
         //emit to everyone else
         io.emit('fromkittehwithlovechatmessageimage',chatImageMessageObject);
