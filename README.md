@@ -8,6 +8,8 @@ setup:
 
 fromkittehwithlove.html is a sample of how to create your a custom stuffedanimalwar page.  if you create your own custom stufffedanimalwarpage, you will also have to update index.js and index.html.
 
+index.js - server side javascript that runs Express to host fromkittehwithlove.html and socket.io to respond to fromkittehwithlove.html chatSocketEvent (fromkittehwithlovechatmessage) and fromkittehwithlove.html tapSocketEvent (fromkittehwithlovetapmessage).
+if you create your own custom stufffedanimalwarpage, you must add your own socket handlers for chat and tap events. 
 
 fromkittehwithlove.html includes javascript for:
 -stuffedanimalwarmechanics.js - for actions in the interactive game pad, or what to do when a tap message object is received from the socket.
