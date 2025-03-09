@@ -49,13 +49,15 @@ app.get('/', function(req, res){
         res.sendFile(__dirname + '/index.html');
 });
 /**
- * 1 - define endpoint to serve your custom stuffedanimalwar page
+ * 1 - define endpoint to serve your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
  */
 app.get('/fromkittehwithlove', function(req, res){
         //send a file back as the response
         res.sendFile(__dirname + '/fromkittehwithlove.html');
         });
-
+/**
+ * 2 - define endpoint to upload photos to your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
+ */
 app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
@@ -73,6 +75,9 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
 
     console.log(JSON.stringify(chatImageMessageObject));
 
+    /**
+     * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
+     */
     // Broadcast the image data to all connected Socket.IO clients
     io.emit('fromkittehwithlovechatmessageimage', chatImageMessageObject);
 
@@ -116,7 +121,7 @@ io.on('connection', function(socket){
     });
 
     /**
-     * 2 - define what happens when a connection sends a chat message to the server. the name must match chatSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
+     * 4 - define what happens when a connection sends a chat message to the server. the name must match chatSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
      */
     socket.on('fromkittehwithlovechatmessage', function(chatMsgObject){
         //emit to everyone else
@@ -124,7 +129,7 @@ io.on('connection', function(socket){
     });
 
     /*
-     * 3 - define what happens when a connection sends a tap message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
+     * 5 - define what happens when a connection sends a tap message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
      */
     socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
         //emit to everyone else
@@ -132,7 +137,7 @@ io.on('connection', function(socket){
     });
 
     /*
-     * 4 - define what happens when a connection sends a chat image message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
+     * 6 - define what happens when a connection sends a chat image message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
      */
     socket.on('fromkittehwithlovechatmessageimage', function(chatImageMessageObject){
         let chatClientAddress = socket.handshake.address;
