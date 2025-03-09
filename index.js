@@ -73,7 +73,15 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
         CHATSERVERDATE: ''
     };
 
-    console.log(JSON.stringify(chatImageMessageObject));
+    // Step 1: Extract the base64 part (remove the prefix)
+    const base64Data = imageData.split(';base64,').pop();
+
+// Step 2: Decode the base64 string to binary data
+    const binaryData = Buffer.from(base64Data, 'base64');
+
+// Step 3: Calculate the size in bytes
+    const sizeInBytes = binaryData.length;
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES");
 
     /**
      * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
@@ -134,21 +142,6 @@ io.on('connection', function(socket){
     socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
         //emit to everyone else
         sendTapMessage('fromkittehwithlovetapmessage',tapMsgObject);
-    });
-
-    /*
-     * 6 - define what happens when a connection sends a chat image message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
-     */
-    socket.on('fromkittehwithlovechatmessageimage', function(chatImageMessageObject){
-        let chatClientAddress = socket.handshake.address;
-        let chatServerDate = new Date();
-        chatImageMessageObject.CHATSERVERUSER = chatClientAddress;
-        chatImageMessageObject.CHATSERVERDATE = chatServerDate;
-
-        console.log(JSON.stringify("IP:" + chatImageMessageObject.CHATSERVERUSER + " DATE:" + chatImageMessageObject.CHATSERVERDATE ) + "RAW IMAGE UPLOAD");
-
-        //emit to everyone else
-        io.emit('fromkittehwithlovechatmessageimage',chatImageMessageObject);
     });
 
     //GENERIC CHATMESSAGE SENDER, FOR MULTIPLE, INDEPENDENT CHAT CHANNELS   
