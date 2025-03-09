@@ -1,5 +1,5 @@
 function writeStuffedAnimalWar(stuffedAnimalMediaObject){
-    document.write("<div style=\"display: flex; align-items: flex-start;\">");
+    document.write("<div id='sawflexdiv'>");
     writeStuffedAnimalWarDiv(stuffedAnimalMediaObject);
     writeStuffedAnimalWarForm(stuffedAnimalMediaObject);
     document.write("</div>");
