@@ -74,6 +74,13 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("</tr>");
     document.write("<tr>");
     document.write("<td>");
+    //CUSTOM URL TEXT BOX
+    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
+    document.write("<br />");
+    document.write("</td>");
+    document.write("</tr>");
+    document.write("<tr>");
+    document.write("<td>");
         //MOVEMENT DIRECTION
     document.write("<div style=\"vertical-align:bottom;text-align:left;\">");
     document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
@@ -81,13 +88,6 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-left\" name=\"sawmove\" value=\"LEFT\">LEFT</label>");
     document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-right\" name=\"sawmove\" value=\"RIGHT\">RIGHT</label>");
     document.write("</div>");
-    document.write("</td>");
-    document.write("</tr>");
-    document.write("<tr>");
-    document.write("<td>");
-        //CUSTOM URL TEXT BOX
-        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
-        document.write("<br />");
     document.write("</td>");
     document.write("</tr>");
     document.write("</table>");
