@@ -62,13 +62,24 @@ span.skatecreteordiephototitle{
 chatformdiv{
     width:100%;
 }
-#chattable{
-    background-color:black;
-    width:100%;
+/* Ensure #chattable and its children are responsive */
+#chattable {
+    width: 100%; /* Make the table take up the full width of its container */
+    max-width: 100%; /* Prevent overflow */
+    table-layout: fixed; /* Ensure table cells respect the width */
 }
-#chattable td{
-    text-align: left;
-    vertical-align:top;
+
+#chattable td {
+    word-wrap: break-word; /* Allow text to wrap within cells */
+    overflow-wrap: break-word; /* Ensure long words break and wrap */
+    padding: 5px; /* Adjust padding for smaller screens */
+}
+/* Adjust input and other elements inside #chattable */
+#chattable input,
+#chattable textarea,
+#chattable button {
+    width: 100%; /* Make inputs and buttons take up the full width */
+    box-sizing: border-box; /* Include padding and border in the width */
 }
 /*CHAT MESSAGES FONTS*/
 .right-aligned-container {
@@ -140,21 +151,32 @@ div.seattlenativelinks{
     border: 1px solid #ccc; /* Optional: Add a border */
     cursor: pointer; /* Change cursor to indicate it's clickable */
 }
+#sawflexdiv {
+    display: flex;
+    align-items: flex-start;
+}
 /*AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS*/
-#audiotable{
-    background-color:orangered;
-    width:100%;
+/* Ensure #audiotable and its children are responsive */
+#audiotable {
+    width: 100%; /* Make the table take up the full width of its container */
+    max-width: 100%; /* Prevent overflow */
+    table-layout: fixed; /* Ensure table cells respect the width */
+    background-color: limegreen;
 }
-#audiotable td{
-    text-align: left;
-    vertical-align:top;
-    width:100%;
+
+#audiotable td {
+    word-wrap: break-word; /* Allow text to wrap within cells */
+    overflow-wrap: break-word; /* Ensure long words break and wrap */
+    padding: 5px; /* Adjust padding for smaller screens */
 }
-#audiotable audio{
-    width:100%;
+
+/* Make audio elements responsive */
+#audiotable audio {
+    width: 100%; /* Make audio elements take up the full width of their container */
+    max-width: 100%; /* Prevent overflow */
 }
 #videotable{
-    background-color:lightblue;
+    background-color:orange;
     width:100%;
 }
 #videotable td{
@@ -198,5 +220,48 @@ a.jaemzwarelogo:hover, .skateparkdetail a:hover {
 a.jaemzwarelogo:active, .skateparkdetail a:active {
     color: white;
     text-decoration: underline;
+}
+/*////////////MOBILE///////////////*/
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    #sawflexdiv{
+        display: block;
+    }
+    #stuffedanimalwardiv{
+        margin: 0;
+        padding: 0;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+    }
+    #stuffedanimalwarform{
+        background-color:black;
+        width:100%;
+    }
+    /* Ensure #chattable fits within its container */
+    #chattable {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #chattable td {
+        padding: 3px; /* Reduce padding for smaller screens */
+    }
+
+    /* Ensure #audiotable fits within its container */
+    #audiotable {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #audiotable td {
+        padding: 3px; /* Reduce padding for smaller screens */
+    }
+
+    /* Make audio elements responsive */
+    #audiotable audio {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
