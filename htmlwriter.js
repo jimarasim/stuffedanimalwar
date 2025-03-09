@@ -49,7 +49,7 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("<table id='stuffedanimalwarformtable'>");
     //MESSAGES FROM CHAT FORM
     document.write("<tr>");
-    document.write("<td>");
+    document.write("<td colspan='2'>");
         document.write("<div id=\"messagesdiv\"></div>");
     document.write("</td>");
     document.write("</tr>");
@@ -71,16 +71,13 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
         document.write("<option value=\"custom\">CUSTOM URL</option>");
         document.write("</select>");
     document.write("</td>");
-    document.write("</tr>");
-    document.write("<tr>");
     document.write("<td>");
     //CUSTOM URL TEXT BOX
     document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
-    document.write("<br />");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
-    document.write("<td>");
+    document.write("<td  colspan='2'>");
         //MOVEMENT DIRECTION
     document.write("<div style=\"vertical-align:bottom;text-align:left;\">");
     document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
