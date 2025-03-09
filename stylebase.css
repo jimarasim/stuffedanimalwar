@@ -10,9 +10,7 @@ body {
    background-position:top left;
    text-align: left;
 }
-select {
-  width: 100%; max-width: 100%; /*font-size:150px;*/
-}
+
 #messagesdiv {
     display: flex;
     flex-direction: column;
@@ -32,9 +30,7 @@ select {
     font-family: sans-serif;
     color: black; /* Changed to black for better visibility */
 }
-#chatclientusertd{
-   width:20%;
-}
+
 #chatclientmessagetd{
     width:80%;
 }
