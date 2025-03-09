@@ -175,6 +175,25 @@ div.seattlenativelinks{
     width: 100%; /* Make audio elements take up the full width of their container */
     max-width: 100%; /* Prevent overflow */
 }
+
+/* Ensure #selectsongs fits within its container */
+#selectsongs {
+    width: 100%; /* Make the select take up the full width of its container */
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding and border in the width */
+    overflow: hidden; /* Hide overflow */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+}
+
+/* Style the options within the select */
+#selectsongs option {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+}
+
+
 #videotable{
     background-color:orange;
     width:100%;
@@ -260,6 +279,10 @@ a.jaemzwarelogo:active, .skateparkdetail a:active {
 
     /* Make audio elements responsive */
     #audiotable audio {
+        width: 100%;
+        max-width: 100%;
+    }
+    #selectsongs {
         width: 100%;
         max-width: 100%;
     }
