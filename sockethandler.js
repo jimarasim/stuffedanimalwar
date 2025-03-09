@@ -241,10 +241,10 @@ $('#uploadForm').on('submit', function (e) {
         return;
     }
 
-    // Optionally, check file size (e.g., 5MB limit)
-    const maxSize = 5 * 1024 * 1024; // 5MB
+    // Optionally, check file size (e.g., 10MB limit)
+    const maxSize = 10 * 1024 * 1024; // 10MB
     if (file.size > maxSize) {
-        alert('File size must be less than 5MB.');
+        alert('File size must be less than 10MB.');
         e.preventDefault();
         return;
     }
@@ -265,8 +265,6 @@ $('#uploadForm').on('submit', function (e) {
             console.error('Upload failed:', error);
         },
     });
-    var $input = $('input[type="file"][name="image"]');
-    $input.replaceWith($input.val('').clone(true));
 });
 //VIDEO PLAYER HTML EVENTS
 $('#jaemzwaredynamicvideoplayer').bind("ended", function(){
