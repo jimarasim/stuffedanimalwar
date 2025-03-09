@@ -17,7 +17,7 @@ body {
     align-items: flex-start;
     height: 450px; /* Set a fixed height for the messages div */
     width: 100%;
-    background-color: white;
+    background-color: darkslategray;
     border-width: thin;
     border-style: ridge;
     overflow-x: scroll;
@@ -42,7 +42,7 @@ body {
     /*height:200px;*/
 }
 span.remoteChatClientUser{
-    color:lightblue;
+    color:white;
    /*font-size:xx-large;*/
 }
 /*CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT*/
@@ -90,18 +90,18 @@ chatformdiv{
 }
 
 span.serverdate {
-    color: black;
+    color: white;
     font-size: x-small;
 }
 
 span.remoteChatClientUser {
-    color: black;
+    color: white;
     font-size: x-small;
 }
 
 span.chatclientmessage {
     align-self: flex-start; /* Ensure the message is aligned to the left */
-    color: black;
+    color: ghostwhite;
     font-size: large;
 }
 span.hitclientmessage {
