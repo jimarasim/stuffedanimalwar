@@ -271,9 +271,6 @@ function writeDefaultAutoResponderOptions(responsesObject){
         document.write(`<option value="${value}">${responseText}</option>`);
     });
 }
-function writeChatUploadImageForm() {
-    document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"image\" accept=\"image/*\" required><button type=\"submit\">Upload Image</button></form>");
-}
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
 
 
