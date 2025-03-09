@@ -106,7 +106,7 @@ span.chatclientmessage {
 }
 span.hitclientmessage {
     align-self: flex-start; /* Ensure the message is aligned to the left */
-    color: black;
+    color: white;
     font-size: x-small;
     font-style: italic;
 }
