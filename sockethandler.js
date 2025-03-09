@@ -253,7 +253,7 @@ $('#uploadForm').on('submit', function (e) {
 
     // Send the image to the server using jQuery AJAX
     $.ajax({
-        url: '/fromkittehwithloveuploadchatimage',
+        url: '/' + chatImageSocketEvent,
         type: 'POST',
         data: formData,
         processData: false, // Don't process the data
