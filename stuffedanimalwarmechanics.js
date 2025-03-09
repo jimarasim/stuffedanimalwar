@@ -465,3 +465,51 @@ function HitTest(animalObject,shapeObjectId,shapeXAxisAttr,shapeYAxisAttr){
         return false;
     }
 }
+
+function moveAllShapes() {
+    shapeObjects.forEach(shape => {
+        switch (shape.movement) {
+            case 'UP':
+                moveShapeObjectUp(shape.objectId, shape.xAxisAttr, shape.yAxisAttr);
+                break;
+            case 'DOWN':
+                moveShapeObjectDown(shape.objectId, shape.xAxisAttr, shape.yAxisAttr);
+                break;
+            case 'LEFT':
+                moveShapeObjectLeft(shape.objectId, shape.xAxisAttr, shape.yAxisAttr);
+                break;
+            case 'RIGHT':
+                moveShapeObjectRight(shape.objectId, shape.xAxisAttr, shape.yAxisAttr);
+                break;
+        }
+    });
+}
+
+function moveAllAnimals() {
+    animalObjects.forEach(animal => {
+        switch (animal.movement) {
+            case 'UP':
+                moveAnimalObjectUp(animal.objectId, animal.xAxisAttr, animal.yAxisAttr);
+                break;
+            case 'DOWN':
+                moveAnimalObjectDown(animal.objectId, animal.xAxisAttr, animal.yAxisAttr);
+                break;
+            case 'LEFT':
+                moveAnimalObjectLeft(animal.objectId, animal.xAxisAttr, animal.yAxisAttr);
+                break;
+            case 'RIGHT':
+                moveAnimalObjectRight(animal.objectId, animal.xAxisAttr, animal.yAxisAttr);
+                break;
+        }
+    });
+}
+
+// Start a single timer for all shapes and animals
+function startGameLoop() {
+    function gameLoop() {
+        moveAllShapes();
+        moveAllAnimals();
+        requestAnimationFrame(gameLoop); // Use requestAnimationFrame for smoother animations
+    }
+    gameLoop();
+}
