@@ -223,13 +223,14 @@ function writeVideoFromJson(mediaObject){
 function writePhotosFromJson(mediaObject){
     //PHOTOS
     if(mediaObject.photospath && mediaObject.photos && mediaObject.photos[0]){
+        document.write("<div class=\"photo-container\">");
         //paint the photos
         for (let i=0;i<mediaObject.photos.length;i++){
-            let filepath = mediaObject.photospath+mediaObject.photos[i].file;
+            let filepath = (mediaObject.photos[i].file.startsWith("http://") || mediaObject.photos[i].file.startsWith("https://")) ? mediaObject.photos[i].file : mediaObject.photospath+mediaObject.photos[i].file;
             let filetitle=mediaObject.photos[i].title;
-            document.write("<div class=\"skatecreteordiephoto\"><span class=\"skatecreteordiephototitle\">"+filetitle+"</span><a href=\""+filepath+"\"><img src=\""+filepath+"\" alt=\""+mediaObject.photos[i].title+"\" /></a></div>");
-
+            document.write("<div class=\"skatecreteordiephoto\"><a href=\""+filepath+"\" target=\"_blank\"><img class=\"thumbnail\" src=\""+filepath+"\" alt=\""+filetitle+"\" /></a><span class=\"skatecreteordiephototitle\">"+filetitle+"</span></div>");
         }
+        document.write("</div>");
     }
 }
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS

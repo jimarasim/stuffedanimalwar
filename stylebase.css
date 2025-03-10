@@ -46,18 +46,27 @@ span.remoteChatClientUser{
    /*font-size:xx-large;*/
 }
 /*CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT*/
-div.skatecreteordiephoto{
-    text-align: left;
-    vertical-align:top;
-    position: relative;
-    width: 100%;
-    float:left;
+.photo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between thumbnails as needed */
 }
-span.skatecreteordiephototitle{
+.skatecreteordiephoto{
+    flex: 1 1 150px; /* Adjust the flex properties to control the size of the thumbnails */
+    text-align: left;
+    vertical-align: top;
+    position: relative;
+}
+.skatecreteordiephototitle{
     position: absolute;
-    /*top: 200px;*/
+    bottom: 0;
     left: 0;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Optional: Add a background for better readability */
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
 }
 chatformdiv{
     width:100%;
