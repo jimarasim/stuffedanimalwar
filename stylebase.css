@@ -107,8 +107,7 @@ span.chatclientmessage {
 span.hitclientmessage {
     align-self: flex-start; /* Ensure the message is aligned to the left */
     color: white;
-    font-size: x-small;
-    font-style: italic;
+    font-size: xx-small;
 }
 /*LINKS ON INDEX.HTM FOR CONCERT BAND LINKS*/
 div.seattlenativelinks{
