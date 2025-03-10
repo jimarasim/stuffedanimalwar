@@ -53,7 +53,6 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
         document.write("<div id=\"messagesdiv\"></div>");
     document.write("</td>");
     document.write("</tr>");
-
     //ANIMAL CHOICES
     document.write("<tr>");
     document.write("<td>");
@@ -72,19 +71,20 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
         document.write("</select>");
     document.write("</td>");
     document.write("<td>");
-    //CUSTOM URL TEXT BOX
-    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
+        //CUSTOM URL TEXT BOX
+        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
-    document.write("<td  colspan='2'>");
-        //MOVEMENT DIRECTION
-    document.write("<div style=\"vertical-align:bottom;text-align:left;\">");
-    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
-    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-down\" name=\"sawmove\" value=\"DOWN\">DOWN</label>");
-    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-left\" name=\"sawmove\" value=\"LEFT\">LEFT</label>");
-    document.write("<label style=\"display: inline-block;margin-right: 10px;\"><input type=\"radio\" id=\"movement-right\" name=\"sawmove\" value=\"RIGHT\">RIGHT</label>");
+    document.write("<td colspan='2'>");
+    //MOVEMENT DIRECTION
+    document.write("<div style=\"display: inline-block; vertical-align: bottom; text-align: left;\">");
+    document.write("<label style=\"display: inline-block; margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
+    document.write("<label style=\"display: inline-block; margin-right: 10px;\"><input type=\"radio\" id=\"movement-down\" name=\"sawmove\" value=\"DOWN\">DOWN</label>");
+    document.write("<label style=\"display: inline-block; margin-right: 10px;\"><input type=\"radio\" id=\"movement-left\" name=\"sawmove\" value=\"LEFT\">LEFT</label>");
+    document.write("<label style=\"display: inline-block; margin-right: 10px;\"><input type=\"radio\" id=\"movement-right\" name=\"sawmove\" value=\"RIGHT\">RIGHT</label>");
     document.write("</div>");
+    document.write("<div style=\"display: inline-block; text-align: right;\"><span id='points'>0</span> pts</div>");
     document.write("</td>");
     document.write("</tr>");
     document.write("</table>");
