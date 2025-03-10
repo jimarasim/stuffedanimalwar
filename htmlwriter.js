@@ -253,18 +253,21 @@ function writeChatForm(responsesObject){
             document.write("<td id=\"chatclientmessagetd\" colspan=\"2\">");
                 document.write("<input id=\"chatClientMessage\" placeholder=\"hit enter to send message text or URL ending with .jpg .gif .png .mp3\" />");
             document.write("</td>");
-            document.write("</form>");
-        document.write("</tr>");
-        document.write("<tr>");
-    document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
-            document.write("<td id=\"chatclientuploadformtd\" colspan=\"2\">");
-            document.write("<input type=\"file\" name=\"image\" accept=\"image/*\" required>");
-            document.write("<button type=\"submit\">Upload Image</button>");
-            document.write("</td>");
-            document.write("</form>");
         document.write("</tr>");
     document.write("</table>");
     document.write("</div>");
+    document.write("</form>");
+
+    document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
+    document.write("<table id='chattableuploadform'>");
+        document.write("<tr>");
+            document.write("<td id=\"chatclientuploadformtd\">");
+                document.write("<input type=\"file\" name=\"image\" accept=\"image/*\" required>");
+                document.write("<button type=\"submit\">Upload Image</button>");
+            document.write("</td>");
+        document.write("</tr>");
+    document.write("</table>");
+    document.write("</form>");
 
 }
 function writeDefaultAutoResponderOptions(responsesObject){
