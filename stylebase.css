@@ -72,7 +72,7 @@ chatformdiv{
     width:100%;
 }
 /* Ensure #chattable and its children are responsive */
-#chattable {
+#chattable, #chattableuploadform {
     width: 100%; /* Make the table take up the full width of its container */
     max-width: 100%; /* Prevent overflow */
     table-layout: fixed; /* Ensure table cells respect the width */
