@@ -111,10 +111,17 @@ function moveShapeObjectUp(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
                 this.remove();                //remove the animal from the svg
             });
 
-            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING UP";
+            let chatClientMessage = shapeObjectUser + " hit " + animalObjectUser + " " + animalObjectName + " from below";
             $("<span>").prependTo("#messagesdiv").attr({
                 class: "hitclientmessage"
             }).text(chatClientMessage);
+
+            let chatClientUser = $("#chatClientUser").val();
+            if(chatClientUser === shapeObjectUser) {
+                const currentNumber = parseInt($('#points').text(), 10);
+                const newNumber = currentNumber + 1;
+                $('#points').text(newNumber);
+            }
         }
     }
 }
@@ -148,10 +155,17 @@ function moveShapeObjectLeft(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
                 this.remove();                //remove the animal from the svg
             });
 
-            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING LEFT";
+            let chatClientMessage = shapeObjectUser + " hit " + animalObjectUser + " " + animalObjectName + " from the right";
             $("<span>").prependTo("#messagesdiv").attr({
                 class: "hitclientmessage"
             }).text(chatClientMessage);
+
+            let chatClientUser = $("#chatClientUser").val();
+            if(chatClientUser === shapeObjectUser) {
+                const currentNumber = parseInt($('#points').text(), 10);
+                const newNumber = currentNumber + 1;
+                $('#points').text(newNumber);
+            }
         }
     }
 }
@@ -185,10 +199,17 @@ function moveShapeObjectDown(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
                 this.remove();                //remove the animal from the svg
             });
 
-            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING DOWN";
+            let chatClientMessage = shapeObjectUser + " hit " + animalObjectUser + " " + animalObjectName + " from above";
             $("<span>").prependTo("#messagesdiv").attr({
                 class: "hitclientmessage"
             }).text(chatClientMessage);
+
+            let chatClientUser = $("#chatClientUser").val();
+            if(chatClientUser === shapeObjectUser) {
+                const currentNumber = parseInt($('#points').text(), 10);
+                const newNumber = currentNumber + 1;
+                $('#points').text(newNumber);
+            }
         }
     }
 }
@@ -224,10 +245,17 @@ function moveShapeObjectRight(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
                 this.remove();                //remove the animal from the svg
             });
 
-            let chatClientMessage = shapeObjectUser + " HIT " + animalObjectUser + " " + animalObjectName + " GOING RIGHT";
+            let chatClientMessage = shapeObjectUser + " hit " + animalObjectUser + " " + animalObjectName + " from the left";
             $("<span>").prependTo("#messagesdiv").attr({
                 class: "hitclientmessage"
             }).text(chatClientMessage);
+
+            let chatClientUser = $("#chatClientUser").val();
+            if(chatClientUser === shapeObjectUser) {
+                const currentNumber = parseInt($('#points').text(), 10);
+                const newNumber = currentNumber + 1;
+                $('#points').text(newNumber);
+            }
         }
     }
 }
