@@ -258,16 +258,18 @@ function writeChatForm(responsesObject){
     document.write("</div>");
     document.write("</form>");
 
-    document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
+
     document.write("<table id='chattableuploadform'>");
         document.write("<tr>");
             document.write("<td id=\"chatclientuploadformtd\">");
+                document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
                 document.write("<input type=\"file\" name=\"image\" accept=\"image/*\" required>");
                 document.write("<button type=\"submit\">Upload Image</button>");
+                document.write("</form>");
             document.write("</td>");
         document.write("</tr>");
     document.write("</table>");
-    document.write("</form>");
+
 
 }
 function writeDefaultAutoResponderOptions(responsesObject){
