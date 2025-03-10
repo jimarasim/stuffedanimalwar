@@ -6,7 +6,6 @@ const express = require('express');
 const app = express();
 const https = require('https');
 const multer = require('multer');
-const path = require('path');
 const upload = multer({ storage: multer.memoryStorage() });
 //THESE NEED TO BE CREATED LOCALLY IF YOU WANT TO RUN LOCALLY
 //openssl genrsa -out key.pem 2048
@@ -55,6 +54,10 @@ app.get('/fromkittehwithlove', function(req, res){
         //send a file back as the response
         res.sendFile(__dirname + '/fromkittehwithlove.html');
         });
+app.get('/maddie', function(req, res){
+    //send a file back as the response
+    res.sendFile(__dirname + '/maddie.html');
+});
 /**
  * 2 - define endpoint to upload photos to your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
  */
@@ -91,7 +94,39 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
 
     res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
 });
+app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ success: false, message: 'No file uploaded.' });
+    }
 
+    // Convert the image buffer to a base64 string
+    const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+
+    let chatImageMessageObject = {
+        CHATCLIENTUSER: 'anonymous',
+        CHATSERVERUSER: '',
+        CHATCLIENTIMAGE: imageData,
+        CHATSERVERDATE: ''
+    };
+
+    // Step 1: Extract the base64 part (remove the prefix)
+    const base64Data = imageData.split(';base64,').pop();
+
+// Step 2: Decode the base64 string to binary data
+    const binaryData = Buffer.from(base64Data, 'base64');
+
+// Step 3: Calculate the size in bytes
+    const sizeInBytes = binaryData.length;
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES");
+
+    /**
+     * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. maddie.html)
+     */
+    // Broadcast the image data to all connected Socket.IO clients
+    io.emit('maddieuploadchatimage', chatImageMessageObject);
+
+    res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
+});
 
 //ON PERSISTENT CONNECTION
 //handler for incoming socket connections
@@ -135,6 +170,10 @@ io.on('connection', function(socket){
         //emit to everyone else
         sendChatMessage('fromkittehwithlovechatmessage',chatMsgObject);
     });
+    socket.on('maddiechatmessage', function(chatMsgObject){
+        //emit to everyone else
+        sendChatMessage('maddiechatmessage',chatMsgObject);
+    });
 
     /*
      * 5 - define what happens when a connection sends a tap message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
@@ -142,6 +181,10 @@ io.on('connection', function(socket){
     socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
         //emit to everyone else
         sendTapMessage('fromkittehwithlovetapmessage',tapMsgObject);
+    });
+    socket.on('maddietapmessage', function(tapMsgObject){
+        //emit to everyone else
+        sendTapMessage('maddietapmessage',tapMsgObject);
     });
 
     //GENERIC CHATMESSAGE SENDER, FOR MULTIPLE, INDEPENDENT CHAT CHANNELS   
