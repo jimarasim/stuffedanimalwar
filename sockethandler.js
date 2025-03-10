@@ -250,21 +250,28 @@ $('#uploadForm').on('submit', function (e) {
     }
     // Create a FormData object from the form
     const formData = new FormData(this);
-
-    // Send the image to the server using jQuery AJAX
-    $.ajax({
-        url: '/' + chatImageSocketEvent,
-        type: 'POST',
-        data: formData,
-        processData: false, // Don't process the data
-        contentType: false, // Don't set content type
-        success: function (response) {
-            console.log('Image uploaded successfully');
-        },
-        error: function (xhr, status, error) {
+    // Log FormData contents
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+    const url = '/' + chatImageSocketEvent;
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        // Do NOT set Content-Type header manually for FormData; let the browser handle it
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            console.log('Image uploaded successfully', data);
+        })
+        .catch(error => {
             console.error('Upload failed:', error);
-        },
-    });
+        });
 });
 //VIDEO PLAYER HTML EVENTS
 $('#jaemzwaredynamicvideoplayer').bind("ended", function(){
