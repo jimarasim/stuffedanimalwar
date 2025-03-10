@@ -235,30 +235,30 @@ function writePhotosFromJson(mediaObject){
 }
 //AUDIOVIDEOPHOTOS//////////////////////////////////////////////AUDIOVIDEOPHOTOS//////////////////////////////////////////////////AUDIOVIDEOPHOTOS
 //CHAT//////////////////////////////////////////////CHAT//////////////////////////////////////////////////CHAT
-function writeChatForm(responsesObject){
+function writeChatForm(responsesObject) {
     document.write("<form id='chatform'>");
     document.write("<div id='chatformdiv'>");
     document.write("<table id='chattable'>");
-        document.write("<tr>");
-            document.write("<td id=\"chatclientusertd\">");
-                document.write("<input id=\"chatClientUser\" placeholder=\"alias\"/>");
-            document.write("</td>");
-            document.write("<td>");
-                document.write("<select id=\"chatClientAutoResponder\" size=1 >");
-                writeDefaultAutoResponderOptions(responsesObject);
-                document.write("</select>");
-            document.write("</td>");
-        document.write("</tr>");
-        document.write("<tr>");
-            document.write("<td id=\"chatclientmessagetd\" colspan=\"2\">");
-                document.write("<input id=\"chatClientMessage\" placeholder=\"hit enter to send message text or URL ending with .jpg .gif .png .mp3\" />");
-            document.write("</td>");
-        document.write("</tr>");
+    document.write("<tr>");
+    document.write("<td id=\"chatclientusertd\">");
+    document.write("<input id=\"chatClientUser\" placeholder=\"alias\"/>");
+    document.write("</td>");
+    document.write("<td>");
+    document.write("<select id=\"chatClientAutoResponder\" size=1 >");
+    writeDefaultAutoResponderOptions(responsesObject);
+    document.write("</select>");
+    document.write("</td>");
+    document.write("</tr>");
+    document.write("<tr>");
+    document.write("<td id=\"chatclientmessagetd\" colspan=\"2\">");
+    document.write("<input id=\"chatClientMessage\" placeholder=\"hit enter to send message text or URL ending with .jpg .gif .png .mp3\" />");
+    document.write("</td>");
+    document.write("</tr>");
     document.write("</table>");
     document.write("</div>");
     document.write("</form>");
-
-
+}
+function writeChatFormFileUpload() {
     document.write("<table id='chattableuploadform'>");
         document.write("<tr>");
             document.write("<td id=\"chatclientuploadformtd\">");
@@ -269,9 +269,8 @@ function writeChatForm(responsesObject){
             document.write("</td>");
         document.write("</tr>");
     document.write("</table>");
-
-
 }
+
 function writeDefaultAutoResponderOptions(responsesObject){
     document.write("<option value=\"blank\" selected>--I don't know what to say--</option>");
     responsesObject.responses.forEach(item => {
