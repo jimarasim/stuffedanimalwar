@@ -60,7 +60,7 @@ app.get('/fromkittehwithlove', function(req, res){
  */
 app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res) => {
     if (!req.file) {
-        return res.status(400).send('No file uploaded.');
+        return res.status(400).json({ success: false, message: 'No file uploaded.' });
     }
 
     // Convert the image buffer to a base64 string
@@ -89,7 +89,7 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
     // Broadcast the image data to all connected Socket.IO clients
     io.emit('fromkittehwithloveuploadchatimage', chatImageMessageObject);
 
-    res.send('Image uploaded and broadcasted.');
+    res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
 });
 
 
