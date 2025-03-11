@@ -71,7 +71,7 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("</td>");
     document.write("<td>");
     //CLEAR BUTTON
-        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearboardbutton\" type=\"button\" onclick=\"clearGameBoard()\" value=\"X\" />");
+        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearboardbutton\" type=\"button\" onclick=\"clearGameBoard()\" value=\"Clear Board\" />");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
@@ -250,7 +250,7 @@ function writeChatForm(responsesObject) {
     document.write("</select>");
     document.write("</td>");
     document.write("<td>");
-    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearchatbutton\" type=\"button\" onclick=\"$('#messagesdiv').empty();\" value=\"X\" />");
+    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearchatbutton\" type=\"button\" onclick=\"$('#messagesdiv').empty();\" value=\"Clear Chat\" />");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");

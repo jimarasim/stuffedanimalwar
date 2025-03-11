@@ -11,14 +11,14 @@ const upload = multer({ storage: multer.memoryStorage() });
 //openssl genrsa -out key.pem 2048
 //openssl req -new -sha256 -key key.pem -out csr.csr
 //openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
-// const options = {
-//     key: fs.readFileSync('./sslcert/key.pem'),
-//     cert: fs.readFileSync('./sslcert/certificate.pem')
-// };
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+    key: fs.readFileSync('./sslcert/key.pem'),
+    cert: fs.readFileSync('./sslcert/certificate.pem')
 };
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+// };
 const server = https.createServer(options, app);
 const { Server } = require("socket.io");
 const io = new Server(server);
