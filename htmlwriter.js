@@ -67,11 +67,15 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("</td>");
     document.write("<td>");
         //CUSTOM URL TEXT BOX
-        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"35\" placeholder=\"CUSTOM URL\" />");
+        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"imagepathtextbox\" size=\"20\" placeholder=\"CUSTOM URL\" />");
+    document.write("</td>");
+    document.write("<td>");
+    //CLEAR BUTTON
+        document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearboardbutton\" type=\"button\" onclick=\"clearGameBoard()\" value=\"X\" />");
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
-    document.write("<td colspan='2'>");
+    document.write("<td colspan='3'>");
     //MOVEMENT DIRECTION
     document.write("<div style=\"display: inline-block; vertical-align: bottom; text-align: left;\">");
     document.write("<label style=\"display: inline-block; margin-right: 10px;\"><input type=\"radio\" id=\"movement-up\" name=\"sawmove\" value=\"UP\" checked>UP</label>");
@@ -84,7 +88,7 @@ function writeStuffedAnimalWarForm(stuffedAnimalMediaObject){
     document.write("</tr>");
     //MESSAGES FROM CHAT FORM
     document.write("<tr>");
-    document.write("<td colspan='2'>");
+    document.write("<td colspan='3'>");
     document.write("<div id=\"messagesdiv\"></div>");
     document.write("</td>");
     document.write("</tr>");
@@ -164,19 +168,15 @@ function writeVideoFromJson(mediaObject){
                 if(mediaObject.videos[i].file.indexOf("http://")!==-1 ||
                           mediaObject.videos[i].file.indexOf("https://")!==-1){
 
-                    console.log("PROVIDED PARTIAL PATH FOR VIDEO OPTION");
-
                     //MAKE THE VALUE OF THE OPTION THE FULL URL SPECIFIED IN THE FILENAME
                     //mediaObject.videos[i].file
                     document.write("<option poster=\""+mediaObject.videos[i].poster+"\" value=\""+mediaObject.videos[i].file+"\">"+mediaObject.videos[i].title+"</option>");
                 }
                 //ELSE THE FULL URL WAS NOT SPECIFIED...
                 else{
-                    console.log("PROVIDED FULL PATH FOR VIDEO OPTION");
                     //SO WE'LL PREPEND THE VIDEOSPATH TO THE FILENAME PASSED THROUGH THE MEDIAOBJECT
                     //mediaObject.videospath+mediaObject.videos[i].file
                     document.write("<option poster=\""+mediaObject.videos[i].poster+"\" value=\""+mediaObject.videospath+mediaObject.videos[i].file+"\">"+mediaObject.videos[i].title+"</option>");
-                    console.log("GOT HERE");
                 }
             }
         }
@@ -242,16 +242,19 @@ function writeChatForm(responsesObject) {
     document.write("<table id='chattable'>");
     document.write("<tr>");
     document.write("<td id=\"chatclientusertd\">");
-    document.write("<input id=\"chatClientUser\" placeholder=\"alias\"/>");
+    document.write("<input id=\"chatClientUser\" placeholder=\"chat alias\"/>");
     document.write("</td>");
     document.write("<td>");
     document.write("<select id=\"chatClientAutoResponder\" size=1 >");
     writeDefaultAutoResponderOptions(responsesObject);
     document.write("</select>");
     document.write("</td>");
+    document.write("<td>");
+    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"clearchatbutton\" type=\"button\" onclick=\"$('#messagesdiv').empty();\" value=\"X\" />");
+    document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
-    document.write("<td id=\"chatclientmessagetd\" colspan=\"2\">");
+    document.write("<td id=\"chatclientmessagetd\" colspan=\"3\">");
     document.write("<input id=\"chatClientMessage\" placeholder=\"hit enter to send message text or URL ending with .jpg .gif .png .mp3\" />");
     document.write("</td>");
     document.write("</tr>");

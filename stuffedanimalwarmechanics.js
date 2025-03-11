@@ -111,11 +111,13 @@ function moveShapeObjectUp(shapeObjectId,shapeXAxisAttr,shapeYAxisAttr) {
                 this.remove();                //remove the animal from the svg
             });
 
+            //ANNOUNCE THE HIT IN CHAT
             let chatClientMessage = shapeObjectUser + " hit " + animalObjectUser + " " + animalObjectName + " from below";
             $("<span>").prependTo("#messagesdiv").attr({
                 class: "hitclientmessage"
             }).text(chatClientMessage);
 
+            //GIVE THE USER A POINT IF THEY CREATED THE SHAPE THAT HIT THE ANIMAL
             let chatClientUser = $("#chatClientUser").val();
             if(chatClientUser === shapeObjectUser) {
                 const currentNumber = parseInt($('#points').text(), 10);
@@ -530,6 +532,20 @@ function moveAllAnimals() {
                 break;
         }
     });
+}
+
+function clearGameBoard() {
+    //REMOVE ALL ANIMALS
+    for(let i=0;i<animalObjects.length;i++){
+        clearInterval(animalObjects[i].timerId); //CLEAR THE TIMER
+        $('#'+animalObjects[i].objectId).remove(); //REMOVE THE IMAGE
+    }
+
+    //REMOVE ALL SHAPES
+    for(let i=0;i<shapeObjects.length;i++){
+        clearInterval(shapeObjects[i].timerId);  //CLEAR THE TIMER
+        $('#'+shapeObjects[i].objectId).remove(); //REMOVE THE IMAGE
+    }
 }
 
 // Start a single timer for all shapes and animals

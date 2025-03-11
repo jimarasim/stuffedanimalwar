@@ -87,7 +87,6 @@ chatformdiv{
 #chattable input,
 #chattable textarea,
 #chattable button {
-    width: 100%; /* Make inputs and buttons take up the full width */
     box-sizing: border-box; /* Include padding and border in the width */
 }
 /*CHAT MESSAGES FONTS*/
