@@ -155,6 +155,7 @@ io.on('connection', function(socket){
                 CHATCLIENTMESSAGE:'DISCONNECT'
          }; 
         console.log('DISCONNECT');
+        console.log(JSON.stringify(connectMsgObject));
         io.emit('disconnectSocketEvent',disconnectMsgObject);
     });
          
