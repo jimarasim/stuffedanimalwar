@@ -130,6 +130,7 @@ app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
 
 //ON PERSISTENT CONNECTION
 //handler for incoming socket connections
+//curl https://ipinfo.io/71.212.60.26 for ip address info (replace ip with desired ip)
 io.on('connection', function(socket){
     let chatClientAddress = socket.handshake.address;
     let chatServerDate = new Date();
