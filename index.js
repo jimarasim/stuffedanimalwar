@@ -11,14 +11,14 @@ const upload = multer({ storage: multer.memoryStorage() });
 //openssl genrsa -out key.pem 2048
 //openssl req -new -sha256 -key key.pem -out csr.csr
 //openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
-// const options = {
-//     key: fs.readFileSync('./sslcert/key.pem'),
-//     cert: fs.readFileSync('./sslcert/certificate.pem')
-// };
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+    key: fs.readFileSync('./sslcert/key.pem'),
+    cert: fs.readFileSync('./sslcert/certificate.pem')
 };
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+// };
 const server = https.createServer(options, app);
 const { Server } = require("socket.io");
 const io = new Server(server);
@@ -35,6 +35,9 @@ else{
     listenPort = process.argv[2];
     console.log(`PORT SPECIFIED. USING ${listenPort}`);
 }
+
+//TRUST PROXY TO GET IP ON FILE UPLOAD IN uploadchatimage
+app.set('trust proxy', true); // Trust the first proxy
 
 server.listen(listenPort, () => {
     console.log(`listening on *:${listenPort}`);
@@ -66,14 +69,20 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
         return res.status(400).json({ success: false, message: 'No file uploaded.' });
     }
 
+    //GET THE CLIENT IP
+    const clientIp = req.ip;
+
+    //get the date stamp
+    let chatServerDate = new Date();
+
     // Convert the image buffer to a base64 string
     const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
     let chatImageMessageObject = {
-        CHATCLIENTUSER: 'anonymous',
-        CHATSERVERUSER: '',
+        CHATCLIENTUSER: '',
+        CHATSERVERUSER: clientIp,
         CHATCLIENTIMAGE: imageData,
-        CHATSERVERDATE: ''
+        CHATSERVERDATE: chatServerDate
     };
 
     // Step 1: Extract the base64 part (remove the prefix)
@@ -84,7 +93,7 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
 
 // Step 3: Calculate the size in bytes
     const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES");
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMessageObject.CHATSERVERUSER + " AT: " + chatServerDate);
 
     /**
      * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
@@ -99,14 +108,20 @@ app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
         return res.status(400).json({ success: false, message: 'No file uploaded.' });
     }
 
+    //GET THE CLIENT IP
+    const clientIp = req.ip;
+
+    //get the date stamp
+    let chatServerDate = new Date();
+
     // Convert the image buffer to a base64 string
     const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
     let chatImageMessageObject = {
-        CHATCLIENTUSER: 'anonymous',
-        CHATSERVERUSER: '',
+        CHATCLIENTUSER: '',
+        CHATSERVERUSER: clientIp,
         CHATCLIENTIMAGE: imageData,
-        CHATSERVERDATE: ''
+        CHATSERVERDATE: chatServerDate
     };
 
     // Step 1: Extract the base64 part (remove the prefix)
@@ -117,7 +132,7 @@ app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
 
 // Step 3: Calculate the size in bytes
     const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES");
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMessageObject.CHATSERVERUSER + " AT: " + chatServerDate);
 
     /**
      * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. maddie.html)
