@@ -150,9 +150,10 @@ div.seattlenativelinks{
     margin:0;
     padding:0;
     width:100%;
-    height:auto;
     background-size:contain;
-    background-position:left;
+    background-position:center;
+    background-repeat: no-repeat;
+    height:500px;
 }
 #stuffedanimalwarformtable{
     background-color:black;

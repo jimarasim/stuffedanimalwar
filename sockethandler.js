@@ -78,10 +78,7 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
 
         // If it's a data URL, handle it differently
         img.on("click", function () {
-            // Open a new window and write the image into it
-            var newWindow = window.open();
-            newWindow.document.write("<img src='" + chatImageMsgObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
-            newWindow.document.close();
+            $('#stuffedanimalwarsvg').css('background-image', 'url(' + chatImageMsgObject.CHATCLIENTIMAGE + ')');
         });
 
         // Prepend the image (or linked image) to the #messagesdiv
