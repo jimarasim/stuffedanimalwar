@@ -47,7 +47,7 @@ server.listen(listenPort, () => {
 });
 
 //ENDPOINTS [NOTE: BY CONVENTION THERE SHOULD BE AN HTML FILE OF THE SAME NAME FOR EACH ENTRY, CLONED FROM FROMKITTEHWITHLOVE.HTML WITH ITS OWN UNIQUE "endpoint" NAME]
-const stuffedAnimalWarEndpoints = ['/fromkittehwithlove', '/maddie'];
+const stuffedAnimalWarEndpoints = ['fromkittehwithlove', 'maddie'];
 const stuffedAnimalWarChatSocketEvent = 'chatmessage';
 const stuffedAnimalWarTapSocketEvent = 'tapmessage';
 const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';
@@ -62,92 +62,51 @@ app.get('/', function(req, res){
  * 1 - define endpoints to serve custom stuffedanimalwar pages (e.g. fromkittehwithlove.html, maddie.html)
  */
 stuffedAnimalWarEndpoints.forEach(endpoint => {
-    app.get(endpoint, function(req, res){
+    //SERVE THE HTML PAGE ENDPOINT
+    app.get('/' + endpoint, function(req, res){
         //send a file back as the response
-        res.sendFile(__dirname + endpoint + '.html');
+        res.sendFile(__dirname + '/' + endpoint + '.html');
     });
-});
+    //UPLOAD AN IMAGE ENDPOINT
+    app.post('/' + endpoint + stuffedAnimalWarChatImageSocketEvent, upload.single('image'), (req, res) => {
+        if (!req.file) {
+            return res.status(400).json({ success: false, message: 'No file uploaded.' });
+        }
 
-/**
- * 2 - define endpoint to upload photos to your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
- */
-app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ success: false, message: 'No file uploaded.' });
-    }
+        //GET THE CLIENT IP
+        const clientIp = req.ip;
 
-    //GET THE CLIENT IP
-    const clientIp = req.ip;
+        //get the date stamp
+        let chatServerDate = new Date();
 
-    //get the date stamp
-    let chatServerDate = new Date();
+        // Convert the image buffer to a base64 string
+        const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
-    // Convert the image buffer to a base64 string
-    const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+        let chatImageMsgObject = {
+            CHATCLIENTUSER: 'anonymous ' + endpoint,
+            CHATSERVERUSER: clientIp,
+            CHATCLIENTIMAGE: imageData,
+            CHATSERVERDATE: chatServerDate
+        };
 
-    let chatImageMsgObject = {
-        CHATCLIENTUSER: '',
-        CHATSERVERUSER: clientIp,
-        CHATCLIENTIMAGE: imageData,
-        CHATSERVERDATE: chatServerDate
-    };
-
-    // Step 1: Extract the base64 part (remove the prefix)
-    const base64Data = imageData.split(';base64,').pop();
+        // Step 1: Extract the base64 part (remove the prefix)
+        const base64Data = imageData.split(';base64,').pop();
 
 // Step 2: Decode the base64 string to binary data
-    const binaryData = Buffer.from(base64Data, 'base64');
+        const binaryData = Buffer.from(base64Data, 'base64');
 
 // Step 3: Calculate the size in bytes
-    const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
+        const sizeInBytes = binaryData.length;
+        console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
 
-    /**
-     * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
-     */
-    // Broadcast the image data to all connected Socket.IO clients
-    io.emit('fromkittehwithloveuploadchatimage', chatImageMsgObject);
+        /**
+         * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
+         */
+        // Broadcast the image data to all connected Socket.IO clients
+        io.emit(endpoint + stuffedAnimalWarChatImageSocketEvent, chatImageMsgObject);
 
-    res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
-});
-app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ success: false, message: 'No file uploaded.' });
-    }
-
-    //GET THE CLIENT IP
-    const clientIp = req.ip;
-
-    //get the date stamp
-    let chatServerDate = new Date();
-
-    // Convert the image buffer to a base64 string
-    const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
-
-    let chatImageMsgObject = {
-        CHATCLIENTUSER: '',
-        CHATSERVERUSER: clientIp,
-        CHATCLIENTIMAGE: imageData,
-        CHATSERVERDATE: chatServerDate
-    };
-
-    // Step 1: Extract the base64 part (remove the prefix)
-    const base64Data = imageData.split(';base64,').pop();
-
-// Step 2: Decode the base64 string to binary data
-    const binaryData = Buffer.from(base64Data, 'base64');
-
-// Step 3: Calculate the size in bytes
-    const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
-
-    /**
-     * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. maddie.html)
-     */
-    // Broadcast the image data to all connected Socket.IO clients
-    io.emit('maddieuploadchatimage', chatImageMsgObject);
-
-    res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
+        res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
+    });
 });
 
 //ON PERSISTENT CONNECTION
