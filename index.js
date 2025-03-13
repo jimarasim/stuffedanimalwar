@@ -7,14 +7,14 @@ let fs = require('fs');
 //openssl genrsa -out key.pem 2048
 //openssl req -new -sha256 -key key.pem -out csr.csr
 //openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
-// const options = {
-//     key: fs.readFileSync('./sslcert/key.pem'),
-//     cert: fs.readFileSync('./sslcert/certificate.pem')
-// };
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+    key: fs.readFileSync('./sslcert/key.pem'),
+    cert: fs.readFileSync('./sslcert/certificate.pem')
 };
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
+// };
 
 //CREATE EXPRESS AND SOCKET.IO SERVERS
 const express = require('express');
@@ -47,7 +47,10 @@ server.listen(listenPort, () => {
 });
 
 //ENDPOINTS [NOTE: BY CONVENTION THERE SHOULD BE AN HTML FILE OF THE SAME NAME FOR EACH ENTRY, CLONED FROM FROMKITTEHWITHLOVE.HTML WITH ITS OWN UNIQUE "endpoint" NAME]
-const endpoints = ['/fromkittehwithlove', '/maddie'];
+const stuffedAnimalWarEndpoints = ['/fromkittehwithlove', '/maddie'];
+const stuffedAnimalWarChatSocketEvent = 'chatmessage';
+const stuffedAnimalWarTapSocketEvent = 'tapmessage';
+const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';
 
 //IF PUTTING  A NEW PAGE, AND THAT PAGE SUPPORTS CHAT OR STUFFEDANIMAL WAR, DONT FORGET TO ADD THE SOCKET EVENT HANLDER FOR THE PAGE BELOW
 app.get('/', function(req, res){
@@ -56,16 +59,15 @@ app.get('/', function(req, res){
         res.sendFile(__dirname + '/index.html');
 });
 /**
- * 1 - define endpoint to serve your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
+ * 1 - define endpoints to serve custom stuffedanimalwar pages (e.g. fromkittehwithlove.html, maddie.html)
  */
-app.get('/fromkittehwithlove', function(req, res){
+stuffedAnimalWarEndpoints.forEach(endpoint => {
+    app.get(endpoint, function(req, res){
         //send a file back as the response
-        res.sendFile(__dirname + '/fromkittehwithlove.html');
-        });
-app.get('/maddie', function(req, res){
-    //send a file back as the response
-    res.sendFile(__dirname + '/maddie.html');
+        res.sendFile(__dirname + endpoint + '.html');
+    });
 });
+
 /**
  * 2 - define endpoint to upload photos to your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
  */
