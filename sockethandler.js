@@ -20,7 +20,7 @@
  *                          PERFORM THE APPROPRIATE ACTION IN THE CHAT WINDOW: PREPEND AN IMAGE, PREPEND AN MP3 AND PLAY IT, PREPEND A TEXT MESSAGE
  * @type String
  */
-let endpoint = null;
+let baseEndpoint = null;
 let chatSocketEvent = null;
 let chatImageSocketEvent = null;
 let tapSocketEvent = null;
@@ -30,10 +30,11 @@ let baseSocket = null;
 let baseMasterAlias=null;
 let baseUnspecifiedAlias=null;
 //SOCKET EVENTS///////////////////////////////////////////////////////////////////////////SOCKET EVENTS////////////////////////SOCKET EVENTS//
-function initializeCommonVars(socket,masterAlias,unspecifiedAlias){
+function initializeCommonVars(socket,masterAlias,unspecifiedAlias,endpoint){
     baseMasterAlias = masterAlias;
     baseUnspecifiedAlias = unspecifiedAlias;
     baseSocket=socket;
+    baseEndpoint=endpoint;
 }
 function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent){
     //  WHEN A TAP MESSAGE IS RECEIVED FROM THER SERVER
