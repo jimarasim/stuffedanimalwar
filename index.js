@@ -108,10 +108,11 @@ stuffedAnimalWarEndpoints.forEach(endpoint => {
         res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
     });
 });
-
-//ON PERSISTENT CONNECTION
-//handler for incoming socket connections
-//curl https://ipinfo.io/71.212.60.26 for ip address info (replace ip with desired ip)
+/**
+ *  ON PERSISTENT CONNECTION
+ *  handler for incoming socket connections
+ *  curl https://ipinfo.io/71.212.60.26 for ip address info (replace ip with desired ip)
+ */
 io.on('connection', function(socket){
     let chatClientAddress = socket.handshake.address;
     let chatServerDate = new Date();
@@ -146,27 +147,17 @@ io.on('connection', function(socket){
     });
 
     /**
-     * 4 - define what happens when a connection sends a chat message to the server. the name must match chatSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
+     * 2 - define sockets to serve custom stuffedanimalwar page Socket Events (e.g. chat message and gameboard tap message)
      */
-    socket.on('fromkittehwithlovechatmessage', function(chatMsgObject){
-        //emit to everyone else
-        sendChatMessage('fromkittehwithlovechatmessage',chatMsgObject);
-    });
-    socket.on('maddiechatmessage', function(chatMsgObject){
-        //emit to everyone else
-        sendChatMessage('maddiechatmessage',chatMsgObject);
-    });
-
-    /*
-     * 5 - define what happens when a connection sends a tap message to the server. the name must match tapSocketEvent in your custom stuffedanimalwarpage (e.g. fromkittehwithlove.html)
-     */
-    socket.on('fromkittehwithlovetapmessage', function(tapMsgObject){
-        //emit to everyone else
-        sendTapMessage('fromkittehwithlovetapmessage',tapMsgObject);
-    });
-    socket.on('maddietapmessage', function(tapMsgObject){
-        //emit to everyone else
-        sendTapMessage('maddietapmessage',tapMsgObject);
+    stuffedAnimalWarEndpoints.forEach(endpoint => {
+        socket.on(endpoint + stuffedAnimalWarChatSocketEvent, function(chatMsgObject){
+            //emit to everyone else
+            sendChatMessage(endpoint + stuffedAnimalWarChatSocketEvent,chatMsgObject);
+        });
+        socket.on(endpoint + stuffedAnimalWarTapSocketEvent, function(tapMsgObject){
+            //emit to everyone else
+            sendTapMessage(endpoint + stuffedAnimalWarTapSocketEvent,tapMsgObject);
+        });
     });
 
     //GENERIC CHATMESSAGE SENDER, FOR MULTIPLE, INDEPENDENT CHAT CHANNELS   
