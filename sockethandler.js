@@ -20,7 +20,7 @@
  *                          PERFORM THE APPROPRIATE ACTION IN THE CHAT WINDOW: PREPEND AN IMAGE, PREPEND AN MP3 AND PLAY IT, PREPEND A TEXT MESSAGE
  * @type String
  */
-let endpoint = null;
+let baseEndpoint = null;
 let chatSocketEvent = null;
 let chatImageSocketEvent = null;
 let tapSocketEvent = null;
@@ -30,16 +30,20 @@ let baseSocket = null;
 let baseMasterAlias=null;
 let baseUnspecifiedAlias=null;
 //SOCKET EVENTS///////////////////////////////////////////////////////////////////////////SOCKET EVENTS////////////////////////SOCKET EVENTS//
-function initializeCommonVars(socket,masterAlias,unspecifiedAlias){
+function initializeCommonVars(socket,masterAlias,unspecifiedAlias,endpoint){
     baseMasterAlias = masterAlias;
     baseUnspecifiedAlias = unspecifiedAlias;
     baseSocket=socket;
+    baseEndpoint=endpoint;
 }
-function initializeTapSocketHandler(socket){
+function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent){
     //  WHEN A TAP MESSAGE IS RECEIVED FROM THER SERVER
     //  SEND THE OBJECT RECEIVED TO THE APPROPRIATE FUNCTION THAT HANDLES IT, 
     //  DEPENDING ON THE TYPE OF ANIMAL SENT BY $('#stuffedanimalwarsvg').click;
-    socket.on(tapSocketEvent, function(tapMsgObject){
+    baseSocket.on(chatSocketEvent, function(chatMsgObject){
+        onBaseChatSocketEvent(chatMsgObject);
+    });
+    baseSocket.on(tapSocketEvent, function(tapMsgObject){
         let animal = tapMsgObject.animal; //see htmlwriter.js writeStuffedAnimalWarAnimalDropdown
         switch(animal){
             case "dots":
@@ -62,19 +66,13 @@ function initializeTapSocketHandler(socket){
                 break;
         }        
     });
-    baseSocket=socket;
-}
-function initializeChatSocketHandler(socket){
-    socket.on(chatSocketEvent, function(chatMsgObject){
-        onBaseChatSocketEvent(chatMsgObject);
-    });
-    socket.on(chatImageSocketEvent, function(chatImageMessageObject){
+    baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
         console.log("IMAGE UPLOADED BROADCASTED");
 
         // Create the image element
         var img = $("<img/>").attr({
-            src: chatImageMessageObject.CHATCLIENTIMAGE,
-            alt: chatImageMessageObject.CHATSERVERUSER + " " + chatImageMessageObject.CHATSERVERDATE,
+            src: chatImageMsgObject.CHATCLIENTIMAGE,
+            alt: chatImageMsgObject.CHATSERVERUSER + " " + chatImageMsgObject.CHATSERVERDATE,
             class: "thumbnail" // Optional: Add a class for styling the thumbnail
         });
 
@@ -82,15 +80,13 @@ function initializeChatSocketHandler(socket){
         img.on("click", function () {
             // Open a new window and write the image into it
             var newWindow = window.open();
-            newWindow.document.write("<img src='" + chatImageMessageObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
+            newWindow.document.write("<img src='" + chatImageMsgObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
             newWindow.document.close();
         });
 
         // Prepend the image (or linked image) to the #messagesdiv
         img.prependTo("#messagesdiv");
     });
-    
-    baseSocket=socket;
 }
 function onBaseChatSocketEvent(chatMsgObject){
     let remoteChatClientUser = chatMsgObject.CHATCLIENTUSER;
