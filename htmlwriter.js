@@ -18,7 +18,7 @@ function writeStuffedAnimalWarDiv(stuffedAnimalMediaObject) {
                 stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".gif")   >   0 ||
                 stuffedAnimalMediaObject.backgroundimage.toLowerCase().indexOf(".png")   >   0){
                 //USE IT
-                document.write("<svg id=\"stuffedanimalwarsvg\" style=\"height:500px;background-image:url('" + stuffedAnimalMediaObject.backgroundimage + "');background-size: 100% auto;\">");
+                document.write("<svg id=\"stuffedanimalwarsvg\" style=\"background-image:url('" + stuffedAnimalMediaObject.backgroundimage + "');\">");
             }
             else{
                 //JUST WRITE THE DEFAULT IMAGE
