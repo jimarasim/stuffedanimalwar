@@ -2,12 +2,8 @@
 //EXAMPLE STARTED FROM: http://socket.io/get-started/chat/
 //setup an express application and bind it to an https server
 let fs = require('fs');
-const express = require('express');
-const app = express();
-const https = require('https');
-const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() });
-//THESE NEED TO BE CREATED LOCALLY IF YOU WANT TO RUN LOCALLY
+
+//SSL CERTS NEED TO BE CREATED LOCALLY IF YOU WANT TO RUN LOCALLY
 //openssl genrsa -out key.pem 2048
 //openssl req -new -sha256 -key key.pem -out csr.csr
 //openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
@@ -19,15 +15,19 @@ const options = {
     key: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/stuffedanimalwar.com/fullchain.pem')
 };
+
+//CREATE EXPRESS AND SOCKET.IO SERVERS
+const express = require('express');
+const app = express();
+const https = require('https');
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 const server = https.createServer(options, app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 let listenPort =55556;
 
-//serve .css and .js and media files
-app.use(express.static(__dirname));
-
-//GET PORT TO USE
+//GET PORT TO LISTEN TO
 if(process.argv.length !== 3){
     console.log(`NO PORT SPECIFIED. USING DEFAULT ${listenPort}`);
 }
@@ -36,9 +36,12 @@ else{
     console.log(`PORT SPECIFIED. USING ${listenPort}`);
 }
 
-//TRUST PROXY TO GET IP ON FILE UPLOAD IN uploadchatimage
+//CONFIGURE EXPRESS TO SERVE STATIC FILES LIKE IMAGES AND SCRIPTS
+app.use(express.static(__dirname));
+//CONFIGURE EXPRESS TO TRUST PROXY ON FILE UPLOAD
 app.set('trust proxy', true); // Trust the first proxy
 
+//START LISTENING
 server.listen(listenPort, () => {
     console.log(`listening on *:${listenPort}`);
 });
