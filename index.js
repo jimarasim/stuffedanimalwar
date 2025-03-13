@@ -81,7 +81,7 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
     // Convert the image buffer to a base64 string
     const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
-    let chatImageMessageObject = {
+    let chatImageMsgObject = {
         CHATCLIENTUSER: '',
         CHATSERVERUSER: clientIp,
         CHATCLIENTIMAGE: imageData,
@@ -96,13 +96,13 @@ app.post('/fromkittehwithloveuploadchatimage', upload.single('image'), (req, res
 
 // Step 3: Calculate the size in bytes
     const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMessageObject.CHATSERVERUSER + " AT: " + chatServerDate);
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
 
     /**
      * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
      */
     // Broadcast the image data to all connected Socket.IO clients
-    io.emit('fromkittehwithloveuploadchatimage', chatImageMessageObject);
+    io.emit('fromkittehwithloveuploadchatimage', chatImageMsgObject);
 
     res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
 });
@@ -120,7 +120,7 @@ app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
     // Convert the image buffer to a base64 string
     const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
-    let chatImageMessageObject = {
+    let chatImageMsgObject = {
         CHATCLIENTUSER: '',
         CHATSERVERUSER: clientIp,
         CHATCLIENTIMAGE: imageData,
@@ -135,13 +135,13 @@ app.post('/maddieuploadchatimage', upload.single('image'), (req, res) => {
 
 // Step 3: Calculate the size in bytes
     const sizeInBytes = binaryData.length;
-    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMessageObject.CHATSERVERUSER + " AT: " + chatServerDate);
+    console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
 
     /**
      * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. maddie.html)
      */
     // Broadcast the image data to all connected Socket.IO clients
-    io.emit('maddieuploadchatimage', chatImageMessageObject);
+    io.emit('maddieuploadchatimage', chatImageMsgObject);
 
     res.status(200).json({ success: true, message: 'Image uploaded and broadcasted.' });
 });

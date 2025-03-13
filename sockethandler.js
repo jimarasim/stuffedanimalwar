@@ -68,13 +68,13 @@ function initializeChatSocketHandler(socket){
     socket.on(chatSocketEvent, function(chatMsgObject){
         onBaseChatSocketEvent(chatMsgObject);
     });
-    socket.on(chatImageSocketEvent, function(chatImageMessageObject){
+    socket.on(chatImageSocketEvent, function(chatImageMsgObject){
         console.log("IMAGE UPLOADED BROADCASTED");
 
         // Create the image element
         var img = $("<img/>").attr({
-            src: chatImageMessageObject.CHATCLIENTIMAGE,
-            alt: chatImageMessageObject.CHATSERVERUSER + " " + chatImageMessageObject.CHATSERVERDATE,
+            src: chatImageMsgObject.CHATCLIENTIMAGE,
+            alt: chatImageMsgObject.CHATSERVERUSER + " " + chatImageMsgObject.CHATSERVERDATE,
             class: "thumbnail" // Optional: Add a class for styling the thumbnail
         });
 
@@ -82,7 +82,7 @@ function initializeChatSocketHandler(socket){
         img.on("click", function () {
             // Open a new window and write the image into it
             var newWindow = window.open();
-            newWindow.document.write("<img src='" + chatImageMessageObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
+            newWindow.document.write("<img src='" + chatImageMsgObject.CHATCLIENTIMAGE + "' alt='" + img.attr("alt") + "' />");
             newWindow.document.close();
         });
 
