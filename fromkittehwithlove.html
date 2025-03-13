@@ -327,12 +327,11 @@
     let masterAlias = "KITTEH";
     let unspecifiedAlias="anonymous";
     chatSocketEvent = 'fromkittehwithlovechatmessage';
-    chatImageSocketEvent = 'fromkittehwithloveuploadchatimage';
     tapSocketEvent = 'fromkittehwithlovetapmessage';
+    chatImageSocketEvent = 'fromkittehwithloveuploadchatimage';
     const socket = io();
     initializeCommonVars(socket,masterAlias,unspecifiedAlias);
-    initializeChatSocketHandler(socket,chatSocketEvent);
-    initializeTapSocketHandler(socket,tapSocketEvent);
+    initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent);
 </script>
 </body>
 </html> 

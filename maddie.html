@@ -331,8 +331,8 @@
     tapSocketEvent = 'maddietapmessage';
     const socket = io();
     initializeCommonVars(socket,masterAlias,unspecifiedAlias);
-    initializeChatSocketHandler(socket,chatSocketEvent);
-    initializeTapSocketHandler(socket,tapSocketEvent);
+    initializeCommonVars(socket,masterAlias,unspecifiedAlias);
+    initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent);
 </script>
 </body>
 </html> 

@@ -46,7 +46,9 @@ server.listen(listenPort, () => {
     console.log(`listening on *:${listenPort}`);
 });
 
-//PAGE MAPPINGS
+//ENDPOINTS [NOTE: THERE SHOULD BE AN html FILE OF THE SAME NAME FOR EACH]
+const endpoints = ['/fromkittehwithlove', '/maddie'];
+
 //IF PUTTING  A NEW PAGE, AND THAT PAGE SUPPORTS CHAT OR STUFFEDANIMAL WAR, DONT FORGET TO ADD THE SOCKET EVENT HANLDER FOR THE PAGE BELOW
 app.get('/', function(req, res){
     console.log(req);
@@ -162,7 +164,6 @@ io.on('connection', function(socket){
     console.log(JSON.stringify(connectMsgObject));
     io.emit('connectSocketEvent',connectMsgObject);
 
-    
     //COMMON--------------------------------------------------------------------------------------
     socket.on('disconnect', function(){
         let chatClientAddress = socket.handshake.address;

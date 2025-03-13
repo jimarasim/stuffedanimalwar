@@ -35,11 +35,14 @@ function initializeCommonVars(socket,masterAlias,unspecifiedAlias){
     baseUnspecifiedAlias = unspecifiedAlias;
     baseSocket=socket;
 }
-function initializeTapSocketHandler(socket){
+function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent){
     //  WHEN A TAP MESSAGE IS RECEIVED FROM THER SERVER
     //  SEND THE OBJECT RECEIVED TO THE APPROPRIATE FUNCTION THAT HANDLES IT, 
     //  DEPENDING ON THE TYPE OF ANIMAL SENT BY $('#stuffedanimalwarsvg').click;
-    socket.on(tapSocketEvent, function(tapMsgObject){
+    baseSocket.on(chatSocketEvent, function(chatMsgObject){
+        onBaseChatSocketEvent(chatMsgObject);
+    });
+    baseSocket.on(tapSocketEvent, function(tapMsgObject){
         let animal = tapMsgObject.animal; //see htmlwriter.js writeStuffedAnimalWarAnimalDropdown
         switch(animal){
             case "dots":
@@ -62,13 +65,7 @@ function initializeTapSocketHandler(socket){
                 break;
         }        
     });
-    baseSocket=socket;
-}
-function initializeChatSocketHandler(socket){
-    socket.on(chatSocketEvent, function(chatMsgObject){
-        onBaseChatSocketEvent(chatMsgObject);
-    });
-    socket.on(chatImageSocketEvent, function(chatImageMsgObject){
+    baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
         console.log("IMAGE UPLOADED BROADCASTED");
 
         // Create the image element
@@ -89,8 +86,6 @@ function initializeChatSocketHandler(socket){
         // Prepend the image (or linked image) to the #messagesdiv
         img.prependTo("#messagesdiv");
     });
-    
-    baseSocket=socket;
 }
 function onBaseChatSocketEvent(chatMsgObject){
     let remoteChatClientUser = chatMsgObject.CHATCLIENTUSER;
