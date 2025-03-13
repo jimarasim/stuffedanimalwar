@@ -178,7 +178,7 @@ div.seattlenativelinks{
     width: 100%; /* Make the table take up the full width of its container */
     max-width: 100%; /* Prevent overflow */
     table-layout: fixed; /* Ensure table cells respect the width */
-    background-color: limegreen;
+    background-color: slategray;
 }
 
 #audiotable td {
@@ -212,7 +212,7 @@ div.seattlenativelinks{
 
 
 #videotable{
-    background-color:orange;
+    background-color:black;
     width:100%;
 }
 #videotable td{
