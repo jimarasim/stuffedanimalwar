@@ -67,8 +67,6 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         }        
     });
     baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
-        console.log("IMAGE UPLOADED BROADCASTED");
-
         // Create the image element
         var img = $("<img/>").attr({
             src: chatImageMsgObject.CHATCLIENTIMAGE,
@@ -83,6 +81,16 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
 
         // Prepend the image (or linked image) to the #messagesdiv
         img.prependTo("#messagesdiv");
+    });
+    baseSocket.on(connectSocketEvent, function(connectMsgObject){
+        var span = $("<span/>").text(connectMsgObject.CHATSERVERUSER + " CONNECT");
+        span.attr("class", "connectnotification");
+        span.prependTo("#messagesdiv");
+    });
+    baseSocket.on(disconnectSocketEvent, function(disconnectMsgObject){
+        var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER + " DISCONNECT");
+        span.attr("class", "disconnectnotification");
+        span.prependTo("#messagesdiv");
     });
 }
 function onBaseChatSocketEvent(chatMsgObject){

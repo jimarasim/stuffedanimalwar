@@ -127,6 +127,16 @@ span.hitclientmessage {
     color: white;
     font-size: xx-small;
 }
+span.disconnectnotification {
+    align-self: flex-start; /* Ensure the message is aligned to the left */
+    color: orangered;
+    font-size: xx-small;
+}
+span.connectnotification {
+    align-self: flex-start; /* Ensure the message is aligned to the left */
+    color: lime;
+    font-size: xx-small;
+}
 /*LINKS ON INDEX.HTM FOR CONCERT BAND LINKS*/
 div.seattlenativelinks{
     margin-left:10px;

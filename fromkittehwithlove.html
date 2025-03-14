@@ -331,6 +331,8 @@
     chatSocketEvent = endpoint + 'chatmessage';
     tapSocketEvent = endpoint + 'tapmessage';
     chatImageSocketEvent = endpoint + 'uploadchatimage';
+    connectSocketEvent = endpoint + 'connect';
+    disconnectSocketEvent = endpoint + 'disconnect';
     const socket = io({
         query: {
             endpoint: endpoint
