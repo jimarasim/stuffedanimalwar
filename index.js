@@ -46,13 +46,19 @@ server.listen(listenPort, () => {
     console.log(`listening on *:${listenPort}`);
 });
 
-//ENDPOINTS [NOTE: BY CONVENTION THERE SHOULD BE AN HTML FILE OF THE SAME NAME FOR EACH ENTRY, CLONED FROM FROMKITTEHWITHLOVE.HTML WITH ITS OWN UNIQUE "endpoint" NAME]
+/**
+ * ENDPOINTS & EVENTS[NOTE: BY CONVENTION THERE SHOULD BE AN HTML FILE OF THE SAME NAME FOR EACH ENTRY, CLONED FROM FROMKITTEHWITHLOVE.HTML WITH ITS OWN UNIQUE "endpoint" NAME]
+ */
 const stuffedAnimalWarEndpoints = ['fromkittehwithlove', 'maddie'];
 const stuffedAnimalWarChatSocketEvent = 'chatmessage';
 const stuffedAnimalWarTapSocketEvent = 'tapmessage';
 const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';
 const stuffedAnimalWarConnectSocketEvent = 'connect';
 const stuffedAnimalWarDisconnectSocketEvent = 'disconnect';
+const stuffedAnimalWarPageCounters = stuffedAnimalWarEndpoints.reduce((acc, page) => {
+    acc[page] = 0; // Set each page name as a key with an initial value of 0
+    return acc;
+}, {});
 
 //SERVE INDEX FOR NO ENDPOINT AFTER PORT ADDRESS
 app.get('/', function(req, res){
@@ -120,12 +126,14 @@ io.on('connection', function(socket){
     const endpoint =  socket.handshake.query.endpoint;
     let chatClientAddress = socket.handshake.address;
     let chatServerDate = new Date();
+    stuffedAnimalWarPageCounters[endpoint]++;
     let connectMsgObject = {
                   CHATSERVERUSER:chatClientAddress,
                   CHATSERVERDATE:chatServerDate,
                   CHATCLIENTUSER:chatClientAddress,
                   CHATCLIENTMESSAGE:'CONNECT',
-                  CHATCLIENTENDPOINT: endpoint
+                  CHATCLIENTENDPOINT: endpoint,
+                  CHATUSERS: stuffedAnimalWarPageCounters[endpoint]
      }; 
     console.log(JSON.stringify(connectMsgObject));
     io.emit(endpoint + stuffedAnimalWarConnectSocketEvent,connectMsgObject);
@@ -134,12 +142,14 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         let chatClientAddress = socket.handshake.address;
         let chatServerDate = new Date();
+        stuffedAnimalWarPageCounters[endpoint]--;
         let disconnectMsgObject = {
                 CHATSERVERUSER:chatClientAddress,
                 CHATSERVERDATE:chatServerDate,
                 CHATCLIENTUSER:chatClientAddress,
                 CHATCLIENTMESSAGE:'DISCONNECT',
-                CHATCLIENTENDPOINT: endpoint
+                CHATCLIENTENDPOINT: endpoint,
+                CHATUSERS: stuffedAnimalWarPageCounters[endpoint]
          }; 
         console.log(JSON.stringify(disconnectMsgObject));
         io.emit(endpoint + stuffedAnimalWarDisconnectSocketEvent,disconnectMsgObject);
