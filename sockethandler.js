@@ -86,6 +86,7 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         var span = $("<span/>").text(connectMsgObject.CHATSERVERUSER + " CONNECT");
         span.attr("class", "connectnotification");
         span.prependTo("#messagesdiv");
+        $('#chatClientUser').val(connectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, ''));
     });
     baseSocket.on(disconnectSocketEvent, function(disconnectMsgObject){
         var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER + " DISCONNECT");
