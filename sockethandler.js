@@ -89,7 +89,7 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         $('#chatClientUser').val(connectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, ''));
     });
     baseSocket.on(disconnectSocketEvent, function(disconnectMsgObject){
-        var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER + " DISCONNECT - Total:" + disconnectMsgObject.CHATUSERCOUNT);
+        var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, '') + " DISCONNECT - Total:" + disconnectMsgObject.CHATUSERCOUNT);
         span.attr("class", "disconnectnotification");
         span.prependTo("#messagesdiv");
     });
