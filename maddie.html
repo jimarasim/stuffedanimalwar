@@ -180,13 +180,17 @@
 <script type="text/javascript" src="utilities.js"></script>
 <script type="text/javascript" src="sockethandler.js"></script>
 <script type="text/javascript">
+    let endpoint = 'maddie'; //MUST BE IN INDEX.JS endpoints ARRAY
     let masterAlias = "MADDIE";
     let unspecifiedAlias="nobody";
-    let endpoint = 'maddie'; //MUST BE IN INDEX.JS endpoints ARRAY
     chatSocketEvent = endpoint + 'chatmessage';
     tapSocketEvent = endpoint + 'tapmessage';
     chatImageSocketEvent = endpoint + 'uploadchatimage';
-    const socket = io();
+    const socket = io({
+        query: {
+            endpoint: endpoint
+        }
+    });
     initializeCommonVars(socket,masterAlias,unspecifiedAlias,endpoint);
     initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent);
 </script>

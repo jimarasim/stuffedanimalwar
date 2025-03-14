@@ -51,6 +51,8 @@ const stuffedAnimalWarEndpoints = ['fromkittehwithlove', 'maddie'];
 const stuffedAnimalWarChatSocketEvent = 'chatmessage';
 const stuffedAnimalWarTapSocketEvent = 'tapmessage';
 const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';
+const stuffedAnimalWarConnectSocketEvent = 'connect';
+const stuffedAnimalWarDisconnectSocketEvent = 'disconnect';
 
 //IF PUTTING  A NEW PAGE, AND THAT PAGE SUPPORTS CHAT OR STUFFEDANIMAL WAR, DONT FORGET TO ADD THE SOCKET EVENT HANLDER FOR THE PAGE BELOW
 app.get('/', function(req, res){
@@ -114,17 +116,19 @@ stuffedAnimalWarEndpoints.forEach(endpoint => {
  *  curl https://ipinfo.io/71.212.60.26 for ip address info (replace ip with desired ip)
  */
 io.on('connection', function(socket){
+    //Get endpoint that made the connection (passed in .html io() instantiation)
+    const endpoint =  socket.handshake.query.endpoint;
     let chatClientAddress = socket.handshake.address;
     let chatServerDate = new Date();
     let connectMsgObject = {
                   CHATSERVERUSER:chatClientAddress,
                   CHATSERVERDATE:chatServerDate,
                   CHATCLIENTUSER:chatClientAddress,
-                  CHATCLIENTMESSAGE:'CONNECT'
+                  CHATCLIENTMESSAGE:'CONNECT',
+                  CHATCLIENTENDPOINT: endpoint
      }; 
-    console.log('CONNECT');
     console.log(JSON.stringify(connectMsgObject));
-    io.emit('connectSocketEvent',connectMsgObject);
+    io.emit(endpoint + stuffedAnimalWarConnectSocketEvent,connectMsgObject);
 
     //COMMON--------------------------------------------------------------------------------------
     socket.on('disconnect', function(){
@@ -134,11 +138,11 @@ io.on('connection', function(socket){
                 CHATSERVERUSER:chatClientAddress,
                 CHATSERVERDATE:chatServerDate,
                 CHATCLIENTUSER:chatClientAddress,
-                CHATCLIENTMESSAGE:'DISCONNECT'
+                CHATCLIENTMESSAGE:'DISCONNECT',
+                CHATCLIENTENDPOINT: endpoint
          }; 
-        console.log('DISCONNECT');
-        console.log(JSON.stringify(connectMsgObject));
-        io.emit('disconnectSocketEvent',disconnectMsgObject);
+        console.log(JSON.stringify(disconnectMsgObject));
+        io.emit(endpoint + stuffedAnimalWarDisconnectSocketEvent,disconnectMsgObject);
     });
          
     //ON ERROR
