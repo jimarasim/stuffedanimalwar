@@ -54,7 +54,7 @@ const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';
 const stuffedAnimalWarConnectSocketEvent = 'connect';
 const stuffedAnimalWarDisconnectSocketEvent = 'disconnect';
 
-//IF PUTTING  A NEW PAGE, AND THAT PAGE SUPPORTS CHAT OR STUFFEDANIMAL WAR, DONT FORGET TO ADD THE SOCKET EVENT HANLDER FOR THE PAGE BELOW
+//SERVE INDEX FOR NO ENDPOINT AFTER PORT ADDRESS
 app.get('/', function(req, res){
     console.log(req);
         //send a file back as the response
