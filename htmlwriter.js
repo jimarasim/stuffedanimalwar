@@ -109,7 +109,8 @@ function writeAudioFromJson(mediaObject){
         document.write("<select id=\"selectsongs\">");
         //paint song selection dropdown options (songs)
         for (let i=0;i<mediaObject.songs.length;i++){
-            document.write("<option value=\""+mediaObject.songspath+mediaObject.songs[i].file+"\">"+mediaObject.songs[i].title+"</option>");
+            let filepath = (mediaObject.songs[i].file.startsWith("http://") || mediaObject.songs[i].file.startsWith("https://")) ? mediaObject.songs[i].file : mediaObject.songspath+mediaObject.songs[i].file;
+            document.write("<option value=\""+filepath+"\">"+mediaObject.songs[i].title+"</option>");
         }
         document.write("</select>");
         document.write("</td>");
@@ -119,7 +120,8 @@ function writeAudioFromJson(mediaObject){
         document.write("<tr>");
         document.write("<td class='audioplayertd' colspan='2'>");
         document.write("<audio id=\"jaemzwaredynamicaudioplayer\" controls=\"\" preload=\"none\">");
-        document.write("<source id=\"jaemzwaredynamicaudiosource\" src=\""+mediaObject.songspath+mediaObject.songs[0].file+"\" type=\"audio/mpeg\">");
+        let filepath = (mediaObject.songs[0].file.startsWith("http://") || mediaObject.songs[0].file.startsWith("https://")) ? mediaObject.songs[0].file : mediaObject.songspath+mediaObject.songs[0].file;
+        document.write("<source id=\"jaemzwaredynamicaudiosource\" src=\""+filepath+"\" type=\"audio/mpeg\">");
         document.write("HTML5 Audio Tag support not available with your browser. For source type='audio/mpeg'");
         document.write("</audio>");
         document.write("</td>");
