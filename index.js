@@ -133,7 +133,7 @@ io.on('connection', function(socket){
                   CHATCLIENTUSER:chatClientAddress,
                   CHATCLIENTMESSAGE:'CONNECT',
                   CHATCLIENTENDPOINT: endpoint,
-                  CHATUSERS: stuffedAnimalWarPageCounters[endpoint]
+                  CHATUSERCOUNT: stuffedAnimalWarPageCounters[endpoint]
      }; 
     console.log(JSON.stringify(connectMsgObject));
     io.emit(endpoint + stuffedAnimalWarConnectSocketEvent,connectMsgObject);
@@ -149,7 +149,7 @@ io.on('connection', function(socket){
                 CHATCLIENTUSER:chatClientAddress,
                 CHATCLIENTMESSAGE:'DISCONNECT',
                 CHATCLIENTENDPOINT: endpoint,
-                CHATUSERS: stuffedAnimalWarPageCounters[endpoint]
+                CHATUSERCOUNT: stuffedAnimalWarPageCounters[endpoint]
          }; 
         console.log(JSON.stringify(disconnectMsgObject));
         io.emit(endpoint + stuffedAnimalWarDisconnectSocketEvent,disconnectMsgObject);

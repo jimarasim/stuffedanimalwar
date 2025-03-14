@@ -83,13 +83,13 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         img.prependTo("#messagesdiv");
     });
     baseSocket.on(connectSocketEvent, function(connectMsgObject){
-        var span = $("<span/>").text(connectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, '') + " CONNECT");
+        var span = $("<span/>").text(connectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, '') + " CONNECT - Total:" + connectMsgObject.CHATUSERCOUNT);
         span.attr("class", "connectnotification");
         span.prependTo("#messagesdiv");
         $('#chatClientUser').val(connectMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, ''));
     });
     baseSocket.on(disconnectSocketEvent, function(disconnectMsgObject){
-        var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER + " DISCONNECT");
+        var span = $("<span/>").text(disconnectMsgObject.CHATSERVERUSER + " DISCONNECT - Total:" + disconnectMsgObject.CHATUSERCOUNT);
         span.attr("class", "disconnectnotification");
         span.prependTo("#messagesdiv");
     });
