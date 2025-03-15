@@ -115,6 +115,7 @@ function onBaseChatSocketEvent(chatMsgObject){
             if( chatClientMessage.toLowerCase().endsWith(".jpg")    ||
                 chatClientMessage.toLowerCase().endsWith(".jpeg")   ||
                 chatClientMessage.toLowerCase().endsWith(".gif")    ||
+                chatClientMessage.toLowerCase().endsWith(".webp")    ||
                 chatClientMessage.toLowerCase().endsWith(".png")  )
             {
 
