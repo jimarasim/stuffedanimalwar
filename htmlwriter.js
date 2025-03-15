@@ -273,6 +273,7 @@ function writeChatFormFileUpload() {
             document.write("<td id=\"chatclientuploadformtd\">");
                 document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
                 document.write("<input type=\"file\" name=\"image\" accept=\"image/*\" required>");
+                document.write("<input type=\"hidden\" name=\"uploadclientuser\" value=\"\">");
                 document.write("</td>");
                 document.write("<td>");
                 document.write("<button type=\"submit\">Upload Image</button>");
