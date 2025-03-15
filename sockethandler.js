@@ -67,6 +67,14 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         }        
     });
     baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
+        let chatServerDate = chatImageMsgObject.CHATSERVERDATE;
+        let chatServerUser = chatImageMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, '');
+        let serverStamp = "["+chatServerDate+"]"; //ip and time stamp
+
+        $("<span>").prependTo("#messagesdiv").attr({
+            class: "remoteChatClientUser"
+        }).text(chatServerUser + " " + serverStamp);
+
         var img = $("<img/>").attr({
             src: chatImageMsgObject.CHATCLIENTIMAGE,
             alt: chatImageMsgObject.CHATSERVERUSER + " " + chatImageMsgObject.CHATSERVERDATE,
