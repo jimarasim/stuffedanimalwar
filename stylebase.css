@@ -36,6 +36,8 @@ body {
 }
 #chatClientMessage{
     width:100%;
+    box-sizing: border-box; /* Include padding and border in the width */
+    margin: 2px 0; /* Add some margin to prevent overlap */
 }
 #jaemzwaredynamicaudioplayer{
     width:100%;
@@ -89,13 +91,13 @@ span.remoteChatClientUser{
 }
 
 /* Adjust input and select elements for smaller screens */
-#chatClientUser, #chatClientAutoResponder, #chatClientMessage {
+#chatClientUser, #chatClientAutoResponder {
     width: 100%;
     box-sizing: border-box; /* Include padding and border in the width */
     margin: 2px 0; /* Add some margin to prevent overlap */
 }
 
-#clearchatbutton {
+#clearchatbutton, #sendchatbutton {
     width: auto; /* Allow the button to size itself */
     margin: 2px 0; /* Add some margin to prevent overlap */
 }
@@ -290,10 +292,6 @@ a.jaemzwarelogo:active, .skateparkdetail a:active {
     }
 
     #chatClientUser, #chatClientAutoResponder, #chatClientMessage {
-        font-size: 14px; /* Adjust font size for better readability */
-    }
-
-    #clearchatbutton {
         font-size: 14px; /* Adjust font size for better readability */
     }
 

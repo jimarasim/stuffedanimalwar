@@ -295,6 +295,11 @@ $('#chatClientMessage').keypress(function (event) {
         return false; 
     }
 });
+$('#sendchatbutton').click(function () {
+        emitChatMessage($('#chatClientMessage').val());
+        $('#chatClientMessage').val('');
+});
+
 function emitChatMessage(messageString){
     //get the user alias
     let chatClientUser = $('#chatClientUser').val();

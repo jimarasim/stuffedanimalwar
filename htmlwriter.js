@@ -256,8 +256,11 @@ function writeChatForm(responsesObject) {
     document.write("</td>");
     document.write("</tr>");
     document.write("<tr>");
-    document.write("<td id=\"chatclientmessagetd\" colspan=\"3\">");
+    document.write("<td id=\"chatclientmessagetd\" colspan=\"2\">");
     document.write("<input id=\"chatClientMessage\" placeholder=\"hit enter to send message text or URL ending with .jpg .gif .png .mp3\" />");
+    document.write("</td>");
+    document.write("<td>");
+    document.write("<input style=\"vertical-align:top;text-align:left;\" id=\"sendchatbutton\" type=\"button\" value=\"Send Message\" />");
     document.write("</td>");
     document.write("</tr>");
     document.write("</table>");
@@ -270,6 +273,8 @@ function writeChatFormFileUpload() {
             document.write("<td id=\"chatclientuploadformtd\">");
                 document.write("<form id=\"uploadForm\" enctype=\"multipart/form-data\">");
                 document.write("<input type=\"file\" name=\"image\" accept=\"image/*\" required>");
+                document.write("</td>");
+                document.write("<td>");
                 document.write("<button type=\"submit\">Upload Image</button>");
                 document.write("</form>");
             document.write("</td>");
