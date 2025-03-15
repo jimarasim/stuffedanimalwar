@@ -67,14 +67,12 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
         }        
     });
     baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
-        // Create the image element
         var img = $("<img/>").attr({
             src: chatImageMsgObject.CHATCLIENTIMAGE,
             alt: chatImageMsgObject.CHATSERVERUSER + " " + chatImageMsgObject.CHATSERVERDATE,
             class: "thumbnail" // Optional: Add a class for styling the thumbnail
         });
 
-        // If it's a data URL, handle it differently
         img.on("click", function () {
             $('#stuffedanimalwarsvg').css('background-image', 'url(' + chatImageMsgObject.CHATCLIENTIMAGE + ')');
         });
@@ -105,38 +103,34 @@ function onBaseChatSocketEvent(chatMsgObject){
     if (
         chatClientMessage.toLowerCase().indexOf("http://")===0||
         chatClientMessage.toLowerCase().indexOf("https://")===0
-       ){ 
-            if( chatClientMessage.toLowerCase().indexOf(".jpg")   >   0 ||
-                chatClientMessage.toLowerCase().indexOf(".jpeg")  >   0 ||
-                chatClientMessage.toLowerCase().indexOf(".gif")   >   0 ||
-                chatClientMessage.toLowerCase().indexOf(".png")   >   0)
+       ){
+            const urlfromchatclientmessage = chatClientMessage.split(' ')[0];
+            if( urlfromchatclientmessage.toLowerCase().indexOf(".jpg")   >   0 ||
+                urlfromchatclientmessage.toLowerCase().indexOf(".jpeg")  >   0 ||
+                urlfromchatclientmessage.toLowerCase().indexOf(".gif")   >   0 ||
+                urlfromchatclientmessage.toLowerCase().indexOf(".png")   >   0)
             {
 
-                //show the image if it's just an image tag
 //                ip and time stamp
-                $("<span>").prependTo("#messagesdiv").attr({
-                    class: "serverdate"
-                }).text(serverStamp);
-
 //                user alias
                 $("<span>").prependTo("#messagesdiv").attr({
                     class: "remoteChatClientUser"
-                }).text(remoteChatClientUser);
+                }).text(remoteChatClientUser + " " + serverStamp);
 
                 var img = $("<img/>").attr({
-                    src: chatClientMessage,
+                    src: urlfromchatclientmessage,
                     alt: "chat image",
                     class: "thumbnail"
                  });
 
-                var link = $("<a/>").attr({
-                    href: chatClientMessage,
-                    target: "_blank"
-                }).append(img);
+                img.on("click", function () {
+                    console.log(urlfromchatclientmessage);
+                    $('#stuffedanimalwarsvg').css('background-image', 'url(' + urlfromchatclientmessage + ')');
+                });
 
-                link.prependTo("#messagesdiv");
+                img.prependTo("#messagesdiv");
             }
-          else if(chatClientMessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
+          else if(urlfromchatclientmessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
             {
                 //change the source of the AUDIO player
                 changeMp3(chatClientMessage);
