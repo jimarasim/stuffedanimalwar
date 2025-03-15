@@ -87,11 +87,13 @@ stuffedAnimalWarEndpoints.forEach(endpoint => {
         //get the date stamp
         let chatServerDate = new Date();
 
+        const uploadclientuser = req.body.uploadclientuser;
+
         // Convert the image buffer to a base64 string
         const imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
         let chatImageMsgObject = {
-            CHATCLIENTUSER: 'anonymous ' + endpoint,
+            CHATCLIENTUSER: uploadclientuser,
             CHATSERVERUSER: clientIp,
             CHATCLIENTIMAGE: imageData,
             CHATSERVERDATE: chatServerDate
@@ -105,7 +107,7 @@ stuffedAnimalWarEndpoints.forEach(endpoint => {
 
 // Step 3: Calculate the size in bytes
         const sizeInBytes = binaryData.length;
-        console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + chatImageMsgObject.CHATSERVERUSER + " AT: " + chatServerDate);
+        console.log("RAW FILE UPLOAD " + sizeInBytes + " BYTES FROM:" + uploadclientuser + " AT: " + chatServerDate);
 
         /**
          * 3 - broadcast the right event for you your custom stuffedanimalwar page. the name must match chatImageSocketEvent in your custom stuffedanimalwar page (e.g. fromkittehwithlove.html)
