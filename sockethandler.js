@@ -247,8 +247,6 @@ $('#uploadForm').on('submit', function (e) {
 
     // Create a FormData object from the form
     const formData = new FormData(this);
-    formData["uploadclientuser"] = chatClientUser;
-    console.log("form data:" + JSON.stringify(formData));
     const url = '/' + chatImageSocketEvent;
     fetch(url, {
         method: 'POST',
