@@ -68,16 +68,16 @@ function initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSock
     });
     baseSocket.on(chatImageSocketEvent, function(chatImageMsgObject){
         let chatServerDate = chatImageMsgObject.CHATSERVERDATE;
-        let chatServerUser = chatImageMsgObject.CHATSERVERUSER.replace(/[^a-zA-Z0-9]/g, '');
+        let chatClientUser = chatImageMsgObject.CHATCLIENTUSER.replace(/[^a-zA-Z0-9]/g, '');
         let serverStamp = "["+chatServerDate+"]"; //ip and time stamp
 
         $("<span>").prependTo("#messagesdiv").attr({
             class: "remoteChatClientUser"
-        }).text(chatServerUser + " " + serverStamp);
+        }).text(chatClientUser + " " + serverStamp);
 
         var img = $("<img/>").attr({
             src: chatImageMsgObject.CHATCLIENTIMAGE,
-            alt: chatImageMsgObject.CHATSERVERUSER + " " + chatImageMsgObject.CHATSERVERDATE,
+            alt: chatClientUser + " " + chatImageMsgObject.CHATSERVERDATE,
             class: "thumbnail" // Optional: Add a class for styling the thumbnail
         });
 
@@ -220,6 +220,7 @@ $('#selectsongs').change(function(){
 // Handle form submission
 $('#uploadForm').on('submit', function (e) {
     e.preventDefault();
+    const chatClientUser = $('#chatClientUser').val();
     const fileInput = e.target.elements.image;
     const file = fileInput.files[0];
 
@@ -243,12 +244,11 @@ $('#uploadForm').on('submit', function (e) {
         e.preventDefault();
         return;
     }
+
     // Create a FormData object from the form
     const formData = new FormData(this);
-    // Log FormData contents
-    for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
+    formData["uploadclientuser"] = chatClientUser;
+    console.log("form data:" + JSON.stringify(formData));
     const url = '/' + chatImageSocketEvent;
     fetch(url, {
         method: 'POST',
