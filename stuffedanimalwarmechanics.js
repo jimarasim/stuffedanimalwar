@@ -546,6 +546,9 @@ function clearGameBoard() {
         clearInterval(shapeObjects[i].timerId);  //CLEAR THE TIMER
         $('#'+shapeObjects[i].objectId).remove(); //REMOVE THE IMAGE
     }
+
+    //REMOVE ALL LINES
+    $('#stuffedanimalwarsvg line').remove();
 }
 
 // Start a single timer for all shapes and animals
