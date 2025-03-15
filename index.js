@@ -49,7 +49,7 @@ server.listen(listenPort, () => {
 /**
  * ENDPOINTS & EVENTS[NOTE: BY CONVENTION THERE SHOULD BE AN HTML FILE OF THE SAME NAME FOR EACH ENTRY, CLONED FROM FROMKITTEHWITHLOVE.HTML WITH ITS OWN UNIQUE "endpoint" NAME]
  */
-const stuffedAnimalWarEndpoints = ['fromkittehwithlove', 'maddie'];
+const stuffedAnimalWarEndpoints = ['fromkittehwithlove', 'maddie', 'jacob'];
 const stuffedAnimalWarChatSocketEvent = 'chatmessage';
 const stuffedAnimalWarTapSocketEvent = 'tapmessage';
 const stuffedAnimalWarChatImageSocketEvent = 'uploadchatimage';

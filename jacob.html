@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stuffed Animal War - jacob</title>
+        <link rel="Stylesheet" href="stylebase.css" />
+<!--        FOR MOBILE-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="htmlwriter.js"></script>
+        <script src="jquery-3.7.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+<body>
+<script type="text/javascript">
+    //file title
+    let stuffedAnimalMediaObject = {
+            "backgroundimage":"https://seattlerules.com/media/stuffedanimalwar/stuffedanimalwarfinal.jpg",
+            "animals":[
+                {'file':'gamemedia/birds.png','title':'Birds'},
+                {'file':'gamemedia/boobies.gif','title':'Boobies'},
+                {'file':'gamemedia/cats.png','title':'Cats'},
+                {'file':'https://seattlerules.com/media/skatecreteordie/skatecreteordiedeck.png','title':'Cement Truck'},
+                {'file':'gamemedia/chickens.png','title':'Chickens'},
+                {'file':'gamemedia/crocodiles.png','title':'Crocodiles'},
+                {'file':'gamemedia/darthvader.png','title':'Darth Vader'},
+                {'file':'gamemedia/deck.png','title':'Deck'},
+                {'file':'gamemedia/dogs.png','title':'Dog'},
+                {'file':'gamemedia/lamblambs.png','title':'Lamb'},
+                {'file':'gamemedia/lions.png','title':'Lion'},
+                {'file':'gamemedia/penis.png','title':'Penis'},
+                {'file':'gamemedia/pinkelephant.png','title':'Pink Elephant'},
+                {'file':'gamemedia/queen.png','title':'Queen'},
+                {'file':'gamemedia/r2d2.png','title':'R2D2'},
+                {'file':'gamemedia/rainier.png','title':'Mt Rainier'},
+                {'file':'gamemedia/spaceneedle.png','title':'Space Needle'},
+                {'file':'gamemedia/stormtrooper.png','title':'Storm Trooper'},
+                {'file':'gamemedia/thechosenone.png','title':'Jedi'},
+                {'file':'gamemedia/truck.png','title':'Truck'},
+                {'file':'gamemedia/vagina.png','title':'Vagina'},
+                {'file':'gamemedia/whale.png','title':'Orca'},
+                {'file':'gamemedia/wheel.png','title':'Wheel'},
+                {'file':'gamemedia/yoda.png','title':'Yoda'},
+
+    ]
+        };
+    let mediaObject = {
+        "songspath": "https://analogarchive.com/live/",
+        "videospath": "https://seattlerules.com/media/trump/videos/",
+        "photospath": "https://seattlerules.com/media/buttholesurferselectriclarryland/",
+        "videos": [
+            // {"file":"https://seattlerules.com/media/trump/videos/aoc/aocdogemedical.mp4", "title":"aoc", "poster":"https://seattlerules.com/media/beathappeningdreamy/beatIMG_E8481.JPG"},
+            // {"file":"flower.mp4","title":"Insurrection","poster":"https://seattlerules.com/media/beathappeningdreamy/beatIMG_E8481.JPG"},
+            // {"file":"https://seattlerules.com/media/trump/videos/005crockett.mp4","title":"Crockett","poster":"https://seattlerules.com/media/beathappeningdreamy/beatIMG_E8481.JPG"},
+            // {"file":"https://seattlerules.com/media/trump/videos/006kamala.mp4","title":"Kamala","poster":"https://seattlerules.com/media/beathappeningdreamy/beatIMG_E8481.JPG"},
+            ],
+        "photos": [
+            // {"file":"IMG_8604.JPG", "title":"butthole surfers cover 1"},
+            // {"file":"IMG_8605.JPG", "title":"butthole surfers cover 2"},
+            // {"file":"IMG_8606.JPG", "title":"butthole surfers cover 3"},
+            // {"file":"IMG_8607.JPG", "title":"butthole surfers cover 4"},
+            // {"file":"IMG_8608.JPG", "title":"butthole surfers cover 5"},
+            // {"file":"IMG_8609.JPG", "title":"butthole surfers cover 6"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8626.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8627.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8628.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8629.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8630.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8631.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8632.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8633.JPG", "title":"soundgarden cover 1"},
+            // {"file":"https://seattlerules.com/media/soundgardensuperunknown/IMG_8634.JPG", "title":"soundgarden cover 1"},
+    ],
+        "songs": [
+            {"file":"Owl n Thistle - 2013020701 skerik01.mp3","title":"skerik trio Owl n Thistle - 2013020701 skerik01.mp3"},
+            {"file":"Owl n Thistle - 2013020702 skerik02.mp3","title":"skerik trio Owl n Thistle - 2013020702 skerik02.mp3"},
+            {"file":"Owl n Thistle - 2013020703 skerik03.mp3","title":"skerik trio Owl n Thistle - 2013020703 skerik03.mp3"},
+            {"file":"Owl n Thistle - 2013020704 skerik04.mp3","title":"skerik trio Owl n Thistle - 2013020704 skerik04.mp3"},
+            {"file":"Owl n Thistle - 2013020705 skerik05.mp3","title":"skerik trio Owl n Thistle - 2013020705 skerik05.mp3"},
+            {"file":"Owl n Thistle - 2013020706 skerik06.mp3","title":"skerik trio Owl n Thistle - 2013020706 skerik06.mp3"},
+            {"file":"Owl n Thistle - 2013020707 skerik07.mp3","title":"skerik trio Owl n Thistle - 2013020707 skerik07.mp3"},
+            {"file":"Owl n Thistle - 2013020708 skerik08.mp3","title":"skerik trio Owl n Thistle - 2013020708 skerik08.mp3"},
+            {"file":"Owl n Thistle - 2013020709 skerik09.mp3","title":"skerik trio Owl n Thistle - 2013020709 skerik09.mp3"},
+            {"file":"Owl n Thistle - 2013020710 skerik10.mp3","title":"skerik trio Owl n Thistle - 2013020710 skerik10.mp3"},
+            {"file":"Owl n Thistle - 2013020711 skerik11.mp3","title":"skerik trio Owl n Thistle - 2013020711 skerik11.mp3"},
+            {"file":"Owl n Thistle - 2013020712 skerik12.mp3","title":"skerik trio Owl n Thistle - 2013020712 skerik12.mp3"},
+            {"file":"Owl n Thistle - 2013020713 skerik13.mp3","title":"skerik trio Owl n Thistle - 2013020713 skerik13.mp3"},
+            {"file":"Owl n Thistle - 2013020714 skerik14.mp3","title":"skerik trio Owl n Thistle - 2013020714 skerik14.mp3"},
+            {"file":"Owl n Thistle - 2013020715 skerik15.mp3","title":"skerik trio Owl n Thistle - 2013020715 skerik15.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0001.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0001.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0002.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0002.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0003.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0003.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0004.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0004.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0005.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0005.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0006.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0006.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0007.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0007.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0008.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0008.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0009.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0009.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0010.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0010.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0011.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0011.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0012.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0012.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0013.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0013.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0014.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0014.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0015.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0015.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0016.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0016.mp3"},
+            {"file":"Owl n Thistle - 20130213ZOOM0017.mp3","title":"skerik trio Owl n Thistle - 20130213ZOOM0017.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0001.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0001.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0002.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0002.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0003.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0003.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0004.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0004.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0005.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0005.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0006.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0006.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0007.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0007.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0008.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0008.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0009.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0009.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0012.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0012.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0014.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0014.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0015.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0015.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0016.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0016.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0017.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0017.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0018.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0018.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0019.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0019.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0020.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0020.mp3"},
+            {"file":"Owl n Thistle - 20130227ZOOM0021.mp3","title":"skerik trio Owl n Thistle - 20130227ZOOM0021.mp3"}
+        ]
+    };
+    let responsesObject = {
+        "responses": [
+            {'response' : 'check out this spot'},
+            {'response' : 'claimer'},
+            {'response' : 'did you google that comeback?'},
+            {'response' : 'do it frontside'},
+            {'response' : 'do it switch'},
+            {'response' : 'get some'},
+            {'response' : 'hold my beer, watch this'},
+            {'response' : 'i dont know'},
+            {'response' : 'i know right'},
+            {'response' : 'i like you'},
+            {'response' : 'i love you'},
+            {'response' : 'i think youre attractive'},
+            {'response' : 'id rather play with my cat'},
+            {'response' : 'it\'s a bust'},
+            {'response' : 'LOL'},
+            {'response' : 'look it up'},
+            {'response' : 'nice'},
+            {'response' : 'Nuh UH!'},
+            {'response' : 'ok'},
+            {'response' : 'OMG'},
+            {'response' : 'pics or it didnt happen'},
+            {'response' : 'sarcastic clap'},
+            {'response' : 'silence for effect'},
+            {'response' : 'skate or die'},
+            {'response' : 'STFU'},
+            {'response' : 'that link is busted'},
+            {'response' : 'that link is rad'},
+            {'response' : 'that site is too slow'},
+            {'response' : 'that sounds made up'},
+            {'response' : 'that sucks'},
+            {'response' : 'thats cool'},
+            {'response' : 'thats what she said'},
+            {'response' : 'this is not a political forum'},
+            {'response' : 'this is not a religious forum'},
+            {'response' : 'three to claim it'},
+            {'response' : 'vague hipster comment'},
+            {'response' : 'whatever'},
+            {'response' : 'witty comeback'},
+            {'response' : 'you inspire me'},
+            {'response' : 'you look very nice today'},
+            {'response' : 'you rock'},
+            {'response' : 'you suck'},
+            {'response' : 'your opinion is wrong'},
+            {'response' : 'youre a real UP person'},
+            {'response' : 'youre my best friend'},
+            {'response' : 'youre working that outfit girl'},
+            {'response' : 'youre wrong'},
+        ],
+    };
+    writeStuffedAnimalWar(stuffedAnimalMediaObject);
+    writeChatForm(responsesObject);
+    writeChatFormFileUpload();
+    writeAudioFromJson(mediaObject);
+    writeVideoFromJson(mediaObject);
+    writePhotosFromJson(mediaObject);
+</script>
+<script type="text/javascript" src="stuffedanimalwarmechanics.js"></script>
+<!--START TIMER FOR ALL STUFFEDANIMALWAR MOVEMENT-->
+<script>startGameLoop();</script>
+<script type="text/javascript" src="utilities.js"></script>
+<script type="text/javascript" src="sockethandler.js"></script>
+<script type="text/javascript">
+    let endpoint = 'jacob'; //MUST BE IN INDEX.JS endpoints ARRAY
+    let masterAlias = "JACOB";
+    let unspecifiedAlias="anonymous";
+    chatSocketEvent = endpoint + 'chatmessage';
+    tapSocketEvent = endpoint + 'tapmessage';
+    chatImageSocketEvent = endpoint + 'uploadchatimage';
+    connectSocketEvent = endpoint + 'connect';
+    disconnectSocketEvent = endpoint + 'disconnect';
+    const socket = io({
+        query: {
+            endpoint: endpoint
+        }
+    });
+    initializeCommonVars(socket,masterAlias,unspecifiedAlias,endpoint);
+    initializeSocketHandlers(chatSocketEvent, tapSocketEvent, chatImageSocketEvent);
+</script>
+</body>
+</html> 
