@@ -117,14 +117,13 @@ function onBaseChatSocketEvent(chatMsgObject){
                 }).text(remoteChatClientUser + " " + serverStamp);
 
                 var img = $("<img/>").attr({
-                    src: urlfromchatclientmessage,
+                    src: chatClientMessage,
                     alt: "chat image",
                     class: "thumbnail"
                  });
 
                 img.on("click", function () {
-                    console.log(urlfromchatclientmessage);
-                    $('#stuffedanimalwarsvg').css('background-image', 'url(' + urlfromchatclientmessage + ')');
+                    $('#stuffedanimalwarsvg').css('background-image', 'url(' + chatClientMessage + ')');
                 });
 
                 img.prependTo("#messagesdiv");
