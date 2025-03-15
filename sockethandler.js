@@ -104,11 +104,10 @@ function onBaseChatSocketEvent(chatMsgObject){
         chatClientMessage.toLowerCase().indexOf("http://")===0||
         chatClientMessage.toLowerCase().indexOf("https://")===0
        ){
-            const urlfromchatclientmessage = chatClientMessage.split(' ')[0];
-            if( urlfromchatclientmessage.toLowerCase().indexOf(".jpg")   >   0 ||
-                urlfromchatclientmessage.toLowerCase().indexOf(".jpeg")  >   0 ||
-                urlfromchatclientmessage.toLowerCase().indexOf(".gif")   >   0 ||
-                urlfromchatclientmessage.toLowerCase().indexOf(".png")   >   0)
+            if( chatClientMessage.toLowerCase().endsWith(".jpg")    ||
+                chatClientMessage.toLowerCase().endsWith(".jpeg")   ||
+                chatClientMessage.toLowerCase().endsWith(".gif")    ||
+                chatClientMessage.toLowerCase().endsWith(".png")  )
             {
 
 //                ip and time stamp
@@ -130,46 +129,38 @@ function onBaseChatSocketEvent(chatMsgObject){
 
                 img.prependTo("#messagesdiv");
             }
-          else if(urlfromchatclientmessage.toLowerCase().indexOf(".mp3") && remoteChatClientUser===baseMasterAlias)
+            else if(chatClientMessage.toLowerCase().endsWith(".mp3") && remoteChatClientUser===baseMasterAlias)
             {
-                //change the source of the AUDIO player
                 changeMp3(chatClientMessage);
-                console.log("DJ BROADCAST CHANGED THE SONG");
-
+            }
+            else if(chatClientMessage.toLowerCase().endsWith(".mp4") && remoteChatClientUser===baseMasterAlias)
+            {
+                changeMp4(chatClientMessage);
             }
             else{
-
-//                ip and time stamp
-               $("<span>").prependTo("#messagesdiv").attr({
-                  class: "serverdate"
-               }).text(serverStamp);
-
-//                user alias
                 $("<span>").prependTo("#messagesdiv").attr({
                                     class: "remoteChatClientUser"
-                                 }).text(remoteChatClientUser);
-
+                                 }).text(remoteChatClientUser + " " + serverStamp);
                  //chat message
                 $("<span>").prependTo("#messagesdiv").attr({
                    class: "chatclientmessage"
                 }).text(chatClientMessage);
-
             }
         }
-        else{
-            //server date and user
-            $("<div>").prependTo("#messagesdiv").attr({
-                class: "right-aligned-container"
-            }).append(
-                $("<span>").attr({ class: "remoteChatClientUser" }).text(remoteChatClientUser),
-                $("<span>").attr({ class: "serverdate" }).text(" " + serverStamp) // Add a space for separation
-            );
+    else{
+        //server date and user
+        $("<div>").prependTo("#messagesdiv").attr({
+            class: "right-aligned-container"
+        }).append(
+            $("<span>").attr({ class: "remoteChatClientUser" }).text(remoteChatClientUser),
+            $("<span>").attr({ class: "serverdate" }).text(" " + serverStamp) // Add a space for separation
+        );
 
-            //chat message
-            $("<span>").prependTo("#messagesdiv").attr({
-                class: "chatclientmessage"
-            }).text(chatClientMessage);
-        }
+        //chat message
+        $("<span>").prependTo("#messagesdiv").attr({
+            class: "chatclientmessage"
+        }).text(chatClientMessage);
+    }
 }
 //SOCKET EVENTS///////////////////////////////////////////////////////////////////////////SOCKET EVENTS////////////////////////SOCKET EVENTS//
 

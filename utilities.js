@@ -64,7 +64,7 @@ function changeMp3(mp3Url){
 
 function changeMp4(mp4Url){
     //change the source of the VIDEO player with default video cover image
-    changeMp4(mp4Url,"http://skatecreteordie.com/media/kitteh.jpg");
+    changeMp4(mp4Url,"https://seattlerules.com/media/stuffedanimalwar/stuffedanimalmountain.jpg");
 }
 function changeMp4(mp4Url,coverImageUrl){
     console.log("CHANGE MP4");
